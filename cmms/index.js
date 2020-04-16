@@ -1,6 +1,6 @@
 //mvc moddel view control
 const express = require('express');
-const index = express();
+const app = express();
 //we add the path module which is built in node.js
 const path = require('path');
 //we add the handlebars engine module
@@ -13,23 +13,23 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const bcrypt = require('bcryptjs');
 //we add the middle ware for the public folder and join it to the path to call our styles from it
-index.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'public')));
 const users = require('./routes/users');
 //const mysql = require('mysql');
 //we add the middle wares for the engine
-index.engine('handlebars',exphbs({defaultLayout: 'home'}));
-index.set('view engine','handlebars');
+app.engine('handlebars',exphbs({defaultLayout: 'login'}));
+app.set('view engine','handlebars');
 //always put it before the routes or it will not work
-index.use(bodyParser.urlencoded({extended: true}));
-index.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 //using the method override in the middleware
-index.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 
 
 
-index.use('/',main);
-index.use('/',users);
+app.use('/',main);
+app.use('/',users);
 
 const port = process.env.PORT || 2000;
-index.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(port, () => console.log(`Listening on port ${port}...`));

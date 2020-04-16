@@ -4,26 +4,32 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const app = express();
-app.use(bodyParser.json());
 
+app.use(bodyParser.json());
+router.get('/index',(req,res)=>{
+
+    res.render('home/index',{layout:'home'});
+});
 
 router.get('/',(req,res)=>{
-    res.render('home/index');
+    res.render('login/login');
 });
 router.get('/about',(req,res)=>{
-    res.render('home/about');
+    res.render('home/about',{layout:'home'});
 });
 router.get('/blog',(req,res)=>{
-    res.render('home/blog');
+    res.render('home/blog',{layout:'home'});
 });
 router.get('/contact',(req,res)=>{
-    res.render('home/contact');
+    res.render('home/contact',{layout:'home'});
 });
 router.get('/support',(req,res)=>{
-    res.render('home/support');
+    res.render('home/support',{layout:'home'});
 });
-// router.post('/login', (req, res) => {
 
+ router.post('/', (req, res) => {
+     res.render('home/index',{layout:'home'});
+ });
 // router.get('/contactUs',(req,res)=>{
 //     res.render('home/contactUs');
 // });
