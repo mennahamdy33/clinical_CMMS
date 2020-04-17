@@ -2,13 +2,11 @@
 @charset "utf-8";
 body {
 	margin:0;
-	padding-top: 100px;
-	padding-left: 230px;
+	padding:0;
 	width:100%;
-	color:#207cc7;
+	color:#6d6d6d;
 	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
-	background-image: url("../images/hp.jpeg");
-	opacity: 1;
+  background-color: #daeded
 }
 html, .main {
 	padding:0;
@@ -36,7 +34,7 @@ p {
 	padding:0 0 8px 0;
 }
 a {
-	color:#f8b029;
+	color:#df970d;
 	text-decoration:underline;
 }
 .header, .content, .menu_nav, .fbg, .footer, form, ol, ol li, ul, .content .mainbar, .content .sidebar {
@@ -66,14 +64,19 @@ h1 {
 	text-transform:none;
 }
 h1 a, h1 a:hover {
-	color:black;
+	color:#ffb300;
 	text-decoration:none;
 }
-
-
-
-
-
+h1 span {
+}
+h1 small {
+	display:block;
+	font-size:13px;
+	line-height:1.2em;
+	letter-spacing:normal;
+	text-transform:none;
+	color:#7d6f6a;
+}
 .slider {
 	padding:0 0 58px;
 	background-color: #daeded;
@@ -137,7 +140,7 @@ h1 a, h1 a:hover {
 .menu_nav ul li.active a, .menu_nav ul li a:hover {
 	text-decoration:none;
 	color:#fff;
-	background:#706e60;
+	background:#706e6;
 }
 .content {
 	padding:24px 0 40px;
@@ -148,12 +151,10 @@ h1 a, h1 a:hover {
 	width:960px;
 }
 .content .mainbar {
-	background: rgba(255, 255, 255, 0);
-	margin:5;
-	padding:5;
+	margin:0;
+	padding:0;
 	float:right;
 	width:680px;
-	right: 500px;
 }
 .content .mainbar h2 {
 	margin-bottom:0;
@@ -161,58 +162,21 @@ h1 a, h1 a:hover {
 	font-size:24px;
 	line-height:1.2em;
 	color:black;
-	background-color: white;
 }
 .content .mainbar div.img {
 	padding:12px 0 0;
-	float:right;
+	float:left;
 }
-
+.content .mainbar img {
+}
 .content .mainbar img.fl {
 	margin:0;
 }
-
-.content .mainbar .article .form-group label {
-  color: #617ecf;
-  font-size: 30px;
-  font-family:"Liberation sans", Arial, Helvetica, sans-serif;
-  margin-top: 10px;
-  margin-bottom: 100px; 
-  border: none;
-}
-.content .mainbar .article .form-group button {
-	background-color: #4CAF50;
-	border: none;
-	color: white;
-	padding: 16px 32px;
-	text-decoration: none;
-	margin: 4px 2px;
-	cursor: pointer;
-}
-.content .mainbar .article .form-group input {
-  display: block;
-  width: 300px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  height: 50px;
-  padding: 0 15px; 
-  border: none;
-  border-bottom: 2px solid #56a8eb;
-  background: rgba(255, 255, 255, 0);
-}
-
-.content .mainbar .article .form-group textarea {
-display: block;
-width: 100%;
-border: none;
-padding: 15px 15px;
-height: 150px;
-margin-bottom: 5px; 
-}
-.content .mainbar .article .form-group input:focus{
-	border: solid 2px;
-	border-color: #56a8eb;
-	outline-width: 0;
+.content .mainbar .article {
+	margin:0 0 32px;
+	padding:6px 20px;
+	background:#fff;
+	border:1px solid #d5d2d2;
 }
 .content .mainbar .post_content {
 	float:right;
@@ -328,8 +292,8 @@ p.infopost a.com span {
 }
 .content p.pages span, .content p.pages a:hover {
 	color:#fff;
-	background:#df7e1e;
-	border:1px solid #f89f1a;
+	background:#df970d;
+	border:1px solid #df970d;
 }
 .content p.pages a {
 	color:#6e6e6e;
@@ -344,14 +308,14 @@ p.infopost a.com span {
 	padding:16px 0 0 0;
 }
 .content .mainbar .comment img.userpic {
-	border:1px solid #000000;
+	border:1px solid #dedede;
 	margin:10px 16px 0 0;
 	padding:0;
 	float:left;
 }
 .fbg {
 	padding:0;
-	background-color: #b6d9d8;
+	background-color: #daeded;
 }
 .fbg_resize {
 	margin:0 auto;
@@ -402,7 +366,7 @@ p.infopost a.com span {
 	background:url(../images/li.gif) no-repeat left center;
 }
 .fbg .fbg_ul li a:hover {
-	color:#d69b24;
+	color:#df970d;
 	text-decoration:underline;
 }
 .fbg p.contact_info {
@@ -502,7 +466,7 @@ ol li .send {
 	text-indent:inherit;
 }
 .footer_resize a {
-	color:#f5f1e9;
+	color:#df970d;
 	font-weight:normal;
 	margin:0;
 	padding:0;
@@ -511,7 +475,7 @@ ol li .send {
 	background-color:transparent;
 }
 .footer_resize a:hover {
-	color:#f5f3ef;
+	color:#df970d;
 	background-color:transparent;
 	text-decoration:none;
 }
@@ -524,76 +488,60 @@ ol li .send {
 a {
 	outline:none;
 }
-
-.content .mainbar {
-	margin-top: 10px;
-	background: rgba(255, 255, 255, 0);
-	margin:50;
-	padding-right: 80px;
-	float:right;
-	width:500px;
-	height: 300px;
-
+.inputequip{
+	float: right;
+	height: 20px;
+	width: 15rem;
+	margin-right: 5rem;
 }
-.button {
-display: inline-block;
-border-radius: 2px;
-background-color: #617ecf;
-border: none;
-color: #FFFFFF;
-text-align: center;
-font-size: 18px;
-padding: 20px;
-width: 150px;
-transition: all 0.5s;
-cursor: pointer;
-margin: 5px;
+.newequip{
+	font-size: 20px;
+	margin-left: 5rem;
 }
-
-.button span {
-cursor: pointer;
-display: inline-block;
-position: relative;
-transition: 0.5s;
+.equip{
+	text-align:center;
+}
+.submission{
+	margin-left: 30rem;
+	height: 45px;
+	width: 155px;
+	background-color: #daeded;
+}
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-.button span:after {
-content: '\00bb';
-position: absolute;
-opacity: 0;
-top: 0;
-right: -20px;
-transition: 0.5s;
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: grey;
 }
 
-.button:hover span {
-padding-right: 25px;
+li.dropdown {
+  display: inline-block;
 }
 
-.button:hover span:after {
-opacity: 1;
-right: 0;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
 
+.dropdown-content a:hover {background-color: grey;}
 
-/* You could use :after - it doesn't really matter
-.my-container:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.6;
-    background-image: url('http://placekitten.com/1500/1000');
-    background-repeat: no-repeat;
-    background-position: 50% 0;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    background-size: cover;
-} */
+.dropdown:hover .dropdown-content {
+  display: block;
+}

@@ -4,13 +4,22 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const app = express();
+//const mysql = require('mysql2');
+var mysql = require('mysql');
 
+var pool = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    database: "cmms"
+});
 app.use(bodyParser.json());
 router.get('/index',(req,res)=>{
 
     res.render('home/index',{layout:'home'});
 });
-
+router.get('/AddEquipment',(req,res)=>{
+    res.render('home/AddEquipment',{layout:'home'});
+});
 router.get('/',(req,res)=>{
     res.render('login/login');
 });
@@ -30,6 +39,27 @@ router.get('/support',(req,res)=>{
  router.post('/', (req, res) => {
      res.render('home/index',{layout:'home'});
  });
+router.post('/AddEquipment', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+
+
+                    var sql = `INSERT INTO equipment (department,nomenclature,serial_no,id,model,manufacturer,contact_manufacturer,local_agent,contact_agent,condition_code,price,install_date,warrenty_period,maintenance_assessment) VALUES ('${req.body.department}', '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.model}','${req.body.manufacturer}', '${req.body.contactmanufacturer}', '${req.body.localagent}', '${req.body.contactagent}', '${req.body.conditioncode}', '${req.body.price}', '${req.body.installationdate}', '${req.body.warrentlyperiod}','${req.body.maintenanceassesment}')`;
+                    pool.query(sql, function (err, res) {
+                        if (err) throw err;
+                        console.log("1 record inserted");
+                    });
+                });
+
+
+
+
+        res.redirect('/AddEquipment');
+
+
+});
 // router.get('/contactUs',(req,res)=>{
 //     res.render('home/contactUs');
 // });
