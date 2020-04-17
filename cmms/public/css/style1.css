@@ -7,15 +7,14 @@ body {
 	width:100%;
 	color:#207cc7;
 	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
-	background-image: url("../images/hp.jpeg");
+	background-image: url("../images/hp.jpg");
 	opacity: 1;
 }
 html, .main {
 	padding:0;
 	margin:0;
 }
-.main {
-}
+
 .clr {
 	clear:both;
 	padding:0;
@@ -535,7 +534,7 @@ a {
 	height: 300px;
 
 }
-.button {
+#log1but {
 display: inline-block;
 border-radius: 2px;
 background-color: #617ecf;
@@ -550,14 +549,14 @@ cursor: pointer;
 margin: 5px;
 }
 
-.button span {
+#log1but span {
 cursor: pointer;
 display: inline-block;
 position: relative;
 transition: 0.5s;
 }
 
-.button span:after {
+#log1but span:after {
 content: '\00bb';
 position: absolute;
 opacity: 0;
@@ -566,11 +565,11 @@ right: -20px;
 transition: 0.5s;
 }
 
-.button:hover span {
+#log1but:hover span {
 padding-right: 25px;
 }
 
-.button:hover span:after {
+#log1but:hover span:after {
 opacity: 1;
 right: 0;
 }
