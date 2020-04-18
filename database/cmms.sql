@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2020 at 05:31 PM
+-- Generation Time: Apr 18, 2020 at 03:38 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `cmms`
 --
+CREATE DATABASE IF NOT EXISTS `cmms` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `cmms`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daily_inspection`
+--
+
+DROP TABLE IF EXISTS `daily_inspection`;
+CREATE TABLE `daily_inspection` (
+  `nomenclature` varchar(200) NOT NULL,
+  `serial_no` int(100) NOT NULL,
+  `id` varchar(200) NOT NULL,
+  `department` varchar(200) NOT NULL,
+  `physical_condition` varchar(200) NOT NULL,
+  `batteries` varchar(200) NOT NULL,
+  `cables_port` varchar(200) NOT NULL,
+  `self_test` varchar(200) NOT NULL,
+  `tech_name` varchar(200) NOT NULL,
+  `inspection_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `comment` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -28,6 +51,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `equipment`
 --
 
+DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE `equipment` (
   `department` varchar(200) NOT NULL,
   `nomenclature` varchar(200) NOT NULL,
@@ -51,6 +75,7 @@ CREATE TABLE `equipment` (
 -- Table structure for table `reports`
 --
 
+DROP TABLE IF EXISTS `reports`;
 CREATE TABLE `reports` (
   `department` varchar(200) NOT NULL,
   `equip_name` varchar(200) NOT NULL,
@@ -73,6 +98,13 @@ CREATE TABLE `reports` (
 --
 
 --
+-- Indexes for table `daily_inspection`
+--
+ALTER TABLE `daily_inspection`
+  ADD PRIMARY KEY (`serial_no`),
+  ADD KEY `id` (`id`);
+
+--
 -- Indexes for table `equipment`
 --
 ALTER TABLE `equipment`
@@ -85,6 +117,22 @@ ALTER TABLE `equipment`
 ALTER TABLE `reports`
   ADD PRIMARY KEY (`serial_no`),
   ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `daily_inspection`
+--
+ALTER TABLE `daily_inspection`
+  ADD CONSTRAINT `daily_inspection_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipment` (`id`);
+
+--
+-- Constraints for table `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipment` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
