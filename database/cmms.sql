@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2020 at 03:38 AM
+-- Generation Time: Apr 19, 2020 at 07:19 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cmms`
 --
-CREATE DATABASE IF NOT EXISTS `cmms` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `cmms`;
 
 -- --------------------------------------------------------
 
@@ -30,7 +28,6 @@ USE `cmms`;
 -- Table structure for table `daily_inspection`
 --
 
-DROP TABLE IF EXISTS `daily_inspection`;
 CREATE TABLE `daily_inspection` (
   `nomenclature` varchar(200) NOT NULL,
   `serial_no` int(100) NOT NULL,
@@ -51,7 +48,6 @@ CREATE TABLE `daily_inspection` (
 -- Table structure for table `equipment`
 --
 
-DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE `equipment` (
   `department` varchar(200) NOT NULL,
   `nomenclature` varchar(200) NOT NULL,
@@ -64,10 +60,18 @@ CREATE TABLE `equipment` (
   `contact_agent` varchar(200) CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
   `condition_code` varchar(100) NOT NULL,
   `price` varchar(200) NOT NULL,
-  `install_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `warrenty_period` datetime NOT NULL,
+  `install_date` date NOT NULL,
+  `warrenty_period` date NOT NULL,
   `maintenance_assessment` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `equipment`
+--
+
+INSERT INTO `equipment` (`department`, `nomenclature`, `serial_no`, `id`, `model`, `manufacturer`, `contact_manufacturer`, `local_agent`, `contact_agent`, `condition_code`, `price`, `install_date`, `warrenty_period`, `maintenance_assessment`) VALUES
+('icu', 'monitor', 22346, 'icum02', '3452', 'philips', '3647532', '7asry', '07775000', 'A', '50000', '2006-03-03', '2010-03-03', 'no contract'),
+('icu', 'monitor', 25452452, 'icum04', '34552', 'philips', '725723', '7asry', '07775000', 'B', '44000', '2010-05-07', '2020-04-14', 'contract');
 
 -- --------------------------------------------------------
 
@@ -75,7 +79,6 @@ CREATE TABLE `equipment` (
 -- Table structure for table `reports`
 --
 
-DROP TABLE IF EXISTS `reports`;
 CREATE TABLE `reports` (
   `department` varchar(200) NOT NULL,
   `equip_name` varchar(200) NOT NULL,
