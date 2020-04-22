@@ -59,7 +59,7 @@ a {
 	width:auto;
 	height:114px;
 	padding-left: 20px;
-	padding-top: 70px;
+	padding-top: 20px;
 	position: relative;
 	top: -20px;
 	left: 80px;
@@ -534,7 +534,7 @@ li.dropdown {
   display: block;
 }
 .footer {
-	background-color: #b6d9d8;
+	background-color: #daeded;
 	margin-top: auto;
 	margin-bottom: auto;
 }
