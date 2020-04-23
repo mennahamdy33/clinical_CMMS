@@ -1,9 +1,12 @@
   <div class="content">
     <div class="content_resize">
       <div id="rightarea" class="limiter">
-          <div class="container-table100">
+
+  <div class="container-table100">
+
             <div class="wrap-table100">
-              <div class="table100">
+
+  <div class="table100">
                 <table id="hakona">
                   <thead>
                     <tr class="table100-head">
@@ -23,69 +26,48 @@
                       <th class="column3">Maintain._Assess.</th>
                     </tr>
                   </thead>
+
                   <tbody>
-                      <tr>
-                        <td class="column3">Intensity Unit Care</td>
-                        <td class="column3">Ventilator</td>
-                        <td class="column4">0990145</td>
-                        <td class="column4">152</td>
-                        <td class="column4">11DTV-741</td>
-                        <td class="column3">Siemens_Healtineers</td>
-                        <th class="column4">0223481681</th>
-                        <th class="column3">Ahmed Fahmy</th>
-                        <th class="column4">01019256748</th>
-                        <th class="column4">A</th>
-                        <th class="column4">$120000</th>
-                        <th class="column3">2020-04-21 05:57</th>
-                        <th class="column4">5-Yrs</th>
-                        <th class="column3">????????</th>
+                    {{#each equipment}}
+
+
+                    <tr>
+
+                        <td class="column3">{{department}}</td>
+                        <td class="column3">{{nomenclature}}</td>
+                        <td class="column4"  > <a href="/index">{{serial_no}}</td>
+                        <td class="column4">{{id}}</td>
+                        <td class="column4">{{model}}</td>
+                        <td class="column3">{{manufacturer}}</td>
+                        <th class="column4">{{contact_manufacturer}}</th>
+                        <th class="column3">{{local_agent}}</th>
+                        <th class="column4">{{contact_agent}}</th>
+                        <th class="column4">{{condition_code}}</th>
+                        <th class="column4">{{price}}</th>
+                        <th class="column3">{{install_date}}</th>
+                        <th class="column4">{{warrenty_period}}</th>
+                        <th class="column3">{{maintenance_assessment}}</th>
+
                       </tr>
-                      <tr>
-                        <td class="column3"></td>
-                        <td class="column3"></td>
-                        <td class="column4"></td>
-                        <td class="column4"></td>
-                        <td class="column4"></td>
-                        <td class="column3"></td>
-                        <th class="column4"></th>
-                        <th class="column3"></th>
-                        <th class="column4"></th>
-                        <th class="column4"></th>
-                        <th class="column4"></th>
-                        <th class="column3"></th>
-                        <th class="column4"></th>
-                        <th class="column3"></th>
-                      </tr>
-                      <tr>
-                        <td class="column3"></td>
-                        <td class="column3"></td>
-                        <td class="column4"></td>
-                        <td class="column4"></td>
-                        <td class="column4"></td>
-                        <td class="column3"></td>
-                        <th class="column4"></th>
-                        <th class="column3"></th>
-                        <th class="column4"></th>
-                        <th class="column4"></th>
-                        <th class="column4"></th>
-                        <th class="column3"></th>
-                        <th class="column4"></th>
-                        <th class="column3"></th>
-                      </tr>
-                      
+                    {{/each}}
                   </tbody>
+
                 </table>
+
               </div>
-            </div>
-        </div>
-      </div>
+
+                    </div>
+
+                    </div>
+
+              </div>
       <div id="leftarea" class="sidebar">
         <div class="searchform">
-          <form id="formsearch" name="formsearch" method="post" action="#">
+          <form id="formsearch" name="formsearch" method="post" action="/blog">
             <span>
             <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
             </span>
-            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+              <button name="button_search"  class="button_search" type="image" ><img src="images/search.gif"></button>
           </form>
         </div>
         

@@ -17,6 +17,18 @@ router.get('/index',(req,res)=>{
 
     res.render('home/index',{layout:'home'});
 });
+router.get('/report',(req,res)=>{
+
+    res.render('home/report',{layout:'home'});
+});
+router.get('/dashboard',(req,res)=>{
+
+    res.render('home/dashboard');
+});
+router.get('/calender',(req,res)=>{
+
+    res.render('home/calender');
+});
 router.get('/AddEquipment',(req,res)=>{
     res.render('home/AddEquipment',{layout:'home'});
 });
@@ -27,13 +39,42 @@ router.get('/about',(req,res)=>{
     res.render('home/about',{layout:'home'});
 });
 router.get('/blog',(req,res)=>{
-    res.render('home/blog',{layout:'home'});
-});
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("Login Connected!");
+
+        var sql = `SELECT * FROM equipment `;
+    pool.query(sql,  async function (err,rows,fields) {
+        res.render('home/blog', {equipment: rows,layout:'home'});
+
+        console.log("ww", {equipment: rows});
+
+    });
+});});
+router.post('/blog',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("Login Connected!");
+
+        var sql = `SELECT * FROM equipment WHERE serial_no =?`;
+        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+
+            res.render('home/blog', {equipment: rows,layout:'home'});
+
+            console.log("ww", {equipment: rows});
+
+        });
+    });});
 router.get('/contact',(req,res)=>{
     res.render('home/contact',{layout:'home'});
 });
 router.get('/support',(req,res)=>{
     res.render('home/support',{layout:'home'});
+});
+router.get('/Dailypass',(req,res)=>{
+    res.render('home/Dailypass',{layout:'home'});
 });
 
  router.post('/', (req, res) => {
@@ -57,6 +98,48 @@ router.post('/AddEquipment', (req, res) => {
 
 
         res.redirect('/AddEquipment');
+
+
+});
+router.post('/Dailypass', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+
+
+        var sql = `INSERT INTO daily_inspection (nomenclature,serial_no,id,department,physical_condition,batteries,cables_port,self_test,tech_name,inspection_date,comment) VALUES ( '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.department}','${req.body.physicalcondition}', '${req.body.batteriescondition}', '${req.body.cablesportscondition}', '${req.body.selftest}', '${req.body.technicianname}', '${req.body.inspectiondate}', '${req.body.comment}')`;
+        pool.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/Dailypass');
+
+
+});
+router.post('/Report', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+
+
+        var sql = `INSERT INTO reports (department,equip_name,manufacturer,model,serial_no,fault_date,priority,fault_description,job_no,tech_name,action_taken,solved,end_date,id) VALUES ('${req.body.department}', '${req.body.equipmentname}','${req.body.manufacturer}','${req.body.model}','${req.body.serialnumber}','${req.body.faultdate}', '${req.body.priority}', '${req.body.faultdescription}', '${req.body.jobnumber}', '${req.body.technicianname}', '${req.body.actiontaken}', '${req.body.solution}', '${req.body.enddate}','${req.body.id}')`;
+        pool.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/Report');
 
 
 });
