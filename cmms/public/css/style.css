@@ -1,4 +1,3 @@
-/* Design by http://www.dreamtemplate.com */
 @charset "utf-8";
 body {
 	margin:0;
@@ -6,7 +5,7 @@ body {
 	width:100%;
 	color:#6d6d6d;
 	font:normal 12px/1.5em "Liberation sans", Arial, Helvetica, sans-serif;
-  background-color: #daeded ;
+	background-color: #daeded ;
 }
 html, .main {
 	padding:0;
@@ -65,7 +64,7 @@ a {
 	left: 80px;
 	/* text-size-adjust: 10px; */
 	/* font-size: small; */
-	
+
 }
 h1 {
 	margin:0;
@@ -496,42 +495,42 @@ a {
 	background-color: #daeded;
 }
 li a, .dropbtn {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-  background-color: grey;
+	background-color: grey;
 }
 
 li.dropdown {
-  display: inline-block;
+	display: inline-block;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
 }
 
 .dropdown-content a:hover {background-color: grey;}
 
 .dropdown:hover .dropdown-content {
-  display: block;
+	display: block;
 }
 .footer {
 	background-color: #daeded;
@@ -596,42 +595,42 @@ li.dropdown {
 	background-color: #daeded;
 }
 li a, .dropbtn {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-  background-color: grey;
+	background-color: grey;
 }
 
 li.dropdown {
-  display: inline-block;
+	display: inline-block;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
 }
 
 .dropdown-content a:hover {background-color: grey;}
 
 .dropdown:hover .dropdown-content {
-  display: block;
+	display: block;
 }
 
 #leftarea{
@@ -656,11 +655,11 @@ li.dropdown {
 
 @font-face {
 	font-family: OpenSans-Regular;
-	src: url('../fonts/OpenSans/OpenSans-Regular.ttf'); 
-  }
-  .container-table100 {
+	src: url('../fonts/OpenSans/OpenSans-Regular.ttf');
+}
+.container-table100 {
 	width: 75%;
-	min-height: 100vh;  
+	min-height: 100vh;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -671,10 +670,10 @@ li.dropdown {
 	flex-wrap: wrap;
 	/* padding-bottom: 180px; */
 	padding-left: 160px;
-  }
-  
-  
-  table {
+}
+
+
+table {
 	border-spacing: 1;
 	border-collapse: collapse;
 	background: white;
@@ -684,68 +683,68 @@ li.dropdown {
 	margin: 0 auto;
 	position: relative;
 	top: 10 px;
-  }
-  table * {
+}
+table * {
 	position: relative;
-  }
-  table td, table th {
+}
+table td, table th {
 	padding-left: 4px;
-  }
-  table thead tr {
+}
+table thead tr {
 	height: 60px;
 	background: #4d240c;
-  }
-  table tbody tr {
+}
+table tbody tr {
 	height: 50px;
-  }
-  table tbody tr:last-child {
+}
+table tbody tr:last-child {
 	border: 0;
-  }
-  table td, table th {
+}
+table td, table th {
 	text-align: center;
-  }
-  table td.l, table th.l {
+}
+table td.l, table th.l {
 	text-align: center;
-  }
-  table td.c, table th.c {
+}
+table td.c, table th.c {
 	text-align: center;
-  }
-  table td.r, table th.r {
+}
+table td.r, table th.r {
 	text-align: center;
-  }
-  
-  
-  .table100-head th{
+}
+
+
+.table100-head th{
 	font-family: OpenSans-Regular;
 	font-size: 12px;
 	color: #fff;
 	line-height: 1.2;
 	font-weight: bolder;
-  }
-  
-  tbody tr:nth-child(even) {
+}
+
+tbody tr:nth-child(even) {
 	background-color: #f5f5f5;
-  }
-  
-  tbody tr {
+}
+
+tbody tr {
 	font-family: OpenSans-Regular;
 	font-size: 10px;
 	color: #808080;
 	line-height: 1.2;
 	font-weight: unset;
-  }
-  
-  tbody tr:hover {
+}
+
+tbody tr:hover {
 	color: #555555;
 	background-color: #f5f5f5;
 	cursor: pointer;
-  }
+}
 
-  .column3 {
-	  font-size: 14px;
-	  font-weight: bold;
-  }
-  .column4 {
-	  font-size: 13px;
-	  font-weight: bold;
-  }
+.column3 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.column4 {
+	font-size: 13px;
+	font-weight: bold;
+}
