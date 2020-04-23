@@ -7,40 +7,30 @@
                 <table id="hakona">
                   <thead>
                     <tr class="table100-head">
-                      <th class="column3">Department</th>
                       <th class="column3">Nomenclature</th>
                       <th class="column4">Serial_no</th>
-                      <th class="column4">Id</th>
+                      <th class="column4">ID</th>
                       <th class="column4">Model</th>
                       <th class="column3">Manufacturer</th>
-                      <th class="column4">Manufac_contact</th>
                       <th class="column3">Local_agent</th>
-                      <th class="column4">Agent_contact</th>
-                      <th class="column4">Condition_code</th>
-                      <th class="column4">Price</th>
-                      <th class="column3">Install_data</th>
                       <th class="column4">Warrenty_period</th>
-                      <th class="column3">Maintain._Assess.</th>
+                      <th class="column3">Stop-production-date</th>
+                      <th class="column3">End-production-date</th>
                     </tr>
                   </thead>
                   {{!-- {{#if "data.length !== '0'"}}
                     <tbody>
                     {{#each data}}
                       <tr>
-                        <td class="column3">{{data.department}}</td>
                         <td class="column3">{{data.nomenclature}}</td>
                         <td class="column4">{{data.serialnumber}}</td>
                         <td class="column4">{{data.id}}</td>
                         <td class="column4">{{data.model}}</td>
                         <td class="column3">{{data.manufacturer}}</td>
-                        <th class="column4">{{data.contactmanufacturer}}</th>
                         <th class="column3">{{data.localagent}}</th>
-                        <th class="column4">{{data.contactagent}}</th>
-                        <th class="column4">{{data.conditioncode}}</th>
-                        <th class="column4">{{data.price}}</th>
-                        <th class="column3">{{data.installationdate}}</th>
                         <th class="column4">{{data.warrentlyperiod}}</th>
-                        <th class="column3">{{data.maintenanceassesment}}</th>
+                        <th class="column3">{{data.stopproductionperiod}}</th>
+                        <th class="column3">{{data.endproductionperiod}}</th>
                       </tr>
                       {{/each}}
                     </tbody>
