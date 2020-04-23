@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2020 at 07:19 PM
+-- Generation Time: Apr 23, 2020 at 01:43 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -25,6 +25,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `calibration`
+--
+
+CREATE TABLE `calibration` (
+  `department` varchar(200) NOT NULL,
+  `nomenclature` varchar(200) NOT NULL,
+  `serial_no` int(100) NOT NULL,
+  `id` varchar(200) NOT NULL,
+  `time_period` varchar(200) NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `assigned_to` varchar(200) NOT NULL,
+  `calibration_task` varchar(200) NOT NULL,
+  `contract_id` varchar(200) DEFAULT NULL,
+  `status` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `daily_inspection`
 --
 
@@ -40,6 +60,24 @@ CREATE TABLE `daily_inspection` (
   `tech_name` varchar(200) NOT NULL,
   `inspection_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
+
+CREATE TABLE `employee` (
+  `name` varchar(200) NOT NULL,
+  `id` int(100) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `mobile_no` int(100) NOT NULL,
+  `role` varchar(200) NOT NULL,
+  `position` varchar(200) NOT NULL,
+  `department` varchar(200) NOT NULL,
+  `qualifications` varchar(200) NOT NULL,
+  `salary` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -76,6 +114,26 @@ INSERT INTO `equipment` (`department`, `nomenclature`, `serial_no`, `id`, `model
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ppm`
+--
+
+CREATE TABLE `ppm` (
+  `department` varchar(200) NOT NULL,
+  `nomenclature` varchar(200) NOT NULL,
+  `serial_no` int(100) NOT NULL,
+  `id` varchar(200) NOT NULL,
+  `time_period` date NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `assigned_to` varchar(200) NOT NULL,
+  `ppm_task` varchar(200) NOT NULL,
+  `contract_id` varchar(200) DEFAULT NULL,
+  `status` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reports`
 --
 
@@ -96,9 +154,34 @@ CREATE TABLE `reports` (
   `id` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `store`
+--
+
+CREATE TABLE `store` (
+  `nomenclature` varchar(200) NOT NULL,
+  `serial_no` int(100) NOT NULL,
+  `id` varchar(200) NOT NULL,
+  `model` varchar(200) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `manufacturer` varchar(200) NOT NULL,
+  `local_agent` varchar(200) NOT NULL,
+  `warrenty_period` varchar(200) NOT NULL,
+  `stop_production_date` date NOT NULL,
+  `end_support_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `calibration`
+--
+ALTER TABLE `calibration`
+  ADD PRIMARY KEY (`serial_no`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `daily_inspection`
@@ -108,11 +191,24 @@ ALTER TABLE `daily_inspection`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `equipment`
 --
 ALTER TABLE `equipment`
   ADD PRIMARY KEY (`serial_no`),
   ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `ppm`
+--
+ALTER TABLE `ppm`
+  ADD PRIMARY KEY (`serial_no`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `reports`
@@ -122,8 +218,21 @@ ALTER TABLE `reports`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `store`
+--
+ALTER TABLE `store`
+  ADD PRIMARY KEY (`serial_no`),
+  ADD KEY `id` (`id`);
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `calibration`
+--
+ALTER TABLE `calibration`
+  ADD CONSTRAINT `calibration_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipment` (`id`);
 
 --
 -- Constraints for table `daily_inspection`
@@ -132,10 +241,22 @@ ALTER TABLE `daily_inspection`
   ADD CONSTRAINT `daily_inspection_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipment` (`id`);
 
 --
+-- Constraints for table `ppm`
+--
+ALTER TABLE `ppm`
+  ADD CONSTRAINT `ppm_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipment` (`id`);
+
+--
 -- Constraints for table `reports`
 --
 ALTER TABLE `reports`
   ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipment` (`id`);
+
+--
+-- Constraints for table `store`
+--
+ALTER TABLE `store`
+  ADD CONSTRAINT `store_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipment` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
