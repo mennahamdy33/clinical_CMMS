@@ -3,7 +3,7 @@
         <div class="mainbar">
             <div class="article">
                 <h1 class="equip">Periodic Preventive Maintenance</h1><br><br>
-                <form class="" method="post">
+                <form class="" action="/PPM" method="post">
                     <label class="newequip">Department:</label>
                     <input class="inputequip" type="text" name="department" required><br><br><br>
                     <label class="newequip">Nomenclature:</label>
@@ -33,11 +33,11 @@
         </div>
         <div class="sidebar">
             <div class="searchform">
-                <form id="formsearch" name="formsearch" method="post" action="#">
+                <form id="formsearch" name="formsearch" method="post" action="/PPM_table">
             <span>
-            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" placeholder="PPM" type="text" />
             </span>
-                    <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+                    <button name="button_search"  class="button_search" type="image" ><img src="images/search.gif"></button>
                 </form>
             </div>
             <div class="clr"></div>
@@ -45,12 +45,14 @@
                 <h2 class="star"><span>Contents</span> Menu</h2>
                 <div class="clr"></div>
                 <ul class="sb_menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Add New Equipment</a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
-                    <li><a href="#"></a></li>
+                    <li><a href="/index">Home</a></li>
+                    <li><a href="/AddEquipment">Add New Equipment</a></li>
+                    <li><a href="/Report">Report</a></li>
+                    <li><a href="/Dailypass">Daily Pass</a></li>
+                    <li><a href="/PPM">PPM</a></li>
+                    <li><a href="/Calibration">Calibration</a></li>
+                    <li><a href="/store">Store</a></li>
+
                 </ul>
             </div>
         </div>

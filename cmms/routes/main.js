@@ -17,14 +17,32 @@ router.get('/index',(req,res)=>{
 
     res.render('home/index',{layout:'home'});
 });
+router.get('/Calibration',(req,res)=>{
+
+    res.render('home/Calibration',{layout:'home'});
+});
+
+router.get('/Employee',(req,res)=>{
+
+    res.render('home/Employee',{layout:'home'});
+});
+
+
+router.get('/store',(req,res)=>{
+
+    res.render('home/store',{layout:'home'});
+});
+
 router.get('/report',(req,res)=>{
 
     res.render('home/report',{layout:'home'});
 });
-router.get('/dashboard',(req,res)=>{
 
-    res.render('home/dashboard');
+router.get('/PPM',(req,res)=>{
+
+    res.render('home/PPM',{layout:'home'});
 });
+    
 router.get('/calender',(req,res)=>{
 
     res.render('home/calender');
@@ -38,6 +56,7 @@ router.get('/',(req,res)=>{
 router.get('/about',(req,res)=>{
     res.render('home/about',{layout:'home'});
 });
+
 router.get('/blog',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -56,7 +75,7 @@ router.post('/blog',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        console.log("Login Connected!");
+
 
         var sql = `SELECT * FROM equipment WHERE serial_no =?`;
         pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
@@ -64,6 +83,145 @@ router.post('/blog',(req,res)=>{
             res.render('home/blog', {equipment: rows,layout:'home'});
 
             console.log("ww", {equipment: rows});
+
+        });
+    });});
+router.get('/store_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql = `SELECT * FROM store `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/store_table', {store: rows,layout:'home'});
+
+            console.log("ww", {store: rows});
+
+        });
+    });});
+router.post('/store_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM store WHERE serial_no =?`;
+        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+
+            res.render('home/store_table', {store: rows,layout:'home'});
+
+            console.log("ww", {store: rows});
+
+        });
+    });});
+router.get('/Dashboard',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql = `SELECT report_id,department,equip_name,manufacturer,model,serial_no,fault_date,fault_description,end_date FROM reports `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/Dashboard', {reports: rows,layout:'home'});
+
+            console.log("ww", {reports: rows});
+
+        });
+    });});
+router.post('/Dashboard',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM reports WHERE serial_no =?`;
+        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+
+            res.render('home/Dashboard', {reports: rows,layout:'home'});
+
+            console.log("ww", {reports: rows});
+
+        });
+    });});
+router.get('/Calib_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        var sql = `SELECT * FROM calibration `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/Calib_table', {calibration: rows,layout:'home'});
+
+            console.log("ww", {calibration: rows});
+
+        });
+    });});
+router.post('/Calib_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM calibration WHERE serial_no =?`;
+        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+
+            res.render('home/Calib_table', {calibration: rows,layout:'home'});
+
+            console.log("ww", {calibration: rows});
+
+        });
+    });});
+
+router.get('/Emp_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        var sql = `SELECT * FROM employee `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/Emp_table', {employee: rows,layout:'home'});
+
+            console.log("ww", {employee: rows});
+
+        });
+    });});
+router.post('/Emp_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM employee WHERE id =?`;
+        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+
+            res.render('home/Emp_table', {employee: rows,layout:'home'});
+
+            console.log("ww", {employee: rows});
+
+        });
+    });});
+router.get('/PPM_table',(req,res)=>{
+    pool.getConnection(function (err) {
+
+        if (err) throw err;
+
+        var sql = `SELECT * FROM ppm `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/PPM_table', {ppm: rows,layout:'home'});
+
+            console.log("ww", {ppm: rows});
+
+        });
+    });});
+router.post('/PPM_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM ppm WHERE serial_no =?`;
+        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+
+            res.render('home/PPM_table', {ppm: rows,layout:'home'});
+
+            console.log("ww", {ppm: rows});
 
         });
     });});
@@ -101,6 +259,42 @@ router.post('/AddEquipment', (req, res) => {
 
 
 });
+router.post('/store', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql = `INSERT INTO store (nomenclature,serial_no,store_id,model,manufacturer,local_agent,warrenty_period,stop_production_date,end_support_date) VALUES ( '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.id}','${req.body.model}','${req.body.manufacturer}', '${req.body.localagent}',  '${req.body.warrentlyperiod}','${req.body.stopproductiondate}','${req.body.endsupportdate}')`;
+        pool.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/store_table');
+
+
+});
+router.post('/Calibration', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql = `INSERT INTO calibration (department,nomenclature,serial_no,calib_id,time_period,from_date,to_date,assigned_to,calibration_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.id}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.calibrationtask}', '${req.body.contractid}', '${req.body.status}')`;
+        pool.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/Calib_table');
+
+
+});
 router.post('/Dailypass', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
@@ -108,7 +302,7 @@ router.post('/Dailypass', (req, res) => {
         console.log("Connected!");
 
 
-        var sql = `INSERT INTO daily_inspection (nomenclature,serial_no,id,department,physical_condition,batteries,cables_port,self_test,tech_name,inspection_date,comment) VALUES ( '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.department}','${req.body.physicalcondition}', '${req.body.batteriescondition}', '${req.body.cablesportscondition}', '${req.body.selftest}', '${req.body.technicianname}', '${req.body.inspectiondate}', '${req.body.comment}')`;
+        var sql = `INSERT INTO daily_inspection (nomenclature,serial_no,dailypass_id,department,physical_condition,batteries,cables_port,self_test,tech_name,inspection_date,comment) VALUES ( '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.department}','${req.body.physicalcondition}', '${req.body.batteriescondition}', '${req.body.cablesportscondition}', '${req.body.selftest}', '${req.body.technicianname}', '${req.body.inspectiondate}', '${req.body.comment}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -129,7 +323,7 @@ router.post('/Report', (req, res) => {
         console.log("Connected!");
 
 
-        var sql = `INSERT INTO reports (department,equip_name,manufacturer,model,serial_no,fault_date,priority,fault_description,job_no,tech_name,action_taken,solved,end_date,id) VALUES ('${req.body.department}', '${req.body.equipmentname}','${req.body.manufacturer}','${req.body.model}','${req.body.serialnumber}','${req.body.faultdate}', '${req.body.priority}', '${req.body.faultdescription}', '${req.body.jobnumber}', '${req.body.technicianname}', '${req.body.actiontaken}', '${req.body.solution}', '${req.body.enddate}','${req.body.id}')`;
+        var sql = `INSERT INTO reports (department,equip_name,manufacturer,model,serial_no,fault_date,priority,fault_description,job_no,tech_name,action_taken,solved,end_date,report_id) VALUES ('${req.body.department}', '${req.body.equipmentname}','${req.body.manufacturer}','${req.body.model}','${req.body.serialnumber}','${req.body.faultdate}', '${req.body.priority}', '${req.body.faultdescription}', '${req.body.jobnumber}', '${req.body.technicianname}', '${req.body.actiontaken}', '${req.body.solution}', '${req.body.enddate}','${req.body.id}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -140,6 +334,46 @@ router.post('/Report', (req, res) => {
 
 
     res.redirect('/Report');
+
+
+});
+router.post('/Employee', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+
+
+        var sql = `INSERT INTO employee (name,id,email,mobile_no,role,position,department,qualifications,salary) VALUES ('${req.body.name}', '${req.body.ID}','${req.body.email}','${req.body.mobilenumber}','${req.body.role}','${req.body.position}', '${req.body.department}', '${req.body.qualification}', '${req.body.salary}')`;
+        pool.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/Emp_table');
+
+
+});
+router.post('/PPM', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        var sql = `INSERT INTO ppm (department,nomenclature,serial_no,ppm_id,time_period,from_date,to_date,assigned_to,ppm_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.ID}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.ppmtask}', '${req.body.contractid}', '${req.body.status}')`;
+        pool.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/PPM_table');
 
 
 });

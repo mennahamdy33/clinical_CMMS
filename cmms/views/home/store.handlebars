@@ -3,7 +3,7 @@
       <div class="mainbar">
         <div class="article">
           <h1 class="equip">Store an Equipment</h1><br><br>
-          <form class="" action="/AddEquipment" method="post">
+          <form class="" action="/store" method="post">
               <label class="newequip">Nomenclature:</label>
               <input class="inputequip" type="text" name="nomenclature" required><br><br><br>
               <label class="newequip">Serial-Number:</label>
@@ -20,8 +20,8 @@
               <input class="inputequip" type="month" name="warrentlyperiod" required ><br><br><br>
               <label class="newequip">Stop-production-date</label>
               <input class="inputequip" type="date" name="stopproductiondate" required><br><br><br>
-              <label class="newequip">End-production-date</label>
-              <input class="inputequip" type="date" name="endproductiondate" required><br><br><br>
+              <label class="newequip">End-support-date</label>
+              <input class="inputequip" type="date" name="endsupportdate" required><br><br><br>
               <button class="submission"type="submit" name="addequipment">Add-Equipment</button><br><br>
           </form>
           </div>
@@ -29,9 +29,9 @@
       </div>
       <div id="leftarea" class="sidebar">
         <div class="searchform">
-          <form id="formsearch" name="formsearch" method="post" action="#">
+          <form id="formsearch" name="formsearch" method="post" action="/store_table">
             <span>
-            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" placeholder="Search our ste:" type="text" />
             </span>
             <input name="button_search" src="images/search.gif" class="button_search" type="image" />
           </form>
@@ -41,12 +41,13 @@
           <h2 class="star"><span>Contents</span> Menu</h2>
           <div class="clr"></div>
           <ul class="sb_menu">
-            <li><a href="/index">Home</a></li>
-            <li><a href="/AddEquipment">Add New Equipment</a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
+              <li><a href="/index">Home</a></li>
+              <li><a href="/AddEquipment">Add New Equipment</a></li>
+              <li><a href="/Report">Report</a></li>
+              <li><a href="/Dailypass">Daily Pass</a></li>
+              <li><a href="/PPM">PPM</a></li>
+              <li><a href="/Calibration">Calibration</a></li>
+              <li><a href="/store">Store</a></li>
           </ul>
         </div>
     </div>

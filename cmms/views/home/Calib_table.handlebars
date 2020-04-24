@@ -20,25 +20,25 @@
                       <th class="column4">Status</th>
                     </tr>
                   </thead>
-                  {{!-- {{#if "data.length !== '0'"}}
+
                     <tbody>
-                    {{#each data}}
+                    {{#each calibration}}
                       <tr>
-                        <td class="column3">{{data.department}}</td>
-                        <td class="column3">{{data.nomenclature}}</td>
-                        <td class="column4">{{data.serialnumber}}</td>
-                        <td class="column4">{{data.ID}}</td>
-                        <td class="column4">{{data.timeperiod}}</td>
-                        <td class="column3">{{data.fromdate}}</td>
-                        <th class="column4">{{data.todate}}</th>
-                        <th class="column3">{{data.assignedto}}</th>
-                        <th class="column4">{{data.calibrationtask}}</th>
-                        <th class="column4">{{data.contractid}}</th>
-                        <th class="column4">{{data.status}}</th>
+                        <td class="column3">{{department}}</td>
+                        <td class="column3">{{nomenclature}}</td>
+                        <td class="column4">{{serial_no}}</td>
+                        <td class="column4">{{Calib_id}}</td>
+                        <td class="column4">{{time_period}}</td>
+                        <td class="column3">{{from_date}}</td>
+                        <th class="column4">{{to_date}}</th>
+                        <th class="column3">{{assigned_to}}</th>
+                        <th class="column4">{{calibration_task}}</th>
+                        <th class="column4">{{contract_id}}</th>
+                        <th class="column4">{{status}}</th>
                       </tr>
                       {{/each}}
                     </tbody>
-                  {{/if}} --}}
+
                 </table>
               </div>
             </div>
@@ -46,11 +46,11 @@
       </div>
       <div id="leftarea" class="sidebar">
         <div class="searchform">
-          <form id="formsearch" name="formsearch" method="post" action="#">
+          <form id="formsearch" name="formsearch" method="post" action="/Calib_table">
             <span>
-            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" placeholder="Search our ste:" type="text" />
             </span>
-            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
+              <button name="button_search"  class="button_search" type="image" ><img src="images/search.gif"></button>
           </form>
         </div>
         
@@ -59,12 +59,14 @@
           <h2 class="star"><span>Sidebar</span> Menu</h2>
           <div class="clr"></div>
           <ul class="sb_menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">TemplateInfo</a></li>
-            <li><a href="#">Style Demo</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Archives</a></li>
-            <li><a href="#">Web Templates</a></li>
+              <li><a href="/index">Home</a></li>
+              <li><a href="/AddEquipment">Add New Equipment</a></li>
+              <li><a href="/Report">Report</a></li>
+              <li><a href="/Dailypass">Daily Pass</a></li>
+              <li><a href="/PPM">PPM</a></li>
+              <li><a href="/Calibration">Calibration</a></li>
+              <li><a href="/store">Store</a></li>
+
           </ul>
         </div>
       </div>
