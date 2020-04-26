@@ -1,74 +1,152 @@
 
-  <div class="content">
-    <div class="content_resize">
-      <div class="mainbar">
-        <div class="article">
-          <h1 class="equip">Daily Pass Form</h1><br><br>
-          <form class="" action="/Dailypass" method="post">
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div
+                    class="banner_content d-md-flex justify-content-between align-items-center"
+            >
+                <div class="mb-3 mb-md-0">
+                    <h2>Daily Pass <br>
+                        Form
+                    </h2>
 
-          <label class="newequip">Department:</label>
-          <input class="inputequip" type="text" name="department" required><br><br><br>
-
-
-          <label class="newequip">Equipment-Name:</label>
-          <input class="inputequip" type="text" name="equipmentname" required><br><br><br>
-
-          <label class="newequip">ID:</label>
-          <input class="inputequip" type="text" name="id" required><br><br><br>
-
-          <label class="newequip">Serial-Number:</label>
-          <input class="inputequip" type="number" name="serialnumber" required><br><br><br>
-
-          <label class="newequip">Technician-Name:</label>
-          <input class="inputequip" type="text" name="technicianname" required><br><br><br>
-
-          <label class="newequip">Physical-Condition:</label>
-          <input class="inputtext" type="text" name="physicalcondition" required><br><br><br>
-          <label class="newequip">Batteries-Condition:</label>
-          <input class="inputtext" type="text" name="batteriescondition" required><br><br><br>
-          <label class="newequip">Cables&Ports-Condition:</label>
-          <input class="inputtext" type="text" name="cablesportscondition" required><br><br><br>
-          <label class="newequip">Self-Test:</label>
-          <input class="inputtext" type="text" name="selftest" required><br><br><br>
-\
-          <label class="newequip">Comment:</label>
-          <input class="inputtext" type="text" name="comment" required><br><br><br>
-          <label class="newequip">Inspection-Date:</label>
-          <input class="inputequip" type="date" name="inspectiondate" required><br><br><br>
-
-
-          <input class="submission"type="submit" name="submit" value="Submit"><br><br>
-          </form>
-          </div>
-          <div class="clr"></div>
-      </div>
-      <div class="sidebar">
-        <div class="searchform">
-          <form id="formsearch" name="formsearch" method="post" action="#">
-            <span>
-            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search our ste:" type="text" />
-            </span>
-            <input name="button_search" src="images/search.gif" class="button_search" type="image" />
-          </form>
+                </div>
+            </div>
         </div>
-        <div class="clr"></div>
-        <div class="gadget">
-          <h2 class="star"><span>Contents</span>Menu</h2>
-          <div class="clr"></div>
-          <ul class="sb_menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="/AddEquipment">Add New Equipment</a></li>
-            <li><a href="/Report">Report</a></li>
-            <li><a href="/Dailypass">Daily Pass</a></li>
-              <li><a href="/PPM">PPM</a></li>
-              <li><a href="/Calibration">Calibration</a></li>
-              <li><a href="/store">Store</a></li>
+</section>
+<!--================End Home Banner Area =================-->
 
-          </ul>
+
+
+<!--================start form  Area =================-->
+<section class="appointment-area area-padding">
+    <div class="container">
+
+        <div class="appointment-inner">
+            <div class="row">
+                <div class="col-sm-12 col-lg-5 offset-lg-1">
+                    <div class="col-lg-12">
+                        <div class="appointment-form">
+
+                            <form action="/Dailypass" method="post">
+                                <div class="form-group">
+                                    <label class="newequip">Department:</label>
+                                    <input class="inputequip" type="text" name="department" required><br><br><br>
+
+
+                                    <label class="newequip">Equipment-Name:</label>
+                                    <input class="inputequip" type="text" name="equipmentname" required><br><br><br>
+
+                                    <label class="newequip">ID:</label>
+                                    <input class="inputequip" type="text" name="id" required><br><br><br>
+
+                                    <label class="newequip">Serial-Number:</label>
+                                    <input class="inputequip" type="number" name="serialnumber" required><br><br><br>
+
+                                    <label class="newequip">Technician-Name:</label>
+                                    <input class="inputequip" type="text" name="technicianname" required><br><br><br>
+
+                                    <label class="newequip">Physical-Condition:</label>
+                                    <input class="inputtext" type="text" name="physicalcondition" required><br><br><br>
+                                    <label class="newequip">Batteries-Condition:</label>
+                                    <input class="inputtext" type="text" name="batteriescondition" required><br><br><br>
+                                    <label class="newequip">Cables&Ports-Condition:</label>
+                                    <input class="inputtext" type="text" name="cablesportscondition" required><br><br><br>
+                                    <label class="newequip">Self-Test:</label>
+                                    <input class="inputtext" type="text" name="selftest" required><br><br><br>
+
+                                    <label class="newequip">Comment:</label>
+                                    <input class="inputtext" type="text" name="comment" required><br><br><br>
+                                    <label class="newequip">Inspection-Date:</label>
+                                    <input class="inputequip" type="date" name="inspectiondate" required><br><br><br>
+
+                                    <button class="submission" type="submit" name="search" >Submit</button>
+
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+</section>
+<!-- ================ form Area ends ================= -->
+section class="hotline-area text-center area-padding">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Emergency hotline</h2>
+            <span>(+01) – 256 567 550</span>
+            <p class="pt-3">We provide 24/7 customer support. Please feel free to contact us <br>for emergency case.</p>
         </div>
     </div>
-  </div>
+</div>
+</section>
 
-  <div class="clr"></div>
-</div>
-</div>
+<!-- ================ Hotline area ends ================= -->
+
+
+<!-- ================ testimonial section start ================= -->
+<section class="testimonial">
+    <div class="container">
+        <div class="testi_slider owl-carousel owl-theme">
+            <div class="item">
+                <div class="testi_item">
+                    <div class="testimonial_image">
+                        <img src="images/elements/tes1.jpg" alt="">
+                    </div>
+                    <div class="testi_item_content">
+                        <p font-weight="bold black">
+                            "We are 24 hours in patients' service"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testi_item">
+                    <div class="testimonial_image">
+                        <img src="images/elements/tes2.jpg" alt="">
+                    </div>
+                    <div class="testi_item_content">
+                        <p font-weight="bold black">
+                            "Our ICUs has a very qualified staff"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testi_item">
+                    <div class="testimonial_image">
+                        <img src="images/elements/tes3.jpg"  alt="">
+                    </div>
+                    <div class="testi_item_content">
+                        <p font-weight="bold black">
+                            "Nurses are trained very well"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="testi_item">
+                    <div class="testimonial_image">
+                        <img src="images/elements/tes4.jpg" alt="">
+                    </div>
+                    <div class="testi_item_content">
+                        <p font-weight="bold black">
+                            "Patients feel like they are at their homes"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

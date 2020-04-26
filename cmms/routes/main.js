@@ -10,7 +10,8 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
     host: "localhost",
     user: "root",
-    database: "cmms"
+    database: "cmms",
+    multipleStatements: true
 });
 app.use(bodyParser.json());
 router.get('/index',(req,res)=>{
@@ -53,39 +54,41 @@ router.get('/AddEquipment',(req,res)=>{
 router.get('/',(req,res)=>{
     res.render('login/login');
 });
+router.post('/',(req,res)=>{
+    res.redirect('/index');
+});
 router.get('/about',(req,res)=>{
     res.render('home/about',{layout:'home'});
 });
 
-router.get('/blog',(req,res)=>{
+router.get('/Equipment',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        console.log("Login Connected!");
 
         var sql = `SELECT * FROM equipment `;
     pool.query(sql,  async function (err,rows,fields) {
-        res.render('home/blog', {equipment: rows,layout:'home'});
+        res.render('home/Equipment', {equipment: rows,layout:'home'});
 
         console.log("ww", {equipment: rows});
 
     });
 });});
-router.post('/blog',(req,res)=>{
-
-    pool.getConnection(function (err) {
-        if (err) throw err;
-
-
-        var sql = `SELECT * FROM equipment WHERE serial_no =?`;
-        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
-
-            res.render('home/blog', {equipment: rows,layout:'home'});
-
-            console.log("ww", {equipment: rows});
-
-        });
-    });});
+// router.post('/blog',(req,res)=>{
+//
+//     pool.getConnection(function (err) {
+//         if (err) throw err;
+//
+//
+//         var sql = `SELECT * FROM equipment WHERE serial_no =?`;
+//         pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+//
+//             res.render('home/blog', {equipment: rows,layout:'home'});
+//
+//             console.log("ww", {equipment: rows});
+//
+//         });
+//     });});
 router.get('/store_table',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -117,11 +120,11 @@ router.get('/Dashboard',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql = `SELECT report_id,department,equip_name,manufacturer,model,serial_no,fault_date,fault_description,end_date FROM reports `;
+        var sql = `SELECT * FROM reports ;SELECT * FROM ppm ;SELECT * FROM daily_inspection ;`
         pool.query(sql,  async function (err,rows,fields) {
-            res.render('home/Dashboard', {reports: rows,layout:'home'});
+            res.render('home/Dashboard', {reports: rows[0],ppm:rows[1],daily_inspection:rows[2],layout:'home'});
 
-            console.log("ww", {reports: rows});
+            console.log("ww", {reports: rows[0],ppm:rows[1],daily_inspection:rows[2]});
 
         });
     });});
@@ -235,9 +238,7 @@ router.get('/Dailypass',(req,res)=>{
     res.render('home/Dailypass',{layout:'home'});
 });
 
- router.post('/', (req, res) => {
-     res.render('home/index',{layout:'home'});
- });
+
 router.post('/AddEquipment', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
@@ -246,6 +247,7 @@ router.post('/AddEquipment', (req, res) => {
 
 
                     var sql = `INSERT INTO equipment (department,nomenclature,serial_no,id,model,manufacturer,contact_manufacturer,local_agent,contact_agent,condition_code,price,install_date,warrenty_period,maintenance_assessment) VALUES ('${req.body.department}', '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.model}','${req.body.manufacturer}', '${req.body.contactmanufacturer}', '${req.body.localagent}', '${req.body.contactagent}', '${req.body.conditioncode}', '${req.body.price}', '${req.body.installationdate}', '${req.body.warrentlyperiod}','${req.body.maintenanceassesment}')`;
+
                     pool.query(sql, function (err, res) {
                         if (err) throw err;
                         console.log("1 record inserted");
@@ -273,7 +275,7 @@ router.post('/store', (req, res) => {
 
 
 
-    res.redirect('/store_table');
+    res.redirect('/store');
 
 
 });
@@ -291,7 +293,7 @@ router.post('/Calibration', (req, res) => {
 
 
 
-    res.redirect('/Calib_table');
+    res.redirect('/Calib');
 
 
 });
@@ -354,7 +356,7 @@ router.post('/Employee', (req, res) => {
 
 
 
-    res.redirect('/Emp_table');
+    res.redirect('/Employee');
 
 
 });
@@ -362,7 +364,7 @@ router.post('/PPM', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
         if (err) throw err;
-
+        console.log("why");
         var sql = `INSERT INTO ppm (department,nomenclature,serial_no,ppm_id,time_period,from_date,to_date,assigned_to,ppm_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.ID}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.ppmtask}', '${req.body.contractid}', '${req.body.status}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
@@ -373,10 +375,33 @@ router.post('/PPM', (req, res) => {
 
 
 
-    res.redirect('/PPM_table');
+    res.redirect('/PPM');
 
 
 });
+router.post('/index',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        //
+        // var sql = `SELECT nomenclature,count(*) AS x FROM equipment WHERE  nomenclature =?`;
+        // pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+        //
+        //     res.render('home/index', {equipment: rows, layout: 'home'});
+        //
+        //     console.log("ww", {equipment: rows});
+        // });
+            var sql = `SELECT solved,count(*) AS x FROM reports GROUP BY solved  ;SELECT nomenclature,count(*) AS x FROM equipment WHERE  nomenclature =?`;
+            pool.query(sql ,req.body.editbox_search, async function (err,rows,fields) {
+
+                res.render('home/index', {reports:rows[0],equipment:rows[1],layout:'home'});
+
+                console.log("ww",{reports:rows[0], equipment:rows[1]});
+
+        });
+    });});
+
 // router.get('/contactUs',(req,res)=>{
 //     res.render('home/contactUs');
 // });

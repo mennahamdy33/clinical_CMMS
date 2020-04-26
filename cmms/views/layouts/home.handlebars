@@ -1,63 +1,168 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Fenixmax</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/coin-slider.css" />
-    <script type="text/javascript" src="js/cufon-yui.js"></script>
-    <script type="text/javascript" src="js/cufon-titillium-600.js"></script>
-    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/coin-slider.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/logo4.png" type="image/png">
+    <title>Clinical Information System</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-<div class="main">
-    <div class="header">
-        <div class="header_resize">
-            <div class="logo">
-                <h1><a href="/index" style="text-align: right; font-wight:bold;">Fenix<span>max</span> <small>Company Slogan Here</small></a></h1>
+
+<!--================Header Menu Area =================-->
+<header class="header_area">
+    <div class="top_menu row m0">
+        <div class="container">
+            <div class="float-left">
+                <a class="dn_btn" href="mailto:medical@example.com"><i class="ti-email"></i>CIS@example.com</a>
+                <span class="dn_btn"> <i class="ti-location-pin"></i>Find our Location</span>
             </div>
-            <div class="menu_nav">
-                <ul>
-                    <li class="active"><a href="/index"><span>Home Page</span></a></li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Equipment</a>
-                        <div class="dropdown-content">
-                            <a href="/AddEquipment">Add New Equipment</a>
-                            <a href="/blog">Search for Equipment</a>
-                            <a href="#">Manage Equipments</a>
-                        </div>
-                    </li>
-                    <li><a href="/Dashboard"><span></span>Dashboard</a></li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Maintainance</a>
-                        <div class="dropdown-content">
-                            <a href="/Report">Report</a>
-                            <a href="#"></a>
-                            <a href="#"></a>
-                        </div>
-                    </li>
-                    <li><a href="/blog"><span>Blog</span></a></li>
-                    <li><a href="/Employee"><span>Employees</span></a></li>
-                </ul>
-            </div>
-            <div class="clr"></div>
-            <div class="slider" >
-                <div id="coin-slider" > <a href="#"><img src="images/slide1.jpg" width="1260" height="313" alt="" /> </a> <a href="#"><img src="images/slide2.jpg" width="1260" height="313" alt="" /> </a> <a href="#"><img src="images/slide3.jpg" width="1260" height="313" alt="" /> </a> </div>
-                <div class="clr"></div>
-            </div>
-            <div class="clr"></div>
+
         </div>
     </div>
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="/index"><img src="images/logo4.png" width= "80" height="80"alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipments</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="/AddEquipment">Add Equipment</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/SearchEquipment">Search Equipment</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Equipment">View Equipment</a></li>
+                                <li class="nav-item"><a class="nav-link" href="Dailypass">Dailypass</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="/Dashboard" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="/Report">Report</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/PPM">PPM</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Calibration">Calibration</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/PPM_table">View PPM</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Calib_table">Calibration Table</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Dashboard">Dashboard</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/store">Store </a></li>
+                                <li class="nav-item"><a class="nav-link" href="/store_table">Store table</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employee</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="/Employee">Add Employee</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Emp_table">View Employee</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--================Header Menu Area =================-->
 {{{body}}}
-    <div class="footer">
-        <div class="footer_resize">
-            <p class="lf">&copy; Copyright <a href="#">MyWebSite</a>.</p>
-            <p class="rf">Design by Dream <a href="http://www.dreamtemplate.com/">Web Templates</a></p>
-            <div style="clear:both;"></div>
+<!-- start footer Area -->
+<footer class="footer-area area-padding-top">
+    <div class="container">
+        <div class="row">
+
         </div>
     </div>
-</div>
+    <div class="row footer-bottom d-flex justify-content-between">
+        <p class="col-lg-8 col-sm-12 footer-text m-0">
+
+            <div class="col-lg-4 col-sm-12 footer-social">
+        <p >You can visit our pages on</p>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+
+    </div>
+    </div>
+
+</footer>
+<!-- End footer Area -->
+
+
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        var options={
+            format: 'MM/DD/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>
+
+<script>
+    // Script to open and close sidebar
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+</script>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/stellar.js"></script>
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/jquery.form.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/theme.js"></script>
 </body>
 </html>
