@@ -4,15 +4,19 @@
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .submission{
-	margin-left: 30rem;
-	height: 45px;
-	width: 155px;
+	margin-left: 40rem;
+	height: 55px;
+	width: 175px;
 	background-color: #daeded;
 }
 .list {
   list-style: none;
   margin: 0px;
   padding: 0px; }
+	.topnav{
+		float: right;
+		margin-bottom: 4px;
+	}
 
 a {
   text-decoration: none;
@@ -1446,12 +1450,22 @@ ul {
     font-size: 16px;
     font-family: "Playfair Display", serif;
     margin-bottom: 10px; }
-  .appointment-area .appointment-form input {
-    display: block;
-    width: 100%;
-    border: 1px solid #e8edf1;
+.inputtext{
+  float: left;
+  margin-right: 10rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  height: 60px;
+  width: 30rem;
+}
+  .appointment-area .appointment-form .inputequip {
+    float: right;
+    margin-right: 0rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
     height: 50px;
-    padding: 0 15px; }
+    width: 100%;
+  }
     .appointment-area .appointment-form input:focus {
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
@@ -1533,6 +1547,7 @@ ul {
       	height: 100px;
         width:100%;
       	background:#002d4d;
+        border-color: aliceblue;
       }
       table tbody tr {
       	height: 50px;
@@ -1542,6 +1557,7 @@ ul {
       }
       table td, table th {
       	text-align: center;
+        border-color: aliceblue;
       }
       table td.l, table th.l {
       	text-align: center;
@@ -1610,10 +1626,11 @@ ul {
   margin-bottom: 35px; }
 .appointment-area .appointment-inner {
   padding: 65px 0;
-  box-shadow: 3.517px -8.285px 30px 0px rgba(12, 58, 132, 0.15);
+  box-shadow: 3.517px -8.285px 60px 0px rgba(12, 58, 132, 0.3);
   background: #fff;
   z-index: 11;
   position: relative; }
+
   @media (max-width: 991px) {
     .appointment-area .appointment-inner {
       padding: 65px 30px; } }
@@ -3478,3 +3495,6 @@ h6 {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+#hakona{
+  margin-left: -85px;
+}
