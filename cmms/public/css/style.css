@@ -14,6 +14,7 @@
   margin: 0px;
   padding: 0px; }
 	.topnav{
+        margin-right: -87px;
 		float: right;
 		margin-bottom: 4px;
 	}
@@ -1541,7 +1542,7 @@ ul {
       	background: white;
       	border-radius: 2px;
       	overflow: hidden;
-      	width: 100%;
+      	width: 1122px;
       }
       table thead tr {
       	height: 100px;
@@ -3496,5 +3497,5 @@ h6 {
 
 /*# sourceMappingURL=style.css.map */
 #hakona{
-  margin-left: -85px;
+  margin-left: -89px;
 }
