@@ -26,13 +26,23 @@
         <div class="appointment-inner">
             <div class="row">
                 <div class="col-sm-16 col-lg-10 offset-lg-1">
+                  <div class="topnav">
+
+   <div class="search-container">
+     <form action="/action_page.php">
+       <input type="text" placeholder="Search.." name="search">
+       <button type="submit"><i class="fa fa-search"></i></button>
+     </form>
+   </div>
+ </div>
                     <caption>PPM Table</caption>
                     <table id="hakona">
                         <thead>
                         <tr class="table100-head">
                             <th class="column3">Department</th>
+                            <th class="column3">Department-Code</th>
                             <th class="column3">Nomenclature</th>
-                            <th class="column4">Serial_no</th>
+
                             <th class="column4">ID</th>
                             <th class="column4">Time Period</th>
                             <th class="column3">From-date</th>
@@ -40,6 +50,7 @@
                             <th class="column3">Assigned-To</th>
                             <th class="column4">PPM-task</th>
                             <th class="column4">Contract-ID</th>
+
                             <th class="column4">Status</th>
                         </tr>
                         </thead>
