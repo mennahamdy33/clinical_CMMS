@@ -4,6 +4,38 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const app = express();
+var ss = require('simple-statistics');
+const ChartjsNode = require('chartjs-node');
+// y=ss.min([1, 5, -10, 100, 2]);
+// console.log(y);
+const ChartjsNode = require('chartjs-node');
+// 600x600 canvas size
+var chartNode = new ChartjsNode(600, 600);
+return chartNode.drawChart(chartJsOptions)
+    .then(() => {
+        // chart is created
+
+        // get image as png buffer
+        return chartNode.getImageBuffer('image/png');
+    })
+    .then(buffer => {
+        Array.isArray(buffer) // => true
+        // as a stream
+        return chartNode.getImageStream('image/png');
+    })
+    .then(streamResult => {
+        // using the length property you can do things like
+        // directly upload the image to s3 by using the
+        // stream and length properties
+        streamResult.stream // => Stream object
+        streamResult.length // => Integer length of stream
+        // write to a file
+        return chartNode.writeImageToFile('image/png', './testimage.png');
+    })
+    .then(() => {
+        // chart is now written to the file path
+        // ./testimage.png
+    });
 //const mysql = require('mysql2');
 var mysql = require('mysql');
 
@@ -117,17 +149,41 @@ router.post('/store_table',(req,res)=>{
         });
     });});
 router.get('/Dashboard',(req,res)=>{
+    let date_ob = new Date();
+
+// current date
+// adjust 0 before single digit date
+    let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+    let year = date_ob.getFullYear();
+
+
+// prints date in YYYY-MM-DD format
+    console.log(year + "-" + month + "-" + date);
+
+// prints date & time in YYYY-MM-DD HH:MM:SS format
+    console.log(year + "-" + month + "-" + date );
+
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql = `SELECT * FROM reports ;SELECT * FROM ppm ;SELECT * FROM daily_inspection ;`
-        pool.query(sql,  async function (err,rows,fields) {
-            res.render('home/Dashboard', {reports: rows[0],ppm:rows[1],daily_inspection:rows[2],layout:'home'});
+        var sql = `SELECT count(*) AS x FROM reports WHERE solved=?  ;
+                SELECT count(*) AS y FROM equipment WHERE maintenance_assessment=? ;
+            SELECT  count(*) AS  z  FROM equipment as s WHERE warrenty_period >=?  ;
+            SELECT count(*) AS x FROM equipment as f `;
+        pool.query(sql ,['no','yes',year+ "-" + month + "-" + date] ,async function (err,rows,fields) {
 
-            console.log("ww", {reports: rows[0],ppm:rows[1],daily_inspection:rows[2]});
+            res.render('home/Dashboard', {reports: rows[0], equipment: rows[1],f:rows[2], layout: 'home'});
 
+            console.log("ww", {reports: rows[0], equipment: rows[1],s:rows[2],f:rows[3]});
         });
-    });});
+        });
+    });
+
 router.post('/Dashboard',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -392,7 +448,8 @@ router.post('/index',(req,res)=>{
         //
         //     console.log("ww", {equipment: rows});
         // });
-            var sql = `SELECT solved,count(*) AS x FROM reports GROUP BY solved  ;SELECT nomenclature,count(*) AS x FROM equipment WHERE  nomenclature =?`;
+            var sql = `SELECT solved,count(*) AS x FROM reports GROUP BY solved  ;
+            SELECT nomenclature,count(*) AS x FROM equipment WHERE  nomenclature =?`;
             pool.query(sql ,req.body.editbox_search, async function (err,rows,fields) {
 
                 res.render('home/index', {reports:rows[0],equipment:rows[1],layout:'home'});
