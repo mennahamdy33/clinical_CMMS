@@ -5,8 +5,7 @@
     <div class="banner_inner d-flex align-items-center">
         <div class="container">
             <div
-                    class="banner_content d-md-flex justify-content-between align-items-center"
-            >
+                    class="banner_content d-md-flex justify-content-between align-items-center">
                 <div class="mb-3 mb-md-0">
                     <h2>Department-Table<br>
 
@@ -30,8 +29,8 @@
                   <div class="topnav">
 
    <div class="search-container">
-     <form action="/action_page.php">
-       <input type="text" placeholder="Search.." name="search">
+     <form action="/dep_table" method="post">
+       <input type="text" placeholder="Search by code.." name="search">
        <button type="submit"><i class="fa fa-search"></i></button>
      </form>
    </div>
@@ -56,7 +55,7 @@
                                 <td class="column3">{{b_id}}</td>
                                 <td class="column4">{{floor}}</td>
                                 <td class="column4">{{building}}</td>
-                                <td class="column4">{{loaction}}</td>
+                                <td class="column4">{{location}}</td>
                                 <td class="column3">{{code}}</td>
                             </tr>
                         {{/each}}

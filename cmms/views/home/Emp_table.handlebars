@@ -30,8 +30,8 @@
                   <div class="topnav">
 
    <div class="search-container">
-     <form action="/action_page.php">
-       <input type="text" placeholder="Search.." name="search">
+     <form action="/Emp_table" method="post">
+       <input type="text" placeholder="Search by id.." name="search">
        <button type="submit"><i class="fa fa-search"></i></button>
      </form>
    </div>
@@ -63,6 +63,7 @@
                                 <td class="column4">{{role}}</td>
                                 <td class="column3">{{position}}</td>
                                 <th class="column4">{{department}}</th>
+                                <th class="column4">{{depart_code}}</th>
                                 <th class="column3">{{qualifications}}</th>
                                 <th class="column4">{{salary}}</th>
                             </tr>

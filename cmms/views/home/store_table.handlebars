@@ -29,8 +29,8 @@
                   <div class="topnav">
 
    <div class="search-container">
-     <form action="/action_page.php">
-       <input type="text" placeholder="Search.." name="search">
+     <form action="/store_table" method="post">
+       <input type="text" placeholder="Search by serial number.." name="search">
        <button type="submit"><i class="fa fa-search"></i></button>
      </form>
    </div>
@@ -54,7 +54,6 @@
                             <tr>
                                 <td class="column3">{{nomenclature}}</td>
                                 <td class="column4">{{serial_no}}</td>
-                                <td class="column4">{{store_id}}</td>
                                 <td class="column4">{{model}}</td>
                                 <td class="column3">{{manufacturer}}</td>
                                 <th class="column3">{{local_agent}}</th>

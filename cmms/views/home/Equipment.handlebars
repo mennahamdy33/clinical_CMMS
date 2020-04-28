@@ -51,10 +51,11 @@
                         <tbody>
                         {{#each equipment}}
                             <tr>
-                                <td class="column3">{{department}}</td>
                                 <td class="column3">{{nomenclature}}</td>
-                                <td class="column4"  > {{serial_no}}</td>
                                 <td class="column4">{{id}}</td>
+                                <td class="column3">{{department}}</td>
+                                <td class="column3">{{dep_code}}</td>
+                                <td class="column4"  > {{serial_no}}</td>
                                 <td class="column4">{{model}}</td>
                                 <td class="column3">{{manufacturer}}</td>
                                 <th class="column4">{{contact_manufacturer}}</th>
@@ -68,7 +69,46 @@
                             </tr>
                         {{/each}}
                         </tbody>
-
+                        <tbody>
+                        {{#each eq2}}
+                            <tr>
+                                <td class="column3">{{nomenclature}}</td>
+                                <td class="column4">{{id}}</td>
+                                <td class="column3">{{department}}</td>
+                                <td class="column3">{{dep_code}}</td>
+                                <td class="column4"  > {{serial_no}}</td>
+                                <td class="column4">{{model}}</td>
+                                <td class="column3">{{manufacturer}}</td>
+                                <th class="column4">{{contact_manufacturer}}</th>
+                                <th class="column3">{{local_agent}}</th>
+                                <th class="column4">{{contact_agent}}</th>
+                                <th class="column4">{{condition_code}}</th>
+                                <th class="column4">{{price}}</th>
+                                <th class="column3">{{install_date}}</th>
+                                <th class="column4">{{warrenty_period}}</th>
+                                <th class="column3">{{maintenance_assessment}}</th>
+                            </tr>
+                        {{/each}}
+                        {{#each eq}}
+                            <tr>
+                                <td class="column3">{{nomenclature}}</td>
+                                <td class="column4">{{id}}</td>
+                                <td class="column3">{{department}}</td>
+                                <td class="column3">{{dep_code}}</td>
+                                <td class="column4"  > {{serial_no}}</td>
+                                <td class="column4">{{model}}</td>
+                                <td class="column3">{{manufacturer}}</td>
+                                <th class="column4">{{contact_manufacturer}}</th>
+                                <th class="column3">{{local_agent}}</th>
+                                <th class="column4">{{contact_agent}}</th>
+                                <th class="column4">{{condition_code}}</th>
+                                <th class="column4">{{price}}</th>
+                                <th class="column3">{{install_date}}</th>
+                                <th class="column4">{{warrenty_period}}</th>
+                                <th class="column3">{{maintenance_assessment}}</th>
+                            </tr>
+                        {{/each}}
+                        </tbody>
                     </table>
                 </div>
 

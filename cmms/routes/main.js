@@ -5,38 +5,55 @@ const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const app = express();
 var ss = require('simple-statistics');
-const ChartjsNode = require('chartjs-node');
+//const ChartjsNode = require('chartjs-node');
 // y=ss.min([1, 5, -10, 100, 2]);
 // console.log(y);
-const ChartjsNode = require('chartjs-node');
 // 600x600 canvas size
-var chartNode = new ChartjsNode(600, 600);
-return chartNode.drawChart(chartJsOptions)
-    .then(() => {
-        // chart is created
-
-        // get image as png buffer
-        return chartNode.getImageBuffer('image/png');
-    })
-    .then(buffer => {
-        Array.isArray(buffer) // => true
-        // as a stream
-        return chartNode.getImageStream('image/png');
-    })
-    .then(streamResult => {
-        // using the length property you can do things like
-        // directly upload the image to s3 by using the
-        // stream and length properties
-        streamResult.stream // => Stream object
-        streamResult.length // => Integer length of stream
-        // write to a file
-        return chartNode.writeImageToFile('image/png', './testimage.png');
-    })
-    .then(() => {
-        // chart is now written to the file path
-        // ./testimage.png
-    });
+// var chartNode = new ChartjsNode(600, 600);
+// return chartNode.drawChart(chartJsOptions)
+//     .then(() => {
+//         // chart is created
+//
+//         // get image as png buffer
+//         return chartNode.getImageBuffer('image/png');
+//     })
+//     .then(buffer => {
+//         Array.isArray(buffer) // => true
+//         // as a stream
+//         return chartNode.getImageStream('image/png');
+//     })
+//     .then(streamResult => {
+//         // using the length property you can do things like
+//         // directly upload the image to s3 by using the
+//         // stream and length properties
+//         streamResult.stream // => Stream object
+//         streamResult.length // => Integer length of stream
+//         // write to a file
+//         return chartNode.writeImageToFile('image/png', './testimage.png');
+//     })
+//     .then(() => {
+//         // chart is now written to the file path
+//         // ./testimage.png
+//     });
 //const mysql = require('mysql2');
+let date_ob = new Date();
+
+// current date
+// adjust 0 before single digit date
+let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+let today =year + "-" + month + "-" + date;
+
+// prints date in YYYY-MM-DD format
+console.log(year + "-" + month + "-" + date);
+
+// prints date & time in YYYY-MM-DD HH:MM:SS format
+console.log(year + "-" + month + "-" + date );
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
@@ -49,6 +66,10 @@ app.use(bodyParser.json());
 router.get('/index',(req,res)=>{
 
     res.render('home/index',{layout:'home'});
+});
+router.get('/SearchEquipment',(req,res)=>{
+
+    res.render('home/SearchEquipment',{layout:'home'});
 });
 router.get('/Calibration',(req,res)=>{
 
@@ -65,7 +86,10 @@ router.get('/store',(req,res)=>{
 
     res.render('home/store',{layout:'home'});
 });
+router.get('/department',(req,res)=>{
 
+    res.render('home/department',{layout:'home'});
+});
 router.get('/report',(req,res)=>{
 
     res.render('home/report',{layout:'home'});
@@ -106,6 +130,23 @@ router.get('/Equipment',(req,res)=>{
 
     });
 });});
+
+router.get('/aEquipment',(req,res)=>{
+
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql=`SELECT *  FROM equipment as eq WHERE warrenty_period>=?;
+        SELECT * FROM equipment as eq2 WHERE maintenance_assessment=?`;
+        pool.query(sql,[today,"Y"],async function (err,rows,fields) {
+            if (req.query.id==='z')
+            {res.render('home/Equipment', {eq2: rows[1],layout:'home'});
+                console.log( {eq2: rows[1]});}
+            else if(req.query.id==='y'){
+                res.render('home/Equipment', {eq: rows[0],layout:'home'});
+                    console.log( {eq: rows[0]});}
+        });
+    });});
 // router.post('/blog',(req,res)=>{
 //
 //     pool.getConnection(function (err) {
@@ -140,7 +181,7 @@ router.post('/store_table',(req,res)=>{
 
 
         var sql = `SELECT * FROM store WHERE serial_no =?`;
-        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
 
             res.render('home/store_table', {store: rows,layout:'home'});
 
@@ -149,56 +190,25 @@ router.post('/store_table',(req,res)=>{
         });
     });});
 router.get('/Dashboard',(req,res)=>{
-    let date_ob = new Date();
 
-// current date
-// adjust 0 before single digit date
-    let date = ("0" + date_ob.getDate()).slice(-2);
+    var sql = `SELECT count(*) As x FROM equipment;
+        SELECT count(*) As y FROM equipment as eq WHERE warrenty_period>=?;
+        SELECT count(*) As z FROM equipment as eq2 WHERE maintenance_assessment=?;
+        SELECT count(*) As a FROM reports WHERE solved=?;
+    SELECT count(*) As a FROM reports AS s WHERE fault_date=?;
+    SELECT count(*) As a FROM ppm WHERE to_date=?;
+    SELECT count(*) As a FROM calibration WHERE to_date=?`;
 
-// current month
-    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    pool.query(sql ,[today,'Y','Y',today,today,today], async function (err,rows,fields) {
 
-// current year
-    let year = date_ob.getFullYear();
+        res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0]});
 
-
-// prints date in YYYY-MM-DD format
-    console.log(year + "-" + month + "-" + date);
-
-// prints date & time in YYYY-MM-DD HH:MM:SS format
-    console.log(year + "-" + month + "-" + date );
+        console.log("ww", {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0]});
 
 
-    pool.getConnection(function (err) {
-        if (err) throw err;
-        var sql = `SELECT count(*) AS x FROM reports WHERE solved=?  ;
-                SELECT count(*) AS y FROM equipment WHERE maintenance_assessment=? ;
-            SELECT  count(*) AS  z  FROM equipment as s WHERE warrenty_period >=?  ;
-            SELECT count(*) AS x FROM equipment as f `;
-        pool.query(sql ,['no','yes',year+ "-" + month + "-" + date] ,async function (err,rows,fields) {
-
-            res.render('home/Dashboard', {reports: rows[0], equipment: rows[1],f:rows[2], layout: 'home'});
-
-            console.log("ww", {reports: rows[0], equipment: rows[1],s:rows[2],f:rows[3]});
-        });
-        });
+    });
     });
 
-router.post('/Dashboard',(req,res)=>{
-
-    pool.getConnection(function (err) {
-        if (err) throw err;
-
-
-        var sql = `SELECT * FROM reports WHERE serial_no =?`;
-        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
-
-            res.render('home/Dashboard', {reports: rows,layout:'home'});
-
-            console.log("ww", {reports: rows});
-
-        });
-    });});
 router.get('/Calib_table',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -212,14 +222,42 @@ router.get('/Calib_table',(req,res)=>{
 
         });
     });});
+router.get('/dep_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        var sql = `SELECT * FROM department `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/dep_table', {department: rows,layout:'home'});
+
+            console.log("ww", {department: rows});
+
+        });
+    });});
+router.post('/dep_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM department WHERE code =?`;
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
+
+            res.render('home/dep_table', {department: rows,layout:'home'});
+
+            console.log("ww", {department: rows});
+
+        });
+    });});
 router.post('/Calib_table',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
 
 
-        var sql = `SELECT * FROM calibration WHERE serial_no =?`;
-        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+        var sql = `SELECT * FROM calibration WHERE calib_id =?`;
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
 
             res.render('home/Calib_table', {calibration: rows,layout:'home'});
 
@@ -248,7 +286,7 @@ router.post('/Emp_table',(req,res)=>{
 
 
         var sql = `SELECT * FROM employee WHERE id =?`;
-        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
 
             res.render('home/Emp_table', {employee: rows,layout:'home'});
 
@@ -269,18 +307,49 @@ router.get('/PPM_table',(req,res)=>{
 
         });
     });});
+
 router.post('/PPM_table',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
 
 
-        var sql = `SELECT * FROM ppm WHERE serial_no =?`;
-        pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
+        var sql = `SELECT * FROM ppm WHERE ppm_id =?`;
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
 
             res.render('home/PPM_table', {ppm: rows,layout:'home'});
 
             console.log("ww", {ppm: rows});
+
+        });
+    });});
+router.post('/PPM_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM ppm WHERE ppm_id =?`;
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
+
+            res.render('home/PPM_table', {ppm: rows,layout:'home'});
+
+            console.log("ww", {ppm: rows});
+
+        });
+    });});
+router.post('/SearchEquipment',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM equipment WHERE id =? OR nomenclature=?`;
+        pool.query(sql,[req.body.id,req.body.nomenclature] , async function (err,rows,fields) {
+
+            res.render('home/Equipment', {equipment: rows,layout:'home'});
+
+            console.log("ww", {equipment: rows});
 
         });
     });});
@@ -395,6 +464,7 @@ router.post('/Report', (req, res) => {
 
 
 });
+
 router.post('/Employee', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
