@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2020 at 05:10 AM
+-- Generation Time: Apr 29, 2020 at 05:37 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -222,6 +222,12 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 ('Otolaryngology', 920, 'SINUSCOPE ', 'AH25DW2', 'M01SINU-OTO', 'RIGID HD', 'OLYMPUS', NULL, 'Alcan medical', NULL, 'A', '6000', '2018-06-15', '2022-06-15', 'N'),
 ('Orthopedics', 880, 'DRILL SURGICAL POWER TOOL', 'AHG3265S', 'M01DRILL-ORTHO', 'MBQ-700 SERIES', 'DeSoutter Medical', NULL, 'DeSoutter Medical', NULL, 'A', '23000', '2018-04-23', '2020-04-23', 'N'),
 ('Orthopedics', 881, 'DRILL SURGICAL POWER TOOL', 'AHG9965S', 'M02DRILL-ORTHO', 'MBQ-700 SERIES', 'DeSoutter Medical', NULL, 'DeSoutter Medical', NULL, 'A', '23000', '2015-10-12', NULL, 'N'),
+('Anesthesiology', 500, 'Mindray Anaesthesia Machine', 'anZww22', 'M01ANES-ANESTH', '\r\nPAS-200C', 'Poweam', NULL, 'ELFATH', NULL, 'A', '78000', '2017-04-14', '2019-04-14', 'Y'),
+('Anesthesiology', 501, 'Mindray Anaesthesia Machine', 'azZwq32', 'M02ANES-ANESTH', 'PAS-200C', 'Poweam', NULL, 'ELFATH', NULL, 'A', '78000', '2017-04-14', '2019-04-14', 'Y'),
+('CSSD', 600, 'MEDICAL STERILIZER / CSSD / STEAM', 'c22ss11d', 'M01STEAM-CSSD', 'SQ-Z', 'SANQIANG', NULL, 'medik', NULL, 'A', '90000', '2020-04-29', '2021-04-29', 'Y'),
+('CSSD', 601, 'MEDICAL STERILIZER / CSSD / STEAM', 'c23ss00d', 'M02STEAMST-CSSD', 'SQ-Z', '	\r\nSANQIANG', NULL, 'medik', NULL, 'A', '90000', '2020-04-30', '2021-04-30', 'Y'),
+('CSSD', 600, 'Laboratory Autoclave', 'ca11223', 'M01AUTOCAVE-CSSD', 'BKQ-B50(II)', 'BIOBASE', NULL, 'medik', NULL, 'A', '3000', '2019-11-11', '2020-11-11', 'N'),
+('CSSD', 601, 'Laboratory Autoclave', 'ca11277', 'M02AUTOCAVE-CSSD', 'BKQ-B50(II)', 'BIOBASE', NULL, 'medik', NULL, 'A', '3000', '2019-10-04', '2020-10-04', 'N'),
 ('Orthopedics', 881, 'ARTHROSCOPY SHAVER', 'DWD323E', 'M02SHAVER-ORTHO', 'SV-8002', 'Vimex Endoscopy ', NULL, 'Alcan medical', NULL, 'A', '25000', '2019-04-19', '2023-04-19', 'N'),
 ('Orthopedics', 880, 'ARTHROSCOPY SHAVER', 'DWD3F5Y', 'M01SHAVER-ORTHO', 'SV-8002', 'Vimex Endoscopy ', NULL, 'Alcan medical', NULL, 'A', '25000', '2019-07-04', '2023-07-04', 'N'),
 ('Orthopedics', 880, 'ELECTRIC MENISCAL RASP', 'GD52BS7', 'M01RASP-ORTHO', 'OMNISPAN™', 'DePuySynthes', NULL, 'ELFATH', NULL, 'A', '15000', '2018-03-08', NULL, 'N'),
@@ -231,7 +237,10 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 ('Orthopedics', 881, 'SURGERY ORTHOPEDIC EXTENSION DEVICE', 'HWY65GD', 'M02SURGERYBED-ORTHO', '9923046', 'OPT SurgiSystems', NULL, 'Alcan medical', NULL, 'A', '16000', '2017-04-19', '2021-04-19', 'N'),
 ('Otolaryngology', 920, 'ENT SURGERY MICROSCOPE ', 'Q21WS2', 'M01MICROSCO-OTO', 'KAPS PRO ENT M', 'Karl Kaps ', NULL, 'ELFATH', NULL, 'A', '45000', '2013-08-05', NULL, 'N'),
 ('Otolaryngology', 920, 'ENT CHAIR,EXAM', 'SED232W1', 'M01CHAIR-OTO', '2683', 'Promotal', NULL, 'ELFATH', NULL, 'A', '12000', '2016-10-22', '2020-10-22', 'N'),
-('Otolaryngology', 921, 'ENT CHAIR,EXAM', 'SED2341D', 'M02CHAIR-OTO', '2683', 'Promotal', NULL, 'ELFATH', NULL, 'A', '12000', '2016-10-22', '2020-10-22', 'N');
+('Otolaryngology', 921, 'ENT CHAIR,EXAM', 'SED2341D', 'M02CHAIR-OTO', '2683', 'Promotal', NULL, 'ELFATH', NULL, 'A', '12000', '2016-10-22', '2020-10-22', 'N'),
+('Anesthesiology', 500, 'laryngoscope', 'sf5G55', 'M02SCOPE-ANESTH', 'HYHJ-KC', 'HAIYE', NULL, 'midk', NULL, 'A', '7000', '2019-11-11', '2022-11-09', 'N'),
+('Anesthesiology', 501, 'laryngoscope', 'sf5Gu7', 'M03SCOPE-ANESTH', 'HYHJ-KC', 'HAIYE', NULL, 'midk', NULL, 'A', '7000', '2019-11-11', '2022-11-09', 'N'),
+('Anesthesiology', 500, 'laryngoscope', 'ss4G55', 'M01SCOPE-ANESTH', 'HYHJ-KC', 'HAIYE', NULL, 'midk', NULL, 'A', '7000', '2019-11-09', '2022-11-09', 'N');
 
 -- --------------------------------------------------------
 
