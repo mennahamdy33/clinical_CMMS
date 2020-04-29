@@ -21,7 +21,7 @@
 
 <!--================start form  Area =================-->
 <section class="appointment-area area-padding">
-    <div class="container">
+    <div class="container1">
 
         <div class="appointment-inner">
             <div class="row">
@@ -39,24 +39,24 @@
                     <table id="hakona">
                         <thead>
                         <tr class="table100-head">
-                            <th class="column3">Name</th>
+                            <th class="column4">Name</th>
                             <th class="column3">B_ID</th>
                             <th class="column4">Floor</th>
                             <th class="column4">Building</th>
                             <th class="column4">Location</th>
-                            <th class="column3">Code</th>
+                            <th class="column4">Code</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         {{#each department}}
                             <tr>
-                                <td class="column3">{{name}}</td>
+                                <td class="column4">{{name}}</td>
                                 <td class="column3">{{b_id}}</td>
-                                <td class="column4">{{floor}}</td>
+                                <td class="column3">{{floor}}</td>
                                 <td class="column4">{{building}}</td>
                                 <td class="column4">{{location}}</td>
-                                <td class="column3">{{code}}</td>
+                                <td class="column4">{{code}}</td>
                             </tr>
                         {{/each}}
                         </tbody>

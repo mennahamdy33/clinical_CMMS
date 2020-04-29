@@ -1515,7 +1515,7 @@ ul {
         width:100%;
       }
 
-      .container-table100 {
+      .container1-table100 {
       	width: 100%;
       	min-height: 100vh;
       	display: -webkit-box;
@@ -1526,8 +1526,10 @@ ul {
       	align-items: center;
       	justify-content: center;
       	flex-wrap: wrap;
+
       	/* padding-bottom: 180px; */
       	padding-left: 160px;
+
       }
       .separate{
       	margin-top:10px;
@@ -1543,12 +1545,15 @@ ul {
       	border-radius: 2px;
       	overflow: hidden;
       	width: 1122px;
+        border-color: black;
+
       }
       table thead tr {
       	height: 100px;
         width:100%;
-      	background:#002d4d;
-        border-color: aliceblue;
+      	background:#10679E;
+        border-color: black;
+
       }
       table tbody tr {
       	height: 50px;
@@ -3493,9 +3498,27 @@ h6 {
 
   .footer-bottom {
     margin-top: 35px; } }
+.column3 {
+  font-size: 14px;
+  font-weight: bold;
+  width: 70px;
+}
+.column4 {
+  font-size: 14px;
+  font-weight: bold;
+  width: 100px;
+}
+.column5 {
+  font-size: 14px;
+  font-weight: bold;
+  width: 200px;
+}
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
 #hakona{
-  margin-left: -89px;
+  margin-left: -97px;
+  border-radius: 15px;
+  width: 118%;
+
 }
