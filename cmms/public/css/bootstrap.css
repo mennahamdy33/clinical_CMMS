@@ -618,7 +618,45 @@ pre code {
     margin-right: auto;
     margin-left: auto
 }
+.container1 {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
 
+@media (min-width:576px) {
+    .container1 {
+        max-width: 540px
+    }
+}
+
+@media (min-width:768px) {
+    .container1 {
+        max-width: 720px
+    }
+}
+
+@media (min-width:992px) {
+    .container1 {
+        max-width: 960px
+    }
+}
+
+@media (min-width:1200px) {
+    .container1 {
+        max-width: 1370px
+    }
+}
+
+.container1-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
 .row {
     display: -ms-flexbox;
     display: flex;
