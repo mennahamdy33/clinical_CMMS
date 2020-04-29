@@ -22,7 +22,7 @@
 
 <!--================start form  Area =================-->
 <section class="appointment-area area-padding">
-    <div class="container">
+    <div class="container1">
 
         <div class="appointment-inner">
             <div class="row">
@@ -39,16 +39,16 @@
                     <caption>Employee Table</caption>
                     <table id="hakona">
                         <thead>
-                        <tr class="table100-head">
-                            <th class="column3">Name</th>
+                          <tr class="table100-head">
+                            <th class="column4">Name</th>
                             <th class="column3">ID</th>
-                            <th class="column4">E-mail</th>
-                            <th class="column4">Mobile-Number</th>
+                            <th class="column5">E-mail</th>
+                            <th class="column5">Mobile-Number</th>
                             <th class="column4">Role</th>
-                            <th class="column3">Position</th>
+                            <th class="column4">Position</th>
                             <th class="column4">Department</th>
                             <th class="column4">Department-Code</th>
-                            <th class="column3">Qualifications</th>
+                            <th class="column5">Qualifications</th>
                             <th class="column4">Salary</th>
                         </tr>
                         </thead>
@@ -56,15 +56,15 @@
                         <tbody>
                         {{#each employee}}
                             <tr>
-                                <td class="column3">{{name}}</td>
+                                <td class="column4">{{name}}</td>
                                 <td class="column3">{{id}}</td>
-                                <td class="column4">{{email}}</td>
-                                <td class="column4">{{mobile_no}}</td>
+                                <td class="column5">{{email}}</td>
+                                <td class="column5">{{mobile_no}}</td>
                                 <td class="column4">{{role}}</td>
-                                <td class="column3">{{position}}</td>
+                                <td class="column4">{{position}}</td>
                                 <th class="column4">{{department}}</th>
-                                <th class="column4">{{depart_code}}</th>
-                                <th class="column3">{{qualifications}}</th>
+                                <th class="column4">{{department-code}}</th>
+                                <th class="column5">{{qualifications}}</th>
                                 <th class="column4">{{salary}}</th>
                             </tr>
                         {{/each}}
