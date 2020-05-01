@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
+-- version 4.4.15.9
+-- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 01, 2020 at 07:16 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.30
+-- Generation Time: May 01, 2020 at 12:29 PM
+-- Server version: 5.6.37
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -18,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cmms`
+-- Database: `CMMS`
 --
 
 -- --------------------------------------------------------
@@ -27,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `calibration`
 --
 
-CREATE TABLE `calibration` (
+CREATE TABLE IF NOT EXISTS `calibration` (
   `department` varchar(200) NOT NULL,
   `dcode` int(100) NOT NULL,
   `nomenclature` varchar(200) NOT NULL,
@@ -54,7 +53,7 @@ INSERT INTO `calibration` (`department`, `dcode`, `nomenclature`, `cal_id`, `tim
 -- Table structure for table `daily_inspection`
 --
 
-CREATE TABLE `daily_inspection` (
+CREATE TABLE IF NOT EXISTS `daily_inspection` (
   `nomenclature` varchar(200) NOT NULL,
   `dinspect_id` varchar(200) NOT NULL,
   `department` varchar(200) NOT NULL,
@@ -64,7 +63,7 @@ CREATE TABLE `daily_inspection` (
   `cables_port` varchar(200) NOT NULL,
   `self_test` varchar(200) NOT NULL,
   `tech_name` varchar(200) NOT NULL,
-  `inspection_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `inspection_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -81,7 +80,7 @@ INSERT INTO `daily_inspection` (`nomenclature`, `dinspect_id`, `department`, `d_
 -- Table structure for table `department`
 --
 
-CREATE TABLE `department` (
+CREATE TABLE IF NOT EXISTS `department` (
   `name` varchar(200) NOT NULL,
   `floor` varchar(200) NOT NULL,
   `building` varchar(200) NOT NULL,
@@ -137,7 +136,7 @@ INSERT INTO `department` (`name`, `floor`, `building`, `location`, `b_id`, `code
 -- Table structure for table `employee`
 --
 
-CREATE TABLE `employee` (
+CREATE TABLE IF NOT EXISTS `employee` (
   `name` varchar(200) NOT NULL,
   `national_id` bigint(200) NOT NULL,
   `email` varchar(200) NOT NULL,
@@ -164,7 +163,7 @@ INSERT INTO `employee` (`name`, `national_id`, `email`, `mobile_no`, `role`, `po
 -- Table structure for table `equipment`
 --
 
-CREATE TABLE `equipment` (
+CREATE TABLE IF NOT EXISTS `equipment` (
   `department` varchar(200) NOT NULL,
   `dep_code` int(100) NOT NULL,
   `nomenclature` varchar(200) NOT NULL,
@@ -187,16 +186,27 @@ CREATE TABLE `equipment` (
 --
 
 INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, `id`, `model`, `manufacturer`, `contact_manufacturer`, `local_agent`, `contact_agent`, `condition_code`, `price`, `install_date`, `warrenty_period`, `maintenance_assessment`) VALUES
+('IP', 250, 'PATIENT-BED', '0150BB0', 'M01BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0155BB5', 'M02BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0160BB10', 'M03BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0165BB15', 'M04BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'Patient-BED', '0170BB20', 'M05BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0175BB25', 'M06BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'ALcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0180BB30', 'M07BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0185BB35', 'M08BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0190BB40', 'M09BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
+('IP', 250, 'PATIENT-BED', '0195BB45', 'M10BED-IP', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alcan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
 ('ICU', 100, 'Ultrasound Unit', '050415VS5N', 'icu01ultras', 'Vivid S5', 'GE', 'NULL', 'Alcan Medical', 'NULL', 'A', '$13,000', '2017-10-04', '2021-08-19', 'Y'),
+('IP', 250, 'BLOODGLUCOMETER', '1002LGB500', 'M01GLU-IP', 'CEISO15197ISO13485', 'SEJOY', 'NULL', 'ELFATH', 'NULL', 'A', '480', '2018-01-14', '2021-01-14', 'N'),
+('IP', 250, 'BLOODGLUCOMETERS', '1003LGB300\r\n', 'M02GLU-IP', 'CEISO15197ISO13485', 'SEJOY', 'NULL', 'ELFATH', 'NULL', 'A', '400', '2018-01-14', '2021-01-14', 'N'),
+('IP', 250, 'BLOODGLUCOMETER', '1004LGB200', 'M03GLU-IP', 'CEISO15197ISO13485', 'SEJOY', 'NULL', 'ALFATH', 'NULL', 'A', '480', '2018-01-14', '2021-01-14', 'N'),
+('IP', 250, 'BLOODGLUCOMETER', '1005LGB100', 'M04GLU-IP', 'CEISO15197ISO13485', 'SEJOY', 'NULL', 'ELFATH', 'NULL', 'A', '480', '2017-01-14', '2021-01-14', 'N'),
+('IP', 250, 'BLOODGLUCOMETER', '1006LGB400', 'M05GLU-IP', 'CEISO15197ISO13485', 'SEJOY', 'NULL', 'ELFATH', 'NULL', 'A', '480', '2017-01-14', '2021-01-14', 'N'),
 ('Otolaryngology', 920, 'ELECTROMAGNETIC SURGICAL NAVIGATION SYSTEM', '196H3F4', 'M01ELECTROSURG-OTO', 'FUSION™ ENT', 'Medtronic', NULL, 'Alcan medical', NULL, 'A', '200000', '2017-06-15', '2021-06-15', 'Y'),
 ('Urology', 950, 'PROSTATE BIOPSY NEEDLE ', '22D3', 'M01PROSNEEDLE-URO', 'BIOPSY GUN', 'Amecath', NULL, 'ElFATH', NULL, 'A', '$100', '2016-01-20', NULL, 'N'),
 ('Urology', 951, 'PROSTATE BIOPSY NEEDLE ', '22D6', 'M02PROSNEEDLE-URO', 'BIOPSY GUN', 'Amecath', NULL, 'ElFATH', NULL, 'A', '$100', '2016-01-20', NULL, 'N'),
 ('Otolaryngology', 920, 'ENT WORKSTATION', '234efs5', 'M01ENTWS-OTO', 'OTONAM 200', 'NAMROL ', NULL, 'Alcan medical', NULL, 'A', '71000', '2019-08-05', '2024-08-05', 'Y'),
 ('Otolaryngology', 921, 'ENT WORKSTATION', '244efs5', 'M03ENTWS-OTO', 'OTONAM 200', 'NAMROL ', NULL, 'Alcan medical', NULL, 'A', '71000', '2019-08-05', '2024-08-05', 'Y'),
-('IP', 250, 'BLOODGLUCOMETER', '250_BGM', 'BGM_25012', '300PCSGLUCOMETER', 'SEJOY', 'NULL', 'ELFATH', 'NULL', 'A', '480', '0000-00-00', '0000-00-00', 'N'),
-('IP', 250, 'PATIENT-BED', '250_PB', 'PB25012', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alkan Medical', 'NULL', 'A', '12000', '2017-04-15', '2020-04-15', 'N'),
-('IP', 251, 'BLOODGLUCOMETERS', '251_BGM', 'BGM_25122', '300PCSGLUCOMETER', 'SEJOY', 'NULL', 'ELFATH', 'NULL', 'A', '700', '2018-01-14', '2021-01-14', 'N'),
-('IP', 251, 'PATIENT-BEDS', '251_PB', 'PB25122', 'EUCLIDE45', 'ANTANTO', 'NULL', 'Alkan Medical', 'NULL', 'A', '15000', '2018-07-15', '2021-07-15', 'N'),
 ('Urology', 950, 'Urological Table,Exam', '2536hd632', 'M01TAB-URO', 'CFUR301', 'OAKWORKS', NULL, 'Alcan Medical', NULL, 'A', '$30000', '2018-03-08', '2024-03-08', 'Y'),
 ('Urology', 951, 'Urological Table,Exam', '2536hd634', 'M02TAB-URO', 'CFUR301', 'OAKWORKS', NULL, 'Alcan Medical', NULL, 'A', '$30000', '2018-06-15', '2024-06-15', 'Y'),
 ('Urology', 950, 'UTERINE MORCELLATOR', '2ER4FD3', 'M01MORC-URO', 'POWERDRIVE MACRO', 'WISAP Medical Technology ', NULL, 'ELFATH', NULL, 'A', '20000', '2017-10-30', '2020-10-30', 'N'),
@@ -212,6 +222,11 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 ('Laboratory', 750, 'LABORATORY DRYING OVEN,HYBRIDIZATION ,BENCHTOP', '35GS52', 'M01DRYOVE-LAB', 'OV 4000', 'Analytikajena', NULL, 'EGA-TECH', NULL, 'A', '40000', '2018-03-10', '2021-03-10', 'Y'),
 ('Urology', 951, 'DIGITAL URINARY FLOW METER', '3F3445', 'M02URIFLOW-URO', 'PICO FLOW2\r\n', 'MEDICA', NULL, 'MEDICA', NULL, 'A', '$40000', '2019-07-04', '2023-07-04', 'Y'),
 ('Urology', 950, 'DIGITAL URINARY FLOW METER', '3F3476', 'M01URIFLOW-URO', 'PICO FLOW2\r\n', 'MEDICA', NULL, 'MEDICA', NULL, 'A', '$40000', '2019-07-04', '2023-07-04', 'Y'),
+('IP', 250, 'SPHYGMOMANOMETER', '420601SP05', 'M01MANOMETER-IP', 'SMD-420601', 'SUNMED', 'NULL', 'ELFATH', 'NULL', 'A', '6000', '2017-04-05', '2020-04-05', 'N'),
+('IP', 250, 'SPHYGMOMANOMETER', '420605SP05', 'M02MANOMETER-IP', 'SMD-420601', 'SUNMED', 'NULL', 'ELFATH', 'NULL', 'A', '6000', '2017-04-05', '2020-04-05', 'N'),
+('IP', 250, 'SPHYGMOMANOMETER', '420610SP05', 'M03MANOMETER-IP', 'SMD-420601', 'SUNMED', 'NULL', 'ELFATH', 'NULL', 'A', '6000', '2017-04-05', '2020-04-05', 'N'),
+('IP', 250, 'SPHYGMOMANOMETER', '420615SP05', 'M04MANOMETER-IP', 'SMD-420601', 'SUNMED', 'NULL', 'ELFATH', 'NULL', 'A', '6000', '2017-04-05', '2017-04-05', 'N'),
+('IP', 250, 'SPHYGMOMANOMETER', '420620SP05', 'M05MANOMETER-IP', 'SMD-420601', 'SUNMED', 'NULL', 'ELFATH', 'NULL', 'A', '6000', '2017-04-05', '2020-04-05', 'N'),
 ('Otolaryngology', 920, 'OTOSCOPE', '45233D45', 'M01SCOPE-OTO', '01.13500.021', 'KaWe - KIRCHNER & WILHELM', NULL, 'Alcan medical', NULL, 'A', '2000', '2019-11-04', NULL, 'N'),
 ('Otolaryngology', 920, 'PHARYNGOSCOPE', '4536Q1', 'M01PHARSCOPE-OTO', 'EFL 11-20-30/40', 'EndoMed Systems ', NULL, 'ELFATH', NULL, 'A', '4500', '2020-01-26', NULL, 'N'),
 ('Otolaryngology', 921, 'PHARYNGOSCOPE', '4536Y3', 'M02PHARSCOPE-OTO', 'EFL 11-20-30/40', 'EndoMed Systems ', NULL, 'ELFATH', NULL, 'A', '4500', '2020-01-16', NULL, 'N'),
@@ -220,13 +235,18 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 ('Urology', 950, 'CYSTO-RESECTOSCOPE / STRAIGHT', '4hd67', 'M01CYSTO-URO', '630-235-10B', 'EMED', NULL, 'ELFATH', NULL, 'A', '25000', '2019-11-10', '2025-11-10', 'N'),
 ('Urology', 951, 'INTRACORPOREAL LITHOTRIPTER ', '563289F46G', 'M02INTRALITHO-URO', 'INTRALITH ULTRA', 'US Healthcare solutions', NULL, 'Alcan medical', NULL, 'A', '$50000', '2010-11-10', '2013-11-10', 'N'),
 ('Urology', 950, 'INTRACORPOREAL LITHOTRIPTER ', '567489F46G', 'M01INTRALITHO-URO', 'INTRALITH ULTRA', 'US Healthcare solutions', NULL, 'Alcan medical', NULL, 'A', '$50000', '2010-11-10', '2013-11-10', 'N'),
+('IP', 250, 'MONITOR', '600PLM7', 'M01MONITOR-IP', '12.INCH', 'TOPNITH', 'NULL', 'Alcan Medical', 'NULL', 'A', '15000', '2017-04-30', '2021-04-30', 'Y'),
 ('Laboratory', 751, 'FORCED CONVECTION LABORATORY INCUBATOR', '627GD22', 'M02FORCINCU-LAB', 'HETTCUBE 400 | 400 R', 'Andreas HETTICH GmbH & Co.KG', NULL, 'Alcan medical', NULL, 'A', '15000', '2019-04-03', '2024-04-03', 'Y'),
 ('Laboratory', 750, 'FORCED CONVECTION LABORATORY INCUBATOR', '627GD52', 'M01FORCINCU-LAB', 'HETTCUBE 400 | 400 R', 'Andreas HETTICH GmbH & Co.KG', NULL, 'Alcan medical', NULL, 'A', '15000', '2019-01-20', '2024-01-20', 'Y'),
+('IP', 250, 'MONITOR', '700PLM5', 'M02MONITOR-IP', '12.INCH', 'TOPNITH', 'NULL', 'Alcan Medical', 'NULL', 'A', '15000', '2017-04-30', '2021-04-30', 'Y'),
 ('Laboratory', 750, 'CLEAN ROOM / MODULAR', '7Y528J9', 'M01CLEANROOM-LAB', 'STERIS FINN-AQUA ', 'STERIS', NULL, 'Alcan medical', NULL, 'A', '65000', '2019-02-10', '2025-02-10', 'Y'),
 ('Laboratory', 751, 'CLEAN ROOM / MODULAR', '7Y538J9', 'M02CLEANROOM-LAB', 'STERIS FINN-AQUA ', 'STERIS', NULL, 'Alcan medical', NULL, 'A', '65000', '2019-03-20', '2025-03-20', 'Y'),
+('IP', 250, 'MONITOR', '800PLM3', 'M03MONITOR-IP', '12.INCH', 'TOPINTH', 'NULL', 'Alcan Medical', 'NULL', 'A', '15000', '2017-04-30', '2021-04-30', 'Y'),
 ('Urology', 951, 'COMPUTER-BASED URODYNAMIC SYSTEM / ON CASTERS', '87JF9', 'M02DYNSYS-URO', 'PICO SMART', 'MEDICA', NULL, 'MEDICA', NULL, 'A', '$70000', '2019-11-20', NULL, 'Y'),
 ('Urology', 950, 'COMPUTER-BASED URODYNAMIC SYSTEM / ON CASTERS', '87JJ8', 'M01DYNSYS-URO', 'PICO SMART', 'MEDICA', NULL, 'MEDICA', NULL, 'A', '$70000', '2019-10-16', NULL, 'Y'),
+('IP', 250, 'MONITOR', '900PLM9', 'M04MONITOR-IP', '12.INCH', 'TOPINTH', 'NULL', 'Alcan Medical', 'NULL', 'A', '15000', '2017-04-30', '2021-04-30', 'Y'),
 ('ICU', 100, 'BED,PATIENT', '9100', 'M01BED-ICU', 'GO BED', 'STRYKER', 'NULL', 'ELFATH', 'NULL', 'A', '$28500', '2009-08-05', '2011-08-10', 'N'),
+('IP', 250, 'MONITOR', '966PLM96', 'M05MONITOR-IP', '12.INCH', 'TOPNITH', 'NULL', 'Alcan Medical', 'NULL', 'A', '15000', '2017-04-30', '2021-04-30', 'Y'),
 ('Otolaryngology', 921, 'SINUSCOPE ', 'AH25D7J', 'M02SINU-OTO', 'RIGID HD', 'OLYMPUS', NULL, 'Alcan medical', NULL, 'A', '6000', '2018-06-15', '2020-06-15', 'N'),
 ('Otolaryngology', 920, 'SINUSCOPE ', 'AH25DW2', 'M01SINU-OTO', 'RIGID HD', 'OLYMPUS', NULL, 'Alcan medical', NULL, 'A', '6000', '2018-06-15', '2022-06-15', 'N'),
 ('Orthopedics', 880, 'DRILL SURGICAL POWER TOOL', 'AHG3265S', 'M01DRILL-ORTHO', 'MBQ-700 SERIES', 'DeSoutter Medical', NULL, 'DeSoutter Medical', NULL, 'A', '23000', '2018-04-23', '2020-04-23', 'N'),
@@ -237,6 +257,8 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 ('CSSD', 601, 'MEDICAL STERILIZER / CSSD / STEAM', 'c23ss00d', 'M02STEAMST-CSSD', 'SQ-Z', '	\r\nSANQIANG', NULL, 'medik', NULL, 'A', '90000', '2020-04-30', '2021-04-30', 'Y'),
 ('CSSD', 600, 'Laboratory Autoclave', 'ca11223', 'M01AUTOCAVE-CSSD', 'BKQ-B50(II)', 'BIOBASE', NULL, 'medik', NULL, 'A', '3000', '2019-11-11', '2020-11-11', 'N'),
 ('CSSD', 601, 'Laboratory Autoclave', 'ca11277', 'M02AUTOCAVE-CSSD', 'BKQ-B50(II)', 'BIOBASE', NULL, 'medik', NULL, 'A', '3000', '2019-10-04', '2020-10-04', 'N'),
+('IP', 250, 'WEIGHING-SCALE', 'DEG10009M', 'M02SCALE-IP', 'DIGITAL-SCALE', 'FRK', 'NULL', 'ELFATH', 'NULL', 'A', '2000', '2017-05-05', '2019-05-05', 'Y'),
+('IP', 250, 'WEIGHING-SCALE', 'DEG20019L', 'M01SCALE-IP', 'DIGITAL-SCALE', 'FRK', 'NULL', 'ELFATH', 'NULL', 'A', '2000', '2017-05-05', '2019-05-05', 'Y'),
 ('Orthopedics', 881, 'ARTHROSCOPY SHAVER', 'DWD323E', 'M02SHAVER-ORTHO', 'SV-8002', 'Vimex Endoscopy ', NULL, 'Alcan medical', NULL, 'A', '25000', '2019-04-19', '2023-04-19', 'N'),
 ('Orthopedics', 880, 'ARTHROSCOPY SHAVER', 'DWD3F5Y', 'M01SHAVER-ORTHO', 'SV-8002', 'Vimex Endoscopy ', NULL, 'Alcan medical', NULL, 'A', '25000', '2019-07-04', '2023-07-04', 'N'),
 ('Orthopedics', 880, 'ELECTRIC MENISCAL RASP', 'GD52BS7', 'M01RASP-ORTHO', 'OMNISPAN™', 'DePuySynthes', NULL, 'ELFATH', NULL, 'A', '15000', '2018-03-08', NULL, 'N'),
@@ -248,6 +270,14 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 ('Orthopedics', 881, 'SURGERY ORTHOPEDIC EXTENSION DEVICE', 'HWY65GD', 'M02SURGERYBED-ORTHO', '9923046', 'OPT SurgiSystems', NULL, 'Alcan medical', NULL, 'A', '16000', '2017-04-19', '2021-04-19', 'N'),
 ('Laboratory', 750, 'PCR CABINET ', 'K637FAA2', 'M01PCR-LAB', 'UVP PCR UV³', 'Analytikajena', NULL, 'EGA-TECH', NULL, 'A', '35000', '2017-08-02', '2019-09-20', 'N'),
 ('Laboratory', 751, 'PCR CABINET ', 'K637FAA7', 'M02PCR-LAB', 'UVP PCR UV³', 'Analytikajena', NULL, 'EGA-TECH', NULL, 'A', '35000', '2017-06-23', '2021-04-09', 'N'),
+('IP', 250, 'VENTILLATORS', 'O800VVX1', 'M01VENT-IP', 'ACM812A', 'ACM', 'NULL', 'Alcan Medical', 'NULL', 'A', '624000', '2017-07-10', '2021-06-10', 'Y'),
+('IP', 250, 'VENTILLATORS', 'O800VVX20', 'M03VENT-IP', 'ACM812A', 'ACM', 'NULL', 'Alcan Medical', 'NULL', 'A', '624000', '2017-07-10', '2021-06-10', 'Y'),
+('IP', 250, 'VENTILLATORS', 'O800VVX3', 'M04VENT-IP', 'ACM812A', 'ACM', 'NULL', 'Alcan Medical', 'NULL', 'A', '624000', '2017-07-10', '2021-06-10', 'Y'),
+('IP', 250, 'VENTILLATORS', 'O800VVX5', 'M02VENT-IP', 'ACM812A', 'ACM', 'NULL', 'Alcan Medical', 'NULL', 'A', '624000', '2017-07-10', '2021-06-10', 'Y'),
+('IP', 250, 'VENTILLATORS', 'O800VVX9', 'M05VENT-IP', 'ACM812A', 'ACM', 'NULL', 'Alcan Medical', 'NULL', 'A', '624000', '2017-07-10', '2021-06-10', 'Y'),
+('IP', 250, 'TROLLEY', 'P5150YA', 'M03TROLLEY-IP', 'AG-MT001A1', 'AEGEA', 'NULL', 'ELFATH', 'NULL', 'A', '4000', '2017-06-10', '2025-06-10', 'N'),
+('IP', 250, 'TROLLEY', 'P5200YA', 'M04TROLLEY-IP', 'AG-MT001A1', 'AEGEA', 'NULL', 'ELFATH', 'NULL', 'A', '4000', '2017-06-10', '2025-06-10', 'N'),
+('IP', 250, 'TROLLEY', 'P5250YA', 'M05TROLLEY-IP', 'AG-MT001A1', 'AEGEA', 'NULL', 'ELFATH', 'NULL', 'A', '4000', '2017-06-10', '2025-06-10', 'N'),
 ('Otolaryngology', 920, 'ENT SURGERY MICROSCOPE ', 'Q21WS2', 'M01MICROSCO-OTO', 'KAPS PRO ENT M', 'Karl Kaps ', NULL, 'ELFATH', NULL, 'A', '45000', '2013-08-05', NULL, 'N'),
 ('Otolaryngology', 920, 'ENT CHAIR,EXAM', 'SED232W1', 'M01CHAIR-OTO', '2683', 'Promotal', NULL, 'ELFATH', NULL, 'A', '12000', '2016-10-22', '2020-10-22', 'N'),
 ('Otolaryngology', 921, 'ENT CHAIR,EXAM', 'SED2341D', 'M02CHAIR-OTO', '2683', 'Promotal', NULL, 'ELFATH', NULL, 'A', '12000', '2016-10-22', '2020-10-22', 'N'),
@@ -255,7 +285,9 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 ('Anesthesiology', 501, 'laryngoscope', 'sf5Gu7', 'M03SCOPE-ANESTH', 'HYHJ-KC', 'HAIYE', NULL, 'midk', NULL, 'A', '7000', '2019-11-11', '2022-11-09', 'N'),
 ('Anesthesiology', 500, 'laryngoscope', 'ss4G55', 'M01SCOPE-ANESTH', 'HYHJ-KC', 'HAIYE', NULL, 'midk', NULL, 'A', '7000', '2019-11-09', '2022-11-09', 'N'),
 ('Laboratory', 751, 'LABORATORY COLD ROOM', 'Y3672G269', 'M02COLDROOM-LAB', 'JSSC-700C', 'JSR', NULL, 'Alcan medical', NULL, 'A', '100000', '2019-09-20', '2024-09-20', 'Y'),
-('Laboratory', 750, 'LABORATORY COLD ROOM', 'Y3672G278', 'M01COLDROOM-LAB', 'JSSC-700C', 'JSR', NULL, 'Alcan medical', NULL, 'A', '100000', '2019-10-20', '2024-10-20', 'Y');
+('Laboratory', 750, 'LABORATORY COLD ROOM', 'Y3672G278', 'M01COLDROOM-LAB', 'JSSC-700C', 'JSR', NULL, 'Alcan medical', NULL, 'A', '100000', '2019-10-20', '2024-10-20', 'Y'),
+('IP', 250, 'TROLLEY', 'Y5000PA', 'M01TROLLEY-IP', 'AG-MT001A1', 'AEGEA', 'NULL', 'ELFATH', 'NULL', 'A', '4000', '2017-06-10', '2025-06-10', 'N'),
+('IP', 250, 'TROLLEY', 'Y5100PA', 'M02TROLLEY-IP', 'AG-MT001A1', 'AEGEA', 'NULL', 'ELFATH', 'NULL', 'A', '4000', '2017-06-10', '2025-06-10', 'N');
 
 -- --------------------------------------------------------
 
@@ -263,7 +295,7 @@ INSERT INTO `equipment` (`department`, `dep_code`, `nomenclature`, `serial_no`, 
 -- Table structure for table `ppm`
 --
 
-CREATE TABLE `ppm` (
+CREATE TABLE IF NOT EXISTS `ppm` (
   `department` varchar(200) NOT NULL,
   `department_code` int(100) NOT NULL,
   `nomenclature` varchar(200) NOT NULL,
@@ -290,13 +322,13 @@ INSERT INTO `ppm` (`department`, `department_code`, `nomenclature`, `ppm_id`, `t
 -- Table structure for table `reports`
 --
 
-CREATE TABLE `reports` (
+CREATE TABLE IF NOT EXISTS `reports` (
   `department` varchar(200) NOT NULL,
   `de_code` int(100) NOT NULL,
   `equip_name` varchar(200) NOT NULL,
   `manufacturer` varchar(200) NOT NULL,
   `model` varchar(200) NOT NULL,
-  `fault_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `fault_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `priority` int(100) NOT NULL,
   `fault_description` varchar(200) NOT NULL,
   `job_no` int(100) NOT NULL,
@@ -320,7 +352,7 @@ INSERT INTO `reports` (`department`, `de_code`, `equip_name`, `manufacturer`, `m
 -- Table structure for table `store`
 --
 
-CREATE TABLE `store` (
+CREATE TABLE IF NOT EXISTS `store` (
   `nomenclature` varchar(200) NOT NULL,
   `serial_no` varchar(200) NOT NULL,
   `model` varchar(200) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
@@ -440,7 +472,6 @@ ALTER TABLE `ppm`
 ALTER TABLE `reports`
   ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`report_id`) REFERENCES `equipment` (`id`) ON UPDATE NO ACTION,
   ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`de_code`) REFERENCES `department` (`code`) ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
