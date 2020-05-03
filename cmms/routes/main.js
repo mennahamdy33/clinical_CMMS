@@ -4,58 +4,18 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const app = express();
-var ss = require('simple-statistics');
-//const ChartjsNode = require('chartjs-node');
-// y=ss.min([1, 5, -10, 100, 2]);
-// console.log(y);
-// 600x600 canvas size
-// var chartNode = new ChartjsNode(600, 600);
-// return chartNode.drawChart(chartJsOptions)
-//     .then(() => {
-//         // chart is created
-//
-//         // get image as png buffer
-//         return chartNode.getImageBuffer('image/png');
-//     })
-//     .then(buffer => {
-//         Array.isArray(buffer) // => true
-//         // as a stream
-//         return chartNode.getImageStream('image/png');
-//     })
-//     .then(streamResult => {
-//         // using the length property you can do things like
-//         // directly upload the image to s3 by using the
-//         // stream and length properties
-//         streamResult.stream // => Stream object
-//         streamResult.length // => Integer length of stream
-//         // write to a file
-//         return chartNode.writeImageToFile('image/png', './testimage.png');
-//     })
-//     .then(() => {
-//         // chart is now written to the file path
-//         // ./testimage.png
-//     });
-//const mysql = require('mysql2');
 let date_ob = new Date();
-
 // current date
 // adjust 0 before single digit date
 let date = ("0" + date_ob.getDate()).slice(-2);
-
 // current month
 let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-
 // current year
 let year = date_ob.getFullYear();
 let today =year + "-" + month + "-" + date;
-
 // prints date in YYYY-MM-DD format
 console.log(year + "-" + month + "-" + date);
-
-// prints date & time in YYYY-MM-DD HH:MM:SS format
-console.log(year + "-" + month + "-" + date );
 var mysql = require('mysql');
-
 var pool = mysql.createPool({
     host: "localhost",
     user: "root",
@@ -80,10 +40,7 @@ router.get('/Employee',(req,res)=>{
 
     res.render('home/Employee',{layout:'home'});
 });
-
-
 router.get('/store',(req,res)=>{
-
     res.render('home/store',{layout:'home'});
 });
 router.get('/department',(req,res)=>{
@@ -99,24 +56,49 @@ router.get('/PPM',(req,res)=>{
 
     res.render('home/PPM',{layout:'home'});
 });
-    
-router.get('/calender',(req,res)=>{
-
-    res.render('home/calender');
-});
 router.get('/AddEquipment',(req,res)=>{
     res.render('home/AddEquipment',{layout:'home'});
 });
+
+
+
+router.get('/DailyPassTable',(req,res)=>{
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        var sql = `SELECT * FROM daily_inspection `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/DailyPassTable', {daily_inspection: rows,layout:'home'});
+
+            console.log("ww", {daily_inspection: rows});
+
+        });
+    });
+});
+router.get('/ReportTable',(req,res)=>{
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        var sql = `SELECT * FROM reports `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/ReportTable', {reports: rows,layout:'home'});
+
+            console.log("ww", {reports: rows});
+
+        });
+    });
+});
+
 router.get('/',(req,res)=>{
     res.render('login/login');
+});
+
+router.get('/about',(req,res)=>{
+    res.render('home/about',{layout:'home'});
 });
 router.post('/',(req,res)=>{
     res.redirect('/index');
 });
-router.get('/about',(req,res)=>{
-    res.render('home/about',{layout:'home'});
-});
-
 router.get('/Equipment',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -130,7 +112,6 @@ router.get('/Equipment',(req,res)=>{
 
     });
 });});
-
 router.get('/aEquipment',(req,res)=>{
 
 
@@ -147,21 +128,7 @@ router.get('/aEquipment',(req,res)=>{
                     console.log( {eq: rows[0]});}
         });
     });});
-// router.post('/blog',(req,res)=>{
-//
-//     pool.getConnection(function (err) {
-//         if (err) throw err;
-//
-//
-//         var sql = `SELECT * FROM equipment WHERE serial_no =?`;
-//         pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
-//
-//             res.render('home/blog', {equipment: rows,layout:'home'});
-//
-//             console.log("ww", {equipment: rows});
-//
-//         });
-//     });});
+
 router.get('/store_table',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -197,13 +164,13 @@ router.get('/Dashboard',(req,res)=>{
         SELECT count(*) As a FROM reports WHERE solved=?;
     SELECT count(*) As a FROM reports AS s WHERE fault_date=?;
     SELECT count(*) As a FROM ppm WHERE to_date=?;
-    SELECT count(*) As a FROM calibration WHERE to_date=?`;
+    SELECT count(*) As a FROM calibration WHERE to_date=?;
+    SELECT MONTH(install_date) as e,count(*) as h FROM equipment as eq3 WHERE YEAR(install_date)=?  GROUP BY MONTH(install_date)`;
+    pool.query(sql ,[today,'Y','Y',today,today,today,2019], async function (err,rows,fields) {
 
-    pool.query(sql ,[today,'Y','Y',today,today,today], async function (err,rows,fields) {
+        res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],eq3:rows[7]});
 
-        res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0]});
-
-        console.log("ww", {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0]});
+        console.log("ww", {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],eq3:rows[7],eq3:rows[7]});
 
 
     });
@@ -279,6 +246,25 @@ router.get('/Emp_table',(req,res)=>{
 
         });
     });});
+router.get('/solved',(req,res)=>{
+
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        console.log(req.query.id);
+        var sql = `UPDATE reports SET solved=? ,end_date=? WHERE report_id =?`;
+        pool.query(sql,['yes',today,req.query.id] , async function (err,rows,fields) {
+
+            res.redirect('/ReportTable');
+
+            console.log("ww", {reports: rows});
+
+        });
+    });
+
+
+});
 router.post('/Emp_table',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -335,6 +321,37 @@ router.post('/PPM_table',(req,res)=>{
             res.render('home/PPM_table', {ppm: rows,layout:'home'});
 
             console.log("ww", {ppm: rows});
+
+        });
+    });});
+router.post('/DailyPassTable',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+
+        var sql = `SELECT * FROM daily_inspection WHERE dinspect_id =?`;
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
+
+            res.render('home/DailyPassTable', {daily_inspection: rows,layout:'home'});
+
+            console.log("ww", {daily_inspection: rows});
+
+        });
+    });});
+router.post('/ReportTable',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        // solve=req.body.search;
+        // console.log(solve);
+        var sql = `SELECT * FROM reports WHERE report_id =?`;
+        pool.query(sql,[req.body.search] , async function (err,rows,fields) {
+
+            res.render('home/ReportTable', {reports: rows,layout:'home'});
+
+            console.log("ww", {reports: rows});
 
         });
     });});
@@ -429,7 +446,7 @@ router.post('/Dailypass', (req, res) => {
         console.log("Connected!");
 
 
-        var sql = `INSERT INTO daily_inspection (nomenclature,serial_no,dailypass_id,department,physical_condition,batteries,cables_port,self_test,tech_name,inspection_date,comment) VALUES ( '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.department}','${req.body.physicalcondition}', '${req.body.batteriescondition}', '${req.body.cablesportscondition}', '${req.body.selftest}', '${req.body.technicianname}', '${req.body.inspectiondate}', '${req.body.comment}')`;
+        var sql = `INSERT INTO daily_inspection (nomenclature,serial_no,dinspect_id,department,physical_condition,batteries,cables_port,self_test,tech_name,inspection_date,comment) VALUES ( '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.department}','${req.body.physicalcondition}', '${req.body.batteriescondition}', '${req.body.cablesportscondition}', '${req.body.selftest}', '${req.body.technicianname}', '${req.body.inspectiondate}', '${req.body.comment}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -450,7 +467,7 @@ router.post('/Report', (req, res) => {
         console.log("Connected!");
 
 
-        var sql = `INSERT INTO reports (department,equip_name,manufacturer,model,serial_no,fault_date,priority,fault_description,job_no,tech_name,action_taken,solved,end_date,report_id) VALUES ('${req.body.department}', '${req.body.equipmentname}','${req.body.manufacturer}','${req.body.model}','${req.body.serialnumber}','${req.body.faultdate}', '${req.body.priority}', '${req.body.faultdescription}', '${req.body.jobnumber}', '${req.body.technicianname}', '${req.body.actiontaken}', '${req.body.solution}', '${req.body.enddate}','${req.body.id}')`;
+        var sql = `INSERT INTO reports (department,	de_code,equip_name,manufacturer,model,fault_date,priority,fault_description,job_no,tech_name,action_taken,solved,end_date,report_id) VALUES ('${req.body.department}','${req.body.departmentcode}', '${req.body.equipmentname}','${req.body.manufacturer}','${req.body.model}','${req.body.faultdate}', '${req.body.priority}', '${req.body.faultdescription}', '${req.body.jobnumber}', '${req.body.technicianname}', '${req.body.actiontaken}', '${req.body.solved}', '${req.body.enddate}','${req.body.id}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -509,15 +526,6 @@ router.post('/index',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-
-        //
-        // var sql = `SELECT nomenclature,count(*) AS x FROM equipment WHERE  nomenclature =?`;
-        // pool.query(sql,[req.body.editbox_search] , async function (err,rows,fields) {
-        //
-        //     res.render('home/index', {equipment: rows, layout: 'home'});
-        //
-        //     console.log("ww", {equipment: rows});
-        // });
             var sql = `SELECT solved,count(*) AS x FROM reports GROUP BY solved  ;
             SELECT nomenclature,count(*) AS x FROM equipment WHERE  nomenclature =?`;
             pool.query(sql ,req.body.editbox_search, async function (err,rows,fields) {
@@ -529,104 +537,4 @@ router.post('/index',(req,res)=>{
         });
     });});
 
-// router.get('/contactUs',(req,res)=>{
-//     res.render('home/contactUs');
-// });
-// router.get('/signUp1',(req,res)=>{
-//     console.log('connected to signup page!');
-//     res.render('home/SignUp1');
-//     //res.sendFile(path.join(__dirname, '..', 'views', 'home', 'SignUp1.html'));
-// });
-//
-// router.get('/p_login',(req,res)=>{
-//     res.render('home/p_login');
-// });
-// router.get('/thank_you',(req,res)=>{
-//     res.render('home/thank_you');
-// });
-//
-//
-//
-// router.get('/patient',(req,res)=>{
-//     res.render('home/patient');
-// });
-// var mysql = require('mysql');
-//
-// var pool = mysql.createPool({
-//     host: "localhost",
-//     user: "root",
-//     database: "icu"
-// });
-// router.get('/doctor',(req,res)=>{
-//     res.render('home/doctor');
-// });
-
-//
-// router.post('/SignUp1', (req, res) => {
-//     console.log('data sent!!!!!!');
-//     console.log(req.body);
-//     pool.getConnection(function (err) {
-//         if (err) throw err;
-//         console.log("Connected!");
-//         if (req.body.password !== req.body.confirm_password) {
-//             req.flash("passwords don't match");
-//             console.log("passwords don't match");
-//             res.render('/signUp1');
-//         }
-//         else {
-//
-//             var pass = req.body.password;
-//             bcrypt.genSalt(10, (err, salt) => {
-//                 bcrypt.hash(pass, salt, (err, hash) => {
-//                     pass = hash;
-//
-//                     var sql = `INSERT INTO doctor (ID,SSN, F_Name,L_Name,Admin,Password,Gender,Phone,Address,Position,Degree,birth_of_date,Department,E_mail) VALUES ('${req.body.id}', '${req.body.ssn}','${req.body.fname}','${req.body.lname}','0', '${pass}', '${req.body.gender}', '${req.body.phone}', '${req.body.address}', '${req.body.position}', '${req.body.degree}', '${req.body.bd}', '${req.body.depart}','${req.body.email}')`;
-//                     pool.query(sql, function (err, res) {
-//                         if (err) throw err;
-//                         console.log("1 record inserted");
-//                     });
-//                 });
-//             });
-//         }
-//
-//
-//         res.redirect('/login');
-//
-//     });
-// });
-//router.post('/login', (req, res) => {
-//     pool.getConnection(function (err) {
-//         if (err) throw err;
-//         console.log("Login Connected!");
-//
-//         var sql = `SELECT * FROM doctor WHERE ID = ?`;
-//         pool.query(sql, [req.body.id], async function (err,rows,fields) {
-//
-//             bcrypt.compare(req.body.password, rows[0].Password).then((returnPassword) => {
-//                 console.log(`this is respone ${returnPassword}`);
-//                 if(!returnPassword){
-//                     console.log('wrong pass')
-//                     res.redirect('/login')
-//                 }
-//                 else{
-//                     console.log('hello');
-//                     if(rows[0].Admin == 1){
-//                         res.render('adminview/index', {doctor: rows[0]});
-//                         console.log("ww",{doctor : rows[0]});
-//
-//                     }
-//                     else{
-//                         res.render('home/doctor', {doctor: rows[0]});
-//                         console.log({doctor : rows[0]});
-//                     }
-//                 }
-//             });
-//
-//
-//             if (err) throw err;
-//         });
-//
-//     });
-//
-// });
 module.exports = router;

@@ -30,8 +30,8 @@
                     <div class="topnav">
 
                         <div class="search-container">
-                            <form action="/action_page.php">
-                                <input type="text" placeholder="Search.." name="search">
+                            <form action="/DailyPassTable" method="post">
+                                <input type="text" placeholder="Search by id .." name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -58,19 +58,19 @@
                         </thead>
 
                         <tbody>
-                        {{#each Report}}
+                        {{#each daily_inspection}}
                             <tr>
-                                <td class="column4">{{Department}}</td>
-                                <td class="column4">{{Department-Code}}</td>
-                                <td class="column4">{{Equipment-Name}}</td>
-                                <td class="column3">{{ID}}</td>
-                                <td class="column4">{{Technician-Name}}</td>
-                                <td class="column4">{{Physical-Condition}}</td>
-                                <td class="column4">{{Batteries-Condition}}</td>
-                                <td class="column4">{{Cables_Ports-Condition}}</td>
-                                <td class="column4">{{Self-Test}}</td>
-                                <td class="column5">{{Comment}}</td>
-                                <td class="column4">{{Inspection-Date}}</td>
+                                <td class="column4">{{department}}</td>
+                                <td class="column4">{{d_code}}</td>
+                                <td class="column4">{{nomenclature}}</td>
+                                <td class="column3">{{dinspect_id}}</td>
+                                <td class="column4">{{tech_name}}</td>
+                                <td class="column4">{{physical_condition}}</td>
+                                <td class="column4">{{batteries}}</td>
+                                <td class="column4">{{cables_port}}</td>
+                                <td class="column4">{{self_test}}</td>
+                                <td class="column5">{{comment}}</td>
+                                <td class="column4">{{inspection_date}}</td>
 
                             </tr>
                         {{/each}}
@@ -110,7 +110,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="images/elements/tes1.jpg" alt="">
+                        <img src="img/elements/tes1.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -122,7 +122,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="images/elements/tes2.jpg" alt="">
+                        <img src="img/elements/tes2.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -134,7 +134,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="images/elements/tes3.jpg"  alt="">
+                        <img src="img/elements/tes3.jpg"  alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -146,7 +146,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="images/elements/tes4.jpg" alt="">
+                        <img src="img/elements/tes4.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">

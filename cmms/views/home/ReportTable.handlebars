@@ -30,7 +30,7 @@
                     <div class="topnav">
 
                         <div class="search-container">
-                            <form action="/action_page.php">
+                            <form action="/ReportTable" method="post">
                                 <input type="text" placeholder="Search.." name="search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
@@ -57,7 +57,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{#each report}}
+                        {{#each reports}}
                             <tr>
                                 <td class="column3">{{department}}</td>
                                 <td class="column3">{{de_code}}</td>
@@ -71,7 +71,7 @@
                                 <td class="column3">{{tech_name}}</td>
                                 <td class="column3">{{fault_description}}</td>
                                 <td class="column3">{{action_taken}}</td>
-                                <td class="column3">{{solved}}</td>
+                                <td class="column3"><a href="/solved?id={{report_id}}" id="{{report_id}}">{{solved}}</a></td>
                                 <td class="column3">{{end_date}}</td>
 
 
