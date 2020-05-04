@@ -4736,3 +4736,13 @@ h6 {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+form input[type="radio"] {
+width: 20px;
+height:20px;
+}
+.Radio{
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 20px;
+
+}

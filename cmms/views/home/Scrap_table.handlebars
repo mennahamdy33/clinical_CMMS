@@ -1,5 +1,4 @@
 
-
 <!--================Home Banner Area =================-->
 <section class="banner_area">
     <div class="banner_inner d-flex align-items-center">
@@ -8,8 +7,8 @@
                     class="banner_content d-md-flex justify-content-between align-items-center"
             >
                 <div class="mb-3 mb-md-0">
-                    <h2>DailyPass-Table<br>
-
+                    <h2>Scrap<br>
+                        Table
                     </h2>
 
                 </div>
@@ -27,54 +26,43 @@
         <div class="appointment-inner">
             <div class="row">
                 <div class="col-sm-16 col-lg-10 offset-lg-1">
-                    <div class="topnav">
+                  <div class="topnav">
 
-                        <div class="search-container">
-                            <form action="/DailyPassTable" method="post">
-                                <input type="text" placeholder="Search by id .." name="search">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <caption>DailyPass Table</caption>
+   <div class="search-container">
+     <form action="/Scrap_table" method="post">
+       <input type="text" placeholder="Search by serial number.." name="search">
+       <button type="submit"><i class="fa fa-search"></i></button>
+     </form>
+   </div>
+ </div>
+                    <caption>Scrap Table</caption>
                     <table id="hakona">
                         <thead>
                         <tr class="table100-head">
-                            <th class="column4">Department</th>
-                            <th class="column4">Department-Code</th>
-                            <th class="column4">Equipment-Name</th>
-                            <th class="column3">ID</th>
-                            <th class="column4">Technician-Name</th>
-                            <th class="column4">Physical-Condition</th>
-                            <th class="column4">Batteries-Condition</th>
-                            <th class="column4">Cables&Ports-Condition</th>
-                            <th class="column4">Self-Test</th>
-                            <th class="column5">Comment</th>
-                            <th class="column4">Inspection-Date</th>
-                            <th class="column3">Inspection-Number</th>
-
+                            <th class="column3">Nomenclature</th>
+                            <th class="column4">Serial_Number</th>
+                            <th class="column4">Model</th>
+                            <th class="column4">Manufacturer</th>
+                            <th class="column4">Local_agent</th>
+                            <th class="column4">Warrenty_period</th>
+                            <th class="column3">Stop-production-date</th>
+                            <th class="column3">End-production-date</th>
+                            <th class="column3">Deletion-date</th>
 
                         </tr>
-
-
                         </thead>
-
                         <tbody>
-                        {{#each daily_inspection}}
+                        {{#each scrap}}
                             <tr>
-                                <td class="column4">{{department}}</td>
-                                <td class="column4">{{d_code}}</td>
-                                <td class="column4">{{nomenclature}}</td>
-                                <td class="column3">{{dinspect_id}}</td>
-                                <td class="column4">{{tech_name}}</td>
-                                <td class="column4">{{physical_condition}}</td>
-                                <td class="column4">{{batteries}}</td>
-                                <td class="column4">{{cables_port}}</td>
-                                <td class="column4">{{self_test}}</td>
-                                <td class="column5">{{comment}}</td>
-                                <td class="column4">{{inspection_date}}</td>
-                                <td class="column3">{{insp_no}}</td>
-
+                                <td class="column3">{{nomenclature}}</td>
+                                <td class="column4">{{serial_no}}</td>
+                                <td class="column4">{{model}}</td>
+                                <td class="column4">{{manufacturer}}</td>
+                                <th class="column4">{{local_agent}}</th>
+                                <th class="column4">{{warrenty_period}}</th>
+                                <th class="column3">{{stop_production_date}}</th>
+                                <th class="column3">{{end_support_date}}</th>
+                                <th class="column3">{{deletion_date}}</th>
 
                             </tr>
                         {{/each}}
@@ -114,7 +102,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes1.jpg" alt="">
+                        <img src="images/elements/tes1.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -126,7 +114,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes2.jpg" alt="">
+                        <img src="images/elements/tes2.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -138,7 +126,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes3.jpg"  alt="">
+                        <img src="images/elements/tes3.jpg"  alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -150,7 +138,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes4.jpg" alt="">
+                        <img src="images/elements/tes4.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">

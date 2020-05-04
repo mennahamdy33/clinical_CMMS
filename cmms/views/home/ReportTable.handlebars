@@ -71,7 +71,27 @@
                                 <td class="column3">{{tech_name}}</td>
                                 <td class="column3">{{fault_description}}</td>
                                 <td class="column3">{{action_taken}}</td>
-                                <td class="column3"><a href="/solved?id={{report_id}}" id="{{report_id}}">{{solved}}</a></td>
+                                <td class="column3"><a href="/solved?id={{job_no}}" id="{{job_no}}">{{solved}}</a></td>
+                                <td class="column3">{{end_date}}</td>
+
+
+                            </tr>
+                        {{/each}}
+                        {{#each rep}}
+                            <tr>
+                                <td class="column3">{{department}}</td>
+                                <td class="column3">{{de_code}}</td>
+                                <td class="column4">{{equip_name}}</td>
+                                <td class="column4">{{report_id}}</td>
+                                <td class="column4">{{manufacturer}}</td>
+                                <td class="column3">{{model}}</td>
+                                <td class="column3">{{fault_date}}</td>
+                                <td class="column3">{{job_no}}</td>
+                                <td class="column3">{{priority}}</td>
+                                <td class="column3">{{tech_name}}</td>
+                                <td class="column3">{{fault_description}}</td>
+                                <td class="column3">{{action_taken}}</td>
+                                <td class="column3"><a href="/solved?id={{job_no}}" id="{{job_no}}">{{solved}}</a></td>
                                 <td class="column3">{{end_date}}</td>
 
 

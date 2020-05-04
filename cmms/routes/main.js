@@ -23,9 +23,23 @@ var pool = mysql.createPool({
     multipleStatements: true
 });
 app.use(bodyParser.json());
+router.get('/',(req,res)=>{
+    res.render('login/login');
+});
 router.get('/index',(req,res)=>{
 
     res.render('home/index',{layout:'home'});
+});
+router.post('/',(req,res)=>{
+    if(req.body.id==='YoussefMohamed' && req.body.password==="YouMo1998")
+    {
+        res.redirect('/index');
+    }
+    else
+    {
+        res.redirect('/');
+    }
+
 });
 router.get('/SearchEquipment',(req,res)=>{
 
@@ -40,8 +54,8 @@ router.get('/Employee',(req,res)=>{
 
     res.render('home/Employee',{layout:'home'});
 });
-router.get('/store',(req,res)=>{
-    res.render('home/store',{layout:'home'});
+router.get('/Scrap',(req,res)=>{
+    res.render('home/Scrap',{layout:'home'});
 });
 router.get('/department',(req,res)=>{
 
@@ -89,22 +103,39 @@ router.get('/ReportTable',(req,res)=>{
     });
 });
 
-router.get('/',(req,res)=>{
-    res.render('login/login');
-});
 
 router.get('/about',(req,res)=>{
     res.render('home/about',{layout:'home'});
 });
-router.post('/',(req,res)=>{
-    res.redirect('/index');
-});
+router.get('/equipment',(req,res)=>{
+    pool.getConnection(function (err) {
+        if (err) throw err;
+
+        var sql2 = `DELETE d
+                FROM equipment As d
+                JOIN scrap ON d.serial_no=scrap.serial_no
+                WHERE scrap.deletion_date<=?`;
+
+    pool.query(sql2,[today] , async function (err,rows,fields) {
+        console.log(today);
+        console.log("done"+rows.affectedRows);
+
+    });
+        var sql= `SELECT * FROM equipment`;
+
+        pool.query(sql,[today] , async function (err,rows,fields) {
+            res.render('home/Equipment', {equipment: rows,layout:'home'});
+
+            console.log("ww", {equipment: rows});
+
+        });
+});});
 router.get('/Equipment',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
 
-        var sql1 = `DELETE reports,ppm,calibration,daily_inspection,f 
+        var sql1 = `DELETE reports,ppm,calibration,daily_inspection
                     FROM reports
                     JOIN equipment AS f ON f.id=reports.report_id
                     JOIN ppm ON f.id=ppm.ppm_id
@@ -112,19 +143,14 @@ router.get('/Equipment',(req,res)=>{
                     JOIN daily_inspection ON f.id=daily_inspection.dinspect_id
                     JOIN scrap ON f.serial_no=scrap.serial_no
                     WHERE scrap.deletion_date<=?`;
+
         pool.query(sql1,[today] , async function (err,rows,fields) {
             console.log(today);
             console.log("done"+rows.affectedRows);
 
         });
-        var sql= `SELECT * FROM equipment`;
 
-    pool.query(sql,[today] , async function (err,rows,fields) {
-        res.render('home/Equipment', {equipment: rows,layout:'home'});
-
-        console.log("ww", {equipment: rows});
-
-    });
+        res.redirect('/equipment');
 });});
 router.get('/aEquipment',(req,res)=>{
 
@@ -142,31 +168,44 @@ router.get('/aEquipment',(req,res)=>{
                     console.log( {eq: rows[0]});}
         });
     });});
+router.get('/aReportTable',(req,res)=>{
 
-router.get('/store_table',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql = `SELECT * FROM store `;
-        pool.query(sql,  async function (err,rows,fields) {
-            res.render('home/store_table', {store: rows,layout:'home'});
+        var sql=`SELECT *  FROM reports AS rep WHERE solved=?`;
 
-            console.log("ww", {store: rows});
+        pool.query(sql,["no"],async function (err,rows,fields) {
+
+            res.render('home/ReportTable', {rep: rows,layout:'home'});
+                console.log( {rep: rows});
 
         });
     });});
-router.post('/store_table',(req,res)=>{
+router.get('/Scrap_table',(req,res)=>{
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql = `SELECT * FROM scrap `;
+        pool.query(sql,  async function (err,rows,fields) {
+            res.render('home/Scrap_table', {scrap: rows,layout:'home'});
+
+            console.log("ww", {scrap: rows});
+
+        });
+    });});
+router.post('/Scrap_table',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
 
 
-        var sql = `SELECT * FROM store WHERE serial_no =?`;
+        var sql = `SELECT * FROM scrap WHERE serial_no =?`;
         pool.query(sql,[req.body.search] , async function (err,rows,fields) {
 
-            res.render('home/store_table', {store: rows,layout:'home'});
+            res.render('home/Scrap_table', {scrap: rows,layout:'home'});
 
-            console.log("ww", {store: rows});
+            console.log("ww", {scrap: rows});
 
         });
     });});
@@ -180,7 +219,7 @@ router.get('/Dashboard',(req,res)=>{
     SELECT count(*) As a FROM ppm WHERE to_date=?;
     SELECT count(*) As a FROM calibration WHERE to_date=?;
     SELECT MONTH(fault_date) as e,count(*) as h FROM reports as re WHERE YEAR(fault_date)=?  GROUP BY MONTH(fault_date)`;
-    pool.query(sql ,[today,'Y','Y',today,today,today,year], async function (err,rows,fields) {
+    pool.query(sql ,[today,'Y','no',today,today,today,year], async function (err,rows,fields) {
 
         res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],re:rows[7]});
 
@@ -267,7 +306,7 @@ router.get('/solved',(req,res)=>{
         if (err) throw err;
 
         console.log(req.query.id);
-        var sql = `UPDATE reports SET solved=? ,end_date=? WHERE report_id =?`;
+        var sql = `UPDATE reports SET solved=? ,end_date=? WHERE job_no =?`;
         pool.query(sql,['yes',today,req.query.id] , async function (err,rows,fields) {
 
             res.redirect('/ReportTable');
@@ -285,7 +324,7 @@ router.post('/Emp_table',(req,res)=>{
         if (err) throw err;
 
 
-        var sql = `SELECT * FROM employee WHERE id =?`;
+        var sql = `SELECT * FROM employee WHERE national_id =?`;
         pool.query(sql,[req.body.search] , async function (err,rows,fields) {
 
             res.render('home/Emp_table', {employee: rows,layout:'home'});
@@ -402,13 +441,13 @@ router.post('/AddEquipment', (req, res) => {
         console.log("Connected!");
 
 
-                    var sql = `INSERT INTO equipment (department,nomenclature,serial_no,id,model,manufacturer,contact_manufacturer,local_agent,contact_agent,condition_code,price,install_date,warrenty_period,maintenance_assessment) VALUES ('${req.body.department}', '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.model}','${req.body.manufacturer}', '${req.body.contactmanufacturer}', '${req.body.localagent}', '${req.body.contactagent}', '${req.body.conditioncode}', '${req.body.price}', '${req.body.installationdate}', '${req.body.warrentlyperiod}','${req.body.maintenanceassesment}')`;
+    var sql = `INSERT INTO equipment (department,dep_code,nomenclature,serial_no,id,model,manufacturer,contact_manufacturer,local_agent,contact_agent,condition_code,price,install_date,warrenty_period,maintenance_assessment) VALUES ('${req.body.department}','${req.body.departmentcode}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.id}','${req.body.model}','${req.body.manufacturer}', '${req.body.contactmanufacturer}', '${req.body.localagent}', '${req.body.contactagent}', '${req.body.conditioncode}', '${req.body.price}', '${req.body.installationdate}', '${req.body.warrentlyperiod}','${req.body.maintainanceassessment}')`;
 
-                    pool.query(sql, function (err, res) {
-                        if (err) throw err;
-                        console.log("1 record inserted");
-                    });
-                });
+    pool.query(sql, function (err, res) {
+        if (err) throw err;
+        console.log("1 record inserted");
+    });
+});
 
 
 
@@ -417,11 +456,16 @@ router.post('/AddEquipment', (req, res) => {
 
 
 });
-router.post('/store', (req, res) => {
+
+router.post('/department', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql = `INSERT INTO store (nomenclature,serial_no,store_id,model,manufacturer,local_agent,warrenty_period,stop_production_date,end_support_date) VALUES ( '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.id}','${req.body.model}','${req.body.manufacturer}', '${req.body.localagent}',  '${req.body.warrentlyperiod}','${req.body.stopproductiondate}','${req.body.endsupportdate}')`;
+        console.log("Connected!");
+
+
+        var sql = `INSERT INTO department (name,floor,building,location,b_id,code) VALUES ('${req.body.name}','${req.body.floor}', '${req.body.building}','${req.body.location}','${req.body.b_id}','${req.body.code}')`;
+
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -431,7 +475,25 @@ router.post('/store', (req, res) => {
 
 
 
-    res.redirect('/store');
+    res.redirect('/department');
+
+
+});
+router.post('/Scrap', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql = `INSERT INTO scrap (nomenclature,serial_no,model,manufacturer,local_agent,warrenty_period,stop_production_date,end_support_date,deletion_date) VALUES ( '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.model}','${req.body.manufacturer}', '${req.body.localagent}',  '${req.body.warrentlyperiod}','${req.body.stopproductiondate}','${req.body.endproductiondate}','${req.body.deletiondate}')`;
+        pool.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/Scrap');
 
 
 });
@@ -439,7 +501,7 @@ router.post('/Calibration', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql = `INSERT INTO calibration (department,nomenclature,serial_no,cal_id,time_period,from_date,to_date,assigned_to,calibration_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.id}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.calibrationtask}', '${req.body.contractid}', '${req.body.status}')`;
+        var sql = `INSERT INTO calibration (department,dcode,nomenclature,cal_id,time_period,from_date,to_date,assigned_to,calibration_task,contract_id,status) VALUES ('${req.body.department}','${req.body.departmentcode}' ,'${req.body.nomenclature}','${req.body.id}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.calibrationtask}', '${req.body.contractid}', '${req.body.status}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -449,7 +511,7 @@ router.post('/Calibration', (req, res) => {
 
 
 
-    res.redirect('/Calib');
+    res.redirect('/Calibration');
 
 
 });
@@ -460,7 +522,7 @@ router.post('/Dailypass', (req, res) => {
         console.log("Connected!");
 
 
-        var sql = `INSERT INTO daily_inspection (nomenclature,serial_no,dinspect_id,department,physical_condition,batteries,cables_port,self_test,tech_name,inspection_date,comment) VALUES ( '${req.body.equipmentname}','${req.body.serialnumber}','${req.body.id}','${req.body.department}','${req.body.physicalcondition}', '${req.body.batteriescondition}', '${req.body.cablesportscondition}', '${req.body.selftest}', '${req.body.technicianname}', '${req.body.inspectiondate}', '${req.body.comment}')`;
+        var sql = `INSERT INTO daily_inspection (nomenclature,dinspect_id,department,d_code,physical_condition,batteries,cables_port,self_test,tech_name,inspection_date,comment) VALUES ( '${req.body.nomenclature}','${req.body.id}','${req.body.department}','${req.body.departmentcode}','${req.body.physicalcondition}', '${req.body.batteriescondition}', '${req.body.cablesportscondition}', '${req.body.selftest}', '${req.body.technicianname}', '${req.body.inspectiondate}', '${req.body.comment}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -503,7 +565,7 @@ router.post('/Employee', (req, res) => {
         console.log("Connected!");
 
 
-        var sql = `INSERT INTO employee (name,id,email,mobile_no,role,position,department,qualifications,salary) VALUES ('${req.body.name}', '${req.body.ID}','${req.body.email}','${req.body.mobilenumber}','${req.body.role}','${req.body.position}', '${req.body.department}', '${req.body.qualification}', '${req.body.salary}')`;
+        var sql = `INSERT INTO employee (name,national_id,email,mobile_no,role,position,department,depart_code,qualifications,salary) VALUES ('${req.body.name}', '${req.body.ID}','${req.body.email}','${req.body.mobilenumber}','${req.body.role}','${req.body.position}', '${req.body.department}','${req.body.departmentcode}',  '${req.body.qualification}', '${req.body.salary}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -522,7 +584,7 @@ router.post('/PPM', (req, res) => {
     pool.getConnection(function (err) {
         if (err) throw err;
         console.log("why");
-        var sql = `INSERT INTO ppm (department,nomenclature,serial_no,ppm_id,time_period,from_date,to_date,assigned_to,ppm_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.ID}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.ppmtask}', '${req.body.contractid}', '${req.body.status}')`;
+        var sql = `INSERT INTO ppm (department,department_code,nomenclature,ppm_id,time_period,from_date,to_date,assigned_to,ppm_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.departmentcode}', '${req.body.nomenclature}','${req.body.ID}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.ppmtask}', '${req.body.contractid}', '${req.body.status}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");

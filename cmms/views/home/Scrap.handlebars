@@ -8,8 +8,8 @@
                     class="banner_content d-md-flex justify-content-between align-items-center"
             >
                 <div class="mb-3 mb-md-0">
-                    <h2>DailyPass-Table<br>
-
+                    <h2>Store an Equipment<br>
+                        Form
                     </h2>
 
                 </div>
@@ -22,65 +22,45 @@
 
 <!--================start form  Area =================-->
 <section class="appointment-area area-padding">
-    <div class="container1">
+    <div class="container">
 
         <div class="appointment-inner">
             <div class="row">
-                <div class="col-sm-16 col-lg-10 offset-lg-1">
-                    <div class="topnav">
+                <div class="col-sm-12 col-lg-5 offset-lg-1">
+                    <div class="col-lg-12">
+                        <div class="appointment-form">
 
-                        <div class="search-container">
-                            <form action="/DailyPassTable" method="post">
-                                <input type="text" placeholder="Search by id .." name="search">
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                            <form action="/Scrap" method="post">
+                                <div class="form-group">
+                                    <label class="newequip">Nomenclature:</label>
+                                    <input class="inputequip" type="text" name="nomenclature" required><br><br><br>
+                                    <label class="newequip">Serial-Number:</label>
+                                    <input class="inputequip" type="text" name="serialnumber" required><br><br><br>
+                                    <label class="newequip">Model:</label>
+                                    <input class="inputequip" type="text" name="model"><br><br><br>
+                                    <label class="newequip">Manufacturer:</label>
+                                    <input class="inputequip" type="text" name="manufacturer" required><br><br><br>
+                                    <label class="newequip">Local-Agent:</label>
+                                    <input class="inputequip" type="text" name="localagent" required><br><br><br>
+                                    <label class="newequip">Warrently-Period:</label>
+                                    <input class="inputequip" type="month" name="warrentlyperiod" required ><br><br><br>
+                                    <label class="newequip">Stop-production-date:</label>
+                                    <input class="inputequip" type="date" name="stopproductiondate" required><br><br><br>
+                                    <label class="newequip">End-production-date:</label>
+                                    <input class="inputequip" type="date" name="endproductiondate" required><br><br><br>
+                                    <label class="newequip">Deletion-date:</label>
+                                    <input class="inputequip" type="date" name="deletiondate" required><br><br><br>
+                                    <button class="submission"type="submit" name="addequipment">Store-Equipment</button><br><br>
+
+
+                                </div>
                             </form>
+
                         </div>
+
                     </div>
-                    <caption>DailyPass Table</caption>
-                    <table id="hakona">
-                        <thead>
-                        <tr class="table100-head">
-                            <th class="column4">Department</th>
-                            <th class="column4">Department-Code</th>
-                            <th class="column4">Equipment-Name</th>
-                            <th class="column3">ID</th>
-                            <th class="column4">Technician-Name</th>
-                            <th class="column4">Physical-Condition</th>
-                            <th class="column4">Batteries-Condition</th>
-                            <th class="column4">Cables&Ports-Condition</th>
-                            <th class="column4">Self-Test</th>
-                            <th class="column5">Comment</th>
-                            <th class="column4">Inspection-Date</th>
-                            <th class="column3">Inspection-Number</th>
 
 
-                        </tr>
-
-
-                        </thead>
-
-                        <tbody>
-                        {{#each daily_inspection}}
-                            <tr>
-                                <td class="column4">{{department}}</td>
-                                <td class="column4">{{d_code}}</td>
-                                <td class="column4">{{nomenclature}}</td>
-                                <td class="column3">{{dinspect_id}}</td>
-                                <td class="column4">{{tech_name}}</td>
-                                <td class="column4">{{physical_condition}}</td>
-                                <td class="column4">{{batteries}}</td>
-                                <td class="column4">{{cables_port}}</td>
-                                <td class="column4">{{self_test}}</td>
-                                <td class="column5">{{comment}}</td>
-                                <td class="column4">{{inspection_date}}</td>
-                                <td class="column3">{{insp_no}}</td>
-
-
-                            </tr>
-                        {{/each}}
-                        </tbody>
-
-                    </table>
                 </div>
 
 
@@ -91,20 +71,19 @@
 </section>
 <!-- ================ form Area ends ================= -->
 section class="hotline-area text-center area-padding">
-<section>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Emergency hotline</h2>
-                <span>(+01) – 256 567 550</span>
-                <p class="pt-3">We provide 24/7 customer support. Please feel free to contact us <br>for emergency case.</p>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Emergency hotline</h2>
+            <span>(+01) – 256 567 550</span>
+            <p class="pt-3">We provide 24/7 customer support. Please feel free to contact us <br>for emergency case.</p>
         </div>
     </div>
+</div>
 </section>
 
 <!-- ================ Hotline area ends ================= -->
+
 
 
 <!-- ================ testimonial section start ================= -->

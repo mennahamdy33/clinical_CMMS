@@ -254,6 +254,7 @@ label {
 
 button {
     border-radius: 0
+
 }
 
 button:focus {
@@ -279,7 +280,9 @@ input {
 
 button,
 select {
-    text-transform: none
+    text-transform: none;
+    height: 50px;
+    width: 100%;
 }
 
 [type=reset],

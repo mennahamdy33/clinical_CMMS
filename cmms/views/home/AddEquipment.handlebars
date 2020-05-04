@@ -32,12 +32,68 @@
                                 <div class="form-group">
                                     <label class="newequip">Nomenclature:</label>
                                     <input class="inputequip" type="text" name="nomenclature" required><br><br><br>
+                                    <label for="department" >Department:</label>
+                                    <select  name="department" >
+                                        <option value="icu">ICU</option>
+                                        <option value="op">OP</option>
+                                        <option value="er">ER</option>
+                                        <option value="ip">IP</option>
+                                        <option value="or">OR</option>
+                                        <option value="anesthesiology">Anesthesiology</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="otolaryngology">Otolaryngology</option>
+                                        <option value="urology">Urology</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="oncology">Oncology</option>
+                                        <option value="neurology">Neurology</option>
+                                        <option value="laboratory">Laboratory</option>
+                                        <option value="obgyn">OBGYN</option>
+                                        <option value="cssd">CSSD</option>
+                                        <option value="biomedicalengineering">Biomedical-Engineering</option>
+                                        <option value="radiology">Radiology</option>
+                                    </select><br><br><br>
+
+                                    <label for="departmentcode" >Department-Code:</label>
+                                    <select  name="departmentcode" >
+                                        <option value="100">100-ICU</option>
+                                        <option value="101">101-ICU</option>
+                                        <option value="102">102-ICU</option>
+                                        <option value="150">150-OP</option>
+                                        <option value="151">151-OP</option>
+                                        <option value="160">160-Biomedical-Engineering</option>
+                                        <option value="161">161-Biomedical-Engineering</option>
+                                        <option value="200">200-ER</option>
+                                        <option value="201">201-ER</option>
+                                        <option value="250">250-IP</option>
+                                        <option value="251">251-IP</option>
+                                        <option value="400">400-Radiology</option>
+                                        <option value="401">401-Radiology</option>
+                                        <option value="450">450-OR</option>
+                                        <option value="451">451-OR</option>
+
+                                        <option value="500">500-Anesthesiology</option>
+                                        <option value="501">501-Anesthesiology</option>
+                                        <option value="550">550-Cardiology</option>
+                                        <option value="551">551-Cardiology</option>
+                                        <option value="600">600-CSSD</option>
+                                        <option value="601">601-CSSD</option>
+                                        <option value="700">700-OBGYN</option>
+                                        <option value="701">701-OBGYN</option>
+                                        <option value="750">750-Laboratory</option>
+                                        <option value="751">751-Laboratory</option>
+                                        <option value="800">800-Neurology</option>
+                                        <option value="801">801-Neurology</option>
+                                        <option value="850">850-Oncology</option>
+                                        <option value="851">851-Oncology</option>
+                                        <option value="880">880-Orthopedics</option>
+                                        <option value="881">881-Orthopedics</option>
+                                        <option value="920">920-Otolaryngology</option>
+                                        <option value="921">921-Otolaryngology</option>
+                                        <option value="950">950-Urology</option>
+                                        <option value="951">951-Urology</option>
+                                    </select><br><br><br>
                                     <label class="newequip">ID:</label>
                                     <input class="inputequip" type="text" name="id" required><br><br><br>
-                                    <label class="newequip">Department:</label>
-                                    <input class="inputequip" type="text" name="department" required><br><br><br>
-                                    <label class="newequip">Department-Code:</label>
-                                    <input class="inputequip" type="number" name="departmentcode" required><br><br><br>
                                     <label class="newequip">Serial-Number:</label>
                                     <input class="inputequip" type="text" name="serialnumber" required><br><br><br>
                                     <label class="newequip">Manufacturer:</label>
@@ -56,10 +112,17 @@
                                     <input class="inputequip" type="number" name="price" required><br><br><br>
                                     <label class="newequip">Contact-Agent:</label>
                                     <input class="inputequip" type="text" name="contactagent" required><br><br><br>
-                                    <label class="newequip">Condition-Code:</label>
-                                    <input class="inputequip" type="text" name="conditioncode" required><br><br><br>
-                                    <label class="newequip">Maintainance-Assessment:</label>
-                                    <input class="inputtext" type="text" name="maintainanceassessment" required><br><br><br>
+                                    <label for="conditioncode">Condition-Code:</label>
+                                    <select  name="conditioncode" >
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select><br><br><br>
+                                    <label for="maintainanceassessment">Maintainance-Assessment:</label>
+                                    <select  name="maintainanceassessment" >
+                                        <option value="Y">Y</option>
+                                        <option value="N">N</option>
+                                    </select><br><br><br>
                                     <button class="submission" type="submit" name="search" >Add Equipment</button>
 
                                 </div>

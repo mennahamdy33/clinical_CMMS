@@ -42,32 +42,31 @@
                             <th class="column3">Department</th>
                             <th class="column3">Department-Code</th>
                             <th class="column4">Nomenclature</th>
-
                             <th class="column3">ID</th>
                             <th class="column3">Time Period</th>
                             <th class="column3">From-date</th>
                             <th class="column3">To-date</th>
                             <th class="column4">Assigned-To</th>
-                            <th class="column5">PPM-task</th>
+                            <th class="column5">PPM-Task</th>
+                            <th class="column3">PPM-Number</th>
                             <th class="column4">Contract-ID</th>
-
                             <th class="column5">Status</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         {{#each ppm}}
-<tr>
+                            <tr>
                                 <td class="column3">{{department}}</td>
-                                <td class="column3">{{department-code}}</td>
+                                <td class="column3">{{department_code}}</td>
                                 <td class="column4">{{nomenclature}}</td>
-                                <td class="column3">{{serial_no}}</td>
                                 <td class="column3">{{ppm_id}}</td>
                                 <td class="column3">{{time_period}}</td>
                                 <td class="column3">{{from_date}}</td>
                                 <th class="column3">{{to_date}}</th>
                                 <th class="column4">{{assigned_to}}</th>
                                 <th class="column5">{{ppm_task}}</th>
+                                <th class="column3">{{ppm_no}}</th>
                                 <th class="column4">{{contract_id}}</th>
                                 <th class="column5">{{status}}</th>
                             </tr>
