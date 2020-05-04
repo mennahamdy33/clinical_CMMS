@@ -104,8 +104,22 @@ router.get('/Equipment',(req,res)=>{
     pool.getConnection(function (err) {
         if (err) throw err;
 
-        var sql = `SELECT * FROM equipment `;
-    pool.query(sql,  async function (err,rows,fields) {
+        var sql1 = `DELETE reports,ppm,calibration,daily_inspection,f 
+                    FROM reports
+                    JOIN equipment AS f ON f.id=reports.report_id
+                    JOIN ppm ON f.id=ppm.ppm_id
+                    JOIN calibration ON f.id=calibration.cal_id
+                    JOIN daily_inspection ON f.id=daily_inspection.dinspect_id
+                    JOIN scrap ON f.serial_no=scrap.serial_no
+                    WHERE scrap.deletion_date<=?`;
+        pool.query(sql1,[today] , async function (err,rows,fields) {
+            console.log(today);
+            console.log("done"+rows.affectedRows);
+
+        });
+        var sql= `SELECT * FROM equipment`;
+
+    pool.query(sql,[today] , async function (err,rows,fields) {
         res.render('home/Equipment', {equipment: rows,layout:'home'});
 
         console.log("ww", {equipment: rows});
@@ -165,12 +179,12 @@ router.get('/Dashboard',(req,res)=>{
     SELECT count(*) As a FROM reports AS s WHERE fault_date=?;
     SELECT count(*) As a FROM ppm WHERE to_date=?;
     SELECT count(*) As a FROM calibration WHERE to_date=?;
-    SELECT MONTH(install_date) as e,count(*) as h FROM equipment as eq3 WHERE YEAR(install_date)=?  GROUP BY MONTH(install_date)`;
-    pool.query(sql ,[today,'Y','Y',today,today,today,2019], async function (err,rows,fields) {
+    SELECT MONTH(fault_date) as e,count(*) as h FROM reports as re WHERE YEAR(fault_date)=?  GROUP BY MONTH(fault_date)`;
+    pool.query(sql ,[today,'Y','Y',today,today,today,year], async function (err,rows,fields) {
 
-        res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],eq3:rows[7]});
+        res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],re:rows[7]});
 
-        console.log("ww", {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],eq3:rows[7],eq3:rows[7]});
+        console.log("ww", {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],re:rows[7]});
 
 
     });
@@ -223,7 +237,7 @@ router.post('/Calib_table',(req,res)=>{
         if (err) throw err;
 
 
-        var sql = `SELECT * FROM calibration WHERE calib_id =?`;
+        var sql = `SELECT * FROM calibration WHERE cal_id =?`;
         pool.query(sql,[req.body.search] , async function (err,rows,fields) {
 
             res.render('home/Calib_table', {calibration: rows,layout:'home'});
@@ -425,7 +439,7 @@ router.post('/Calibration', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql = `INSERT INTO calibration (department,nomenclature,serial_no,calib_id,time_period,from_date,to_date,assigned_to,calibration_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.id}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.calibrationtask}', '${req.body.contractid}', '${req.body.status}')`;
+        var sql = `INSERT INTO calibration (department,nomenclature,serial_no,cal_id,time_period,from_date,to_date,assigned_to,calibration_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.nomenclature}','${req.body.serialnumber}','${req.body.id}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.calibrationtask}', '${req.body.contractid}', '${req.body.status}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");

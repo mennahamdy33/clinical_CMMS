@@ -10,14 +10,14 @@
         function drawChart() {
 
             var data = google.visualization.arrayToDataTable([
-             ['Years', 'Sales'],
-{{#each eq3}}   [{{e}},{{h}}],{{/each}}
+             ['Month', 'no of reports'],
+{{#each re}}   [{{e}},{{h}}],{{/each}}
 
 
             ]);
 
             var options = {
-                title: 'Company Performance',
+                title: 'Reports in month',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };

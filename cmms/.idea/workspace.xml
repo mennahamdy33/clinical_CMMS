@@ -14,11 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="539" selection-start-line="539" selection-end-line="539" />
+            <state relative-caret-position="185">
+              <caret line="180" column="43" lean-forward="true" selection-start-line="180" selection-start-column="43" selection-end-line="180" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.handlebars" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/layouts/home.handlebars">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="75" column="58" selection-start-line="75" selection-start-column="56" selection-end-line="75" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -50,15 +59,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DailyPassTable.handlebars" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/home/DailyPassTable.handlebars">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="39" column="26" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ReportTable.handlebars" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/home/ReportTable.handlebars">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dashboard.handlebars" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Dashboard.handlebars" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/home/Dashboard.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="125">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -104,12 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hp</find>
-      <find>equi</find>
-      <find>style</find>
-      <find>image</find>
-      <find>image1</find>
-      <find>ppm_id</find>
       <find>ppm_table</find>
       <find>button</find>
       <find>reports</find>
@@ -131,9 +125,15 @@
       <find>daily</find>
       <find>reporttable</find>
       <find>solved</find>
-      <find>dash</find>
       <find>report</find>
       <find>de</find>
+      <find>&gt;</find>
+      <find>don</find>
+      <find>d</find>
+      <find>cal</find>
+      <find>done</find>
+      <find>do</find>
+      <find>dash</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -171,10 +171,10 @@
         <option value="$PROJECT_DIR$/views/home/PPM_table.handlebars" />
         <option value="$PROJECT_DIR$/views/home/store_table.handlebars" />
         <option value="$PROJECT_DIR$/views/home/DailyPassTable.handlebars" />
-        <option value="$PROJECT_DIR$/views/home/Dashboard.handlebars" />
         <option value="$PROJECT_DIR$/views/home/Report.handlebars" />
         <option value="$PROJECT_DIR$/views/home/ReportTable.handlebars" />
         <option value="$PROJECT_DIR$/routes/main.js" />
+        <option value="$PROJECT_DIR$/views/home/Dashboard.handlebars" />
       </list>
     </option>
   </component>
@@ -195,8 +195,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="800" />
-    <option name="y" value="80" />
+    <option name="x" value="402" />
+    <option name="y" value="-25" />
     <option name="width" value="960" />
     <option name="height" value="1015" />
   </component>
@@ -327,23 +327,23 @@
       <workItem from="1588388361652" duration="2330000" />
       <workItem from="1588434896758" duration="7995000" />
       <workItem from="1588444327167" duration="14260000" />
-      <workItem from="1588509449253" duration="3921000" />
+      <workItem from="1588509449253" duration="22469000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166514000" />
+    <option name="totallyTimeSpent" value="185062000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.83439493" visible="true" weight="0.21017845" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.83439493" visible="true" weight="0.21017845" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50033045" side_tool="true" weight="0.26495728" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49966952" visible="true" weight="0.3148148" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49966952" visible="true" weight="0.3148148" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" sideWeight="0.1656051" side_tool="true" weight="0.2161269" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32905984" />
@@ -594,13 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layouts/home.handlebars">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="72" column="89" selection-start-line="72" selection-start-column="89" selection-end-line="72" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/home/Calib_table.handlebars">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
@@ -667,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/home/Dashboard.handlebars">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/home/Report.handlebars">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
@@ -688,10 +674,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/layouts/home.handlebars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="75" column="58" selection-start-line="75" selection-start-column="56" selection-end-line="75" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="539" selection-start-line="539" selection-end-line="539" />
+        <state relative-caret-position="185">
+          <caret line="180" column="43" lean-forward="true" selection-start-line="180" selection-start-column="43" selection-end-line="180" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/home/Dashboard.handlebars">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
