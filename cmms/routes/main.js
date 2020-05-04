@@ -107,20 +107,66 @@ router.get('/ReportTable',(req,res)=>{
 router.get('/about',(req,res)=>{
     res.render('home/about',{layout:'home'});
 });
-router.get('/equipment',(req,res)=>{
+// router.get('/equipment',(req,res)=>{
+//     pool.getConnection(function (err) {
+//         if (err) throw err;
+//
+//         var sql2 = `DELETE d
+//                 FROM equipment As d
+//                 JOIN scrap ON d.serial_no=scrap.serial_no
+//                 WHERE scrap.deletion_date<=?`;
+//
+//     pool.query(sql2,[today] , async function (err,rows,fields) {
+//         console.log(today);
+//         console.log("done"+rows.affectedRows);
+//
+//     });
+//         var sql= `SELECT * FROM equipment`;
+//
+//         pool.query(sql,[today] , async function (err,rows,fields) {
+//             res.render('home/Equipment', {equipment: rows,layout:'home'});
+//
+//             console.log("ww", {equipment: rows});
+//
+//         });
+//     });});
+router.get('/Equipment',(req,res)=>{
+
     pool.getConnection(function (err) {
         if (err) throw err;
 
-        var sql2 = `DELETE d
-                FROM equipment As d
-                JOIN scrap ON d.serial_no=scrap.serial_no
-                WHERE scrap.deletion_date<=?`;
+        var sql1 = `DELETE reports
+                    FROM reports
+                    JOIN equipment AS f ON f.id=reports.report_id
+                    JOIN scrap ON f.serial_no=scrap.serial_no
+                    WHERE scrap.deletion_date<=?;
+                    DELETE ppm
+                    FROM ppm
+                    JOIN equipment AS b ON b.id=ppm.ppm_id
+                    JOIN scrap ON b.serial_no=scrap.serial_no
+                    WHERE scrap.deletion_date<=?;
+                    DELETE calibration
+                    FROM calibration
+                    JOIN equipment AS n ON n.id=calibration.cal_id
+                    JOIN scrap ON n.serial_no=scrap.serial_no
+                    WHERE scrap.deletion_date<=?;
+                    DELETE daily_inspection
+                    FROM daily_inspection
+                    JOIN equipment AS m ON m.id=daily_inspection.dinspect_id
+                    JOIN scrap ON m.serial_no=scrap.serial_no
+                    WHERE scrap.deletion_date<=?;
+                    DELETE d
+                    FROM equipment As d
+                    JOIN scrap ON d.serial_no=scrap.serial_no
+                    WHERE scrap.deletion_date<=?`;
 
-    pool.query(sql2,[today] , async function (err,rows,fields) {
-        console.log(today);
-        console.log("done"+rows.affectedRows);
 
-    });
+        pool.query(sql1,[today,today,today,today,today] , async function (err,rows,fields) {
+            console.log(today);
+            console.log("done"+rows[0].affectedRows+rows[1].affectedRows+rows[2].affectedRows+rows[3].affectedRows+rows[4].affectedRows);
+
+        });
+
         var sql= `SELECT * FROM equipment`;
 
         pool.query(sql,[today] , async function (err,rows,fields) {
@@ -129,28 +175,6 @@ router.get('/equipment',(req,res)=>{
             console.log("ww", {equipment: rows});
 
         });
-});});
-router.get('/Equipment',(req,res)=>{
-
-    pool.getConnection(function (err) {
-        if (err) throw err;
-
-        var sql1 = `DELETE reports,ppm,calibration,daily_inspection
-                    FROM reports
-                    JOIN equipment AS f ON f.id=reports.report_id
-                    JOIN ppm ON f.id=ppm.ppm_id
-                    JOIN calibration ON f.id=calibration.cal_id
-                    JOIN daily_inspection ON f.id=daily_inspection.dinspect_id
-                    JOIN scrap ON f.serial_no=scrap.serial_no
-                    WHERE scrap.deletion_date<=?`;
-
-        pool.query(sql1,[today] , async function (err,rows,fields) {
-            console.log(today);
-            console.log("done"+rows.affectedRows);
-
-        });
-
-        res.redirect('/equipment');
 });});
 router.get('/aEquipment',(req,res)=>{
 
