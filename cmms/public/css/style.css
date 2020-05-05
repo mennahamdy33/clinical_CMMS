@@ -1529,13 +1529,16 @@ ul {
       	align-items: center;
       	justify-content: center;
       	flex-wrap: wrap;
+        table-layout: fixed;
 
-      	/* padding-bottom: 180px; */
+
+        /* padding-bottom: 180px; */
       	padding-left: 160px;
 
       }
       .separate{
       	margin-top:10px;
+
       }
       caption{
       	font-size: 30px;
@@ -1547,15 +1550,14 @@ ul {
       	background: white;
       	border-radius: 2px;
       	overflow: hidden;
-      	width: 1122px;
-        border-color: black;
+
 
       }
       table thead tr {
       	height: 100px;
         width:100%;
       	background:#10679E;
-        border-color: black;
+
 
       }
       table tbody tr {
@@ -1566,7 +1568,6 @@ ul {
       }
       table td, table th {
       	text-align: center;
-        border-color: aliceblue;
       }
       table td.l, table th.l {
       	text-align: center;
@@ -1585,6 +1586,8 @@ ul {
       	color: #fff;
       	line-height: 1.2;
       	font-weight: bolder;
+        border:1px solid #10679E;
+
       }
 
       tbody tr:nth-child(even) {
@@ -3505,22 +3508,35 @@ h6 {
   font-size: 14px;
   font-weight: bold;
   width: 70px;
+  border:1px solid #D5D2D2;
+
 }
 .column4 {
   font-size: 14px;
   font-weight: bold;
   width: 100px;
+  border:1px solid #D5D2D2;
+
 }
 .column5 {
   font-size: 14px;
   font-weight: bold;
   width: 200px;
+  border:1px solid #D5D2D2;
+
 }
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
 #hakona{
   margin-left: -97px;
+  border-radius: 15px;
+  table-layout: fixed;
+  width: 118%;
+
+}
+#hakona1{
+  margin-left: -157px;
   border-radius: 15px;
   width: 118%;
 }

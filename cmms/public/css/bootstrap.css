@@ -284,6 +284,12 @@ select {
     height: 50px;
     width: 100%;
 }
+button,
+select .butt{
+    text-transform: none;
+    height: 14%;
+    width: 14%;
+}
 
 [type=reset],
 [type=submit],
@@ -655,8 +661,22 @@ pre code {
         max-width: 1370px
     }
 }
+.container2 {
+    width: 185%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
 
-.container1-fluid {
+
+@media (min-width:1200px) {
+    .container2 {
+        max-width: 1770px
+    }
+}
+
+.container1-fluird {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
@@ -670,6 +690,14 @@ pre code {
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px
+}
+.row2 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: -65px
 }
 
 .no-gutters {
