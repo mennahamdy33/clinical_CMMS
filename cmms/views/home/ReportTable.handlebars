@@ -44,33 +44,33 @@
                             <th class="column4">Department-Code</th>
                             <th class="column4">Equipment-Name</th>
                             <th class="column3">ID</th>
-                            <th class="column5">Manufacturer</th>
+                            <th class="column4">Manufacturer</th>
                             <th class="column3">Model</th>
                             <th class="column3">Fault-Date</th>
                             <th class="column3">Job-Number</th>
                             <th class="column3">Priority</th>
-                            <th class="column5">Technician-Name</th>
+                            <th class="column4">Technician-Name</th>
                             <th class="column3">Fault-Description</th>
                             <th class="column4">Action-Taken</th>
-                            <th class="column5">Solution</th>
+                            <th class="column3">Solution</th>
                             <th class="column3">End-Date</th>
                         </tr>
                         </thead>
                         <tbody>
                         {{#each reports}}
                             <tr>
-                                <td class="column3">{{department}}</td>
-                                <td class="column3">{{de_code}}</td>
+                                <td class="column4">{{department}}</td>
+                                <td class="column4">{{de_code}}</td>
                                 <td class="column4">{{equip_name}}</td>
-                                <td class="column4">{{report_id}}</td>
+                                <td class="column3">{{report_id}}</td>
                                 <td class="column4">{{manufacturer}}</td>
                                 <td class="column3">{{model}}</td>
                                 <td class="column3">{{fault_date}}</td>
                                 <td class="column3">{{job_no}}</td>
                                 <td class="column3">{{priority}}</td>
-                                <td class="column3">{{tech_name}}</td>
+                                <td class="column4">{{tech_name}}</td>
                                 <td class="column3">{{fault_description}}</td>
-                                <td class="column3">{{action_taken}}</td>
+                                <td class="column4">{{action_taken}}</td>
                                 <td class="column3"><a href="/solved?id={{job_no}}" id="{{job_no}}">{{solved}}</a></td>
                                 <td class="column3">{{end_date}}</td>
 
@@ -79,18 +79,18 @@
                         {{/each}}
                         {{#each rep}}
                             <tr>
-                                <td class="column3">{{department}}</td>
-                                <td class="column3">{{de_code}}</td>
+                                <td class="column4">{{department}}</td>
+                                <td class="column4">{{de_code}}</td>
                                 <td class="column4">{{equip_name}}</td>
-                                <td class="column4">{{report_id}}</td>
+                                <td class="column3">{{report_id}}</td>
                                 <td class="column4">{{manufacturer}}</td>
                                 <td class="column3">{{model}}</td>
                                 <td class="column3">{{fault_date}}</td>
                                 <td class="column3">{{job_no}}</td>
                                 <td class="column3">{{priority}}</td>
-                                <td class="column3">{{tech_name}}</td>
+                                <td class="column4">{{tech_name}}</td>
                                 <td class="column3">{{fault_description}}</td>
-                                <td class="column3">{{action_taken}}</td>
+                                <td class="column4">{{action_taken}}</td>
                                 <td class="column3"><a href="/solved?id={{job_no}}" id="{{job_no}}">{{solved}}</a></td>
                                 <td class="column3">{{end_date}}</td>
 

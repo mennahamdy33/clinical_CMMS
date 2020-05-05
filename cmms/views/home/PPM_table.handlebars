@@ -30,7 +30,7 @@
 
    <div class="search-container">
      <form action="/PPM_table" method="post">
-       <input type="text" placeholder="Search by id.." name="search">
+       <input class="butt" type="text" placeholder="Search by id.." name="search">
        <button type="submit"><i class="fa fa-search"></i></button>
      </form>
    </div>
@@ -50,7 +50,7 @@
                             <th class="column5">PPM-Task</th>
                             <th class="column3">PPM-Number</th>
                             <th class="column4">Contract-ID</th>
-                            <th class="column5">Status</th>
+                            <th class="column4">Status</th>
                         </tr>
                         </thead>
 
@@ -68,7 +68,7 @@
                                 <th class="column5">{{ppm_task}}</th>
                                 <th class="column3">{{ppm_no}}</th>
                                 <th class="column4">{{contract_id}}</th>
-                                <th class="column5">{{status}}</th>
+                                <th class="column4">{{status}}</th>
                             </tr>
                         {{/each}}
                         </tbody>

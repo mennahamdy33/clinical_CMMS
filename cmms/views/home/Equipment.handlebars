@@ -21,92 +21,93 @@
 
 <!--================start form  Area =================-->
 <section class="appointment-area area-padding">
-    <div class="container">
+    <div class="container2">
 
         <div class="appointment-inner">
-            <div class="row">
+            <div class="row2">
                 <div class="col-sm-16 col-lg-10 offset-lg-1">
                     <caption>Equipment Table</caption>
                     <table id="hakona">
                         <thead>
                         <tr class="table100-head">
-                            <th class="column3">Nomenclature</th>
-                            <th class="column4">ID</th>
+                            <th class="column4">Nomenclature</th>
+                            <th class="column3">ID</th>
                             <th class="column3">Department</th>
                             <th class="column3">Department-Code</th>
                             <th class="column4">Serial_Number</th>
                             <th class="column4">Model</th>
-                            <th class="column3">Manufacturer</th>
+                            <th class="column4">Manufacturer</th>
                             <th class="column4">Manufacturer_Contact</th>
-                            <th class="column3">Local_Agent</th>
+                            <th class="column4">Local_Agent</th>
                             <th class="column4">Agent_Contact</th>
-                            <th class="column4">Condition_Code</th>
+                            <th class="column3">Condition_Code</th>
                             <th class="column4">Price</th>
-                            <th class="column3">Installation_Data</th>
+                            <th class="column4">Installation_Data</th>
                             <th class="column4">Warrenty_Period</th>
-                            <th class="column3">Maintainance_Assessment</th>
+                            <th class="column5">Maintainance_Assessment</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         {{#each equipment}}
                             <tr>
-                                <td class="column3">{{nomenclature}}</td>
-                                <td class="column4">{{id}}</td>
+                                <td class="column4">{{nomenclature}}</td>
+                                <td class="column3">{{id}}</td>
                                 <td class="column3">{{department}}</td>
                                 <td class="column3">{{dep_code}}</td>
-                                <td class="column4"  > {{serial_no}}</td>
+                                <td class="column4"> {{serial_no}}</td>
                                 <td class="column4">{{model}}</td>
-                                <td class="column3">{{manufacturer}}</td>
+                                <td class="column4">{{manufacturer}}</td>
                                 <th class="column4">{{contact_manufacturer}}</th>
-                                <th class="column3">{{local_agent}}</th>
+                                <th class="column4">{{local_agent}}</th>
                                 <th class="column4">{{contact_agent}}</th>
-                                <th class="column4">{{condition_code}}</th>
+                                <th class="column3">{{condition_code}}</th>
                                 <th class="column4">{{price}}</th>
-                                <th class="column3">{{install_date}}</th>
+                                <th class="column4">{{install_date}}</th>
                                 <th class="column4">{{warrenty_period}}</th>
-                                <th class="column3">{{maintenance_assessment}}</th>
+                                <th class="column5">{{maintenance_assessment}}</th>
                             </tr>
                         {{/each}}
                         </tbody>
                         <tbody>
                         {{#each eq2}}
                             <tr>
-                                <td class="column3">{{nomenclature}}</td>
-                                <td class="column4">{{id}}</td>
+                                <td class="column4">{{nomenclature}}</td>
+                                <td class="column3">{{id}}</td>
                                 <td class="column3">{{department}}</td>
                                 <td class="column3">{{dep_code}}</td>
-                                <td class="column4"  > {{serial_no}}</td>
+                                <td class="column4"> {{serial_no}}</td>
                                 <td class="column4">{{model}}</td>
-                                <td class="column3">{{manufacturer}}</td>
+                                <td class="column4">{{manufacturer}}</td>
                                 <th class="column4">{{contact_manufacturer}}</th>
-                                <th class="column3">{{local_agent}}</th>
+                                <th class="column4">{{local_agent}}</th>
                                 <th class="column4">{{contact_agent}}</th>
-                                <th class="column4">{{condition_code}}</th>
+                                <th class="column3">{{condition_code}}</th>
                                 <th class="column4">{{price}}</th>
-                                <th class="column3">{{install_date}}</th>
+                                <th class="column4">{{install_date}}</th>
                                 <th class="column4">{{warrenty_period}}</th>
-                                <th class="column3">{{maintenance_assessment}}</th>
+                                <th class="column5">{{maintenance_assessment}}</th>
                             </tr>
                         {{/each}}
                         {{#each eq}}
                             <tr>
-                                <td class="column3">{{nomenclature}}</td>
-                                <td class="column4">{{id}}</td>
+                                <td class="column4">{{nomenclature}}</td>
+                                <td class="column3">{{id}}</td>
                                 <td class="column3">{{department}}</td>
                                 <td class="column3">{{dep_code}}</td>
-                                <td class="column4"  > {{serial_no}}</td>
+                                <td class="column4"> {{serial_no}}</td>
                                 <td class="column4">{{model}}</td>
-                                <td class="column3">{{manufacturer}}</td>
+                                <td class="column4">{{manufacturer}}</td>
                                 <th class="column4">{{contact_manufacturer}}</th>
-                                <th class="column3">{{local_agent}}</th>
+                                <th class="column4">{{local_agent}}</th>
                                 <th class="column4">{{contact_agent}}</th>
-                                <th class="column4">{{condition_code}}</th>
+                                <th class="column3">{{condition_code}}</th>
                                 <th class="column4">{{price}}</th>
-                                <th class="column3">{{install_date}}</th>
+                                <th class="column4">{{install_date}}</th>
                                 <th class="column4">{{warrenty_period}}</th>
-                                <th class="column3">{{maintenance_assessment}}</th>
+                                <th class="column5">{{maintenance_assessment}}</th>
                             </tr>
+
                         {{/each}}
                         </tbody>
                     </table>
@@ -143,7 +144,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes1.jpg" alt="">
+                        <img src="images/elements/tes1.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -155,7 +156,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes2.jpg" alt="">
+                        <img src="images/elements/tes2.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -167,7 +168,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes3.jpg"  alt="">
+                        <img src="images/elements/tes3.jpg"  alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
@@ -179,7 +180,7 @@ section class="hotline-area text-center area-padding">
             <div class="item">
                 <div class="testi_item">
                     <div class="testimonial_image">
-                        <img src="img/elements/tes4.jpg" alt="">
+                        <img src="images/elements/tes4.jpg" alt="">
                     </div>
                     <div class="testi_item_content">
                         <p font-weight="bold black">
