@@ -170,9 +170,29 @@ router.get('/Equipment',(req,res)=>{
         var sql= `SELECT * FROM equipment`;
 
         pool.query(sql,[today] , async function (err,rows,fields) {
-            res.render('home/Equipment', {equipment: rows,layout:'home'});
+            if(req.query.id==='1'){
+            res.render('home/Equipment', {equipment:  rows.slice(0,100),layout:'home'});
+                console.log("ww", {equipment: rows.slice(0,100)});
+            }
+            else if(req.query.id==='2'){
+                res.render('home/Equipment', {equipment:  rows.slice(100,200),layout:'home'});
+                console.log("ss", {equipment: rows.slice(100,200)});
+            }
+            else if(req.query.id==='3'){
+                res.render('home/Equipment', {equipment:  rows.slice(200,300),layout:'home'});
+                console.log("aa", {equipment: rows.slice(200,300)});
+            }
+            else if(req.query.id==='4'){
+                res.render('home/Equipment', {equipment:  rows.slice(300),layout:'home'});
+                console.log("zz", {equipment: rows.slice(0,100)});
+            }
+            else
+            {
+                res.render('home/Equipment', {equipment:  rows.slice(0,100),layout:'home'});
+                console.log("ww", {equipment: rows.slice(0,100)});
 
-            console.log("ww", {equipment: rows});
+            }
+
 
         });
 });});
