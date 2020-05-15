@@ -226,6 +226,34 @@ router.get('/aReportTable',(req,res)=>{
 
         });
     });});
+router.get('/appmtable',(req,res)=>{
+
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql=`SELECT *  FROM ppm AS PPM WHERE from_date=?`;
+
+        pool.query(sql,[today],async function (err,rows,fields) {
+
+            res.render('home/PPM_table', {PPM: rows,layout:'home'});
+            console.log( {PPM: rows});
+
+        });
+    });});
+router.get('/acalitable',(req,res)=>{
+
+
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        var sql=`SELECT *  FROM calibration AS cali WHERE from_date=?`;
+
+        pool.query(sql,[today],async function (err,rows,fields) {
+
+            res.render('home/Calib_table', {cali: rows,layout:'home'});
+            console.log( {cali: rows});
+
+        });
+    });});
 router.get('/Scrap_table',(req,res)=>{
 
     pool.getConnection(function (err) {
@@ -260,8 +288,8 @@ router.get('/Dashboard',(req,res)=>{
         SELECT count(*) As z FROM equipment as eq2 WHERE maintenance_assessment=?;
         SELECT count(*) As a FROM reports WHERE solved=?;
     SELECT count(*) As a FROM reports AS s WHERE fault_date=?;
-    SELECT count(*) As a FROM ppm WHERE to_date=?;
-    SELECT count(*) As a FROM calibration WHERE to_date=?;
+    SELECT count(*) As a FROM ppm WHERE from_date=?;
+    SELECT count(*) As a FROM calibration WHERE from_date=?;
     SELECT MONTH(fault_date) as e,count(*) as h FROM reports as re WHERE YEAR(fault_date)=?  GROUP BY MONTH(fault_date)`;
     pool.query(sql ,[today,'Y','no',today,today,today,year], async function (err,rows,fields) {
 
@@ -385,7 +413,6 @@ router.get('/PPM_table',(req,res)=>{
         var sql = `SELECT * FROM ppm `;
         pool.query(sql,  async function (err,rows,fields) {
             res.render('home/PPM_table', {ppm: rows,layout:'home'});
-
             console.log("ww", {ppm: rows});
 
         });
