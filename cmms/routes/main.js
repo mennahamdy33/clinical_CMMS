@@ -45,9 +45,13 @@ router.get('/SearchEquipment',(req,res)=>{
 
     res.render('home/SearchEquipment',{layout:'home'});
 });
-router.get('/Calibration',(req,res)=>{
+router.get('/calibration1',(req,res)=>{
 
-    res.render('home/Calibration',{layout:'home'});
+    res.render('home/calibration1',{layout:'home'});
+});
+router.get('/calibration2',(req,res)=>{
+
+    res.render('home/calibration2',{layout:'home'});
 });
 
 router.get('/Employee',(req,res)=>{
@@ -66,9 +70,14 @@ router.get('/report',(req,res)=>{
     res.render('home/report',{layout:'home'});
 });
 
-router.get('/PPM',(req,res)=>{
+router.get('/ppm1',(req,res)=>{
 
-    res.render('home/PPM',{layout:'home'});
+    res.render('home/ppm1',{layout:'home'});
+});
+
+router.get('/ppm2',(req,res)=>{
+
+    res.render('home/ppm2',{layout:'home'});
 });
 router.get('/AddEquipment',(req,res)=>{
     res.render('home/AddEquipment',{layout:'home'});
@@ -231,7 +240,7 @@ router.get('/appmtable',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql=`SELECT *  FROM ppm AS PPM WHERE from_date=?`;
+        var sql=`SELECT *  FROM ppm AS PPM WHERE from_date<=? AND to_date>=? AND status IS NULL`;
 
         pool.query(sql,[today],async function (err,rows,fields) {
 
@@ -245,7 +254,7 @@ router.get('/acalitable',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql=`SELECT *  FROM calibration AS cali WHERE from_date=?`;
+        var sql=`SELECT *  FROM calibration AS cali WHERE from_date<=? AND to_date>=? AND status IS NULL`;
 
         pool.query(sql,[today],async function (err,rows,fields) {
 
@@ -288,10 +297,10 @@ router.get('/Dashboard',(req,res)=>{
         SELECT count(*) As z FROM equipment as eq2 WHERE maintenance_assessment=?;
         SELECT count(*) As a FROM reports WHERE solved=?;
     SELECT count(*) As a FROM reports AS s WHERE fault_date=?;
-    SELECT count(*) As a FROM ppm WHERE from_date=?;
-    SELECT count(*) As a FROM calibration WHERE from_date=?;
+    SELECT count(*) As a FROM ppm WHERE from_date<=? AND to_date>=? AND status IS NULL;
+    SELECT count(*) As a FROM calibration WHERE from_date<=? AND to_date>=? AND status IS NULL;
     SELECT MONTH(fault_date) as e,count(*) as h FROM reports as re WHERE YEAR(fault_date)=?  GROUP BY MONTH(fault_date)`;
-    pool.query(sql ,[today,'Y','no',today,today,today,year], async function (err,rows,fields) {
+    pool.query(sql ,[today,'Y','no',today,today,today,today,today,year], async function (err,rows,fields) {
 
         res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],re:rows[7]});
 
@@ -568,11 +577,12 @@ router.post('/Scrap', (req, res) => {
 
 
 });
-router.post('/Calibration', (req, res) => {
+
+router.post('/calibration1', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql = `INSERT INTO calibration (department,dcode,nomenclature,cal_id,time_period,from_date,to_date,assigned_to,calibration_task,contract_id,status) VALUES ('${req.body.department}','${req.body.departmentcode}' ,'${req.body.nomenclature}','${req.body.id}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.calibrationtask}', '${req.body.contractid}', '${req.body.status}')`;
+        var sql = `INSERT INTO calibration (department,dcode,nomenclature,cal_id,time_period,from_date,to_date,calibration_task,contract_id) VALUES ('${req.body.department}','${req.body.departmentcode}' ,'${req.body.nomenclature}','${req.body.id}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}',  '${req.body.calibrationtask}', '${req.body.contractid}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -582,7 +592,28 @@ router.post('/Calibration', (req, res) => {
 
 
 
-    res.redirect('/Calibration');
+    res.redirect('/calibration1');
+
+
+});
+
+router.post('/calibration2', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("why");
+        var sql = `UPDATE calibration SET assigned_to=? ,status=? WHERE cal_id =? AND from_date<=? AND to_date>=?`;
+
+        pool.query(sql,[req.body.assignedto,req.body.status,req.body.id,today,today] ,function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/calibration2');
 
 
 });
@@ -650,12 +681,12 @@ router.post('/Employee', (req, res) => {
 
 
 });
-router.post('/PPM', (req, res) => {
+router.post('/ppm1', (req, res) => {
     console.log(req.body);
     pool.getConnection(function (err) {
         if (err) throw err;
         console.log("why");
-        var sql = `INSERT INTO ppm (department,department_code,nomenclature,ppm_id,time_period,from_date,to_date,assigned_to,ppm_task,contract_id,status) VALUES ('${req.body.department}', '${req.body.departmentcode}', '${req.body.nomenclature}','${req.body.ID}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}', '${req.body.assignedto}', '${req.body.ppmtask}', '${req.body.contractid}', '${req.body.status}')`;
+        var sql = `INSERT INTO ppm (department,department_code,nomenclature,ppm_id,time_period,from_date,to_date,ppm_task,contract_id) VALUES ('${req.body.department}', '${req.body.departmentcode}', '${req.body.nomenclature}','${req.body.ID}','${req.body.timeperiod}','${req.body.fromdate}','${req.body.todate}',  '${req.body.ppmtask}', '${req.body.contractid}')`;
         pool.query(sql, function (err, res) {
             if (err) throw err;
             console.log("1 record inserted");
@@ -665,7 +696,27 @@ router.post('/PPM', (req, res) => {
 
 
 
-    res.redirect('/PPM');
+    res.redirect('/ppm1');
+
+
+});
+router.post('/ppm2', (req, res) => {
+    console.log(req.body);
+    pool.getConnection(function (err) {
+        if (err) throw err;
+        console.log("why");
+        var sql = `UPDATE ppm SET assigned_to=? ,status=? WHERE ppm_id =?`;
+
+        pool.query(sql,[req.body.assignedto,req.body.status,req.body.ID] ,function (err, res) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+    });
+
+
+
+
+    res.redirect('/ppm2');
 
 
 });
