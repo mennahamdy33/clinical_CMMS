@@ -210,9 +210,9 @@ router.get('/aEquipment',(req,res)=>{
 
     pool.getConnection(function (err) {
         if (err) throw err;
-        var sql=`SELECT *  FROM equipment as eq WHERE warrenty_period>=?;
+        var sql=`SELECT *  FROM equipment as eq WHERE warrenty_period IS NOT NULL;
         SELECT * FROM equipment as eq2 WHERE maintenance_assessment=?`;
-        pool.query(sql,[today,"Y"],async function (err,rows,fields) {
+        pool.query(sql,["Y"],async function (err,rows,fields) {
             if (req.query.id==='z')
             {res.render('home/Equipment', {eq2: rows[1],layout:'home'});
                 console.log( {eq2: rows[1]});}
@@ -242,7 +242,7 @@ router.get('/appmtable',(req,res)=>{
         if (err) throw err;
         var sql=`SELECT *  FROM ppm AS PPM WHERE from_date<=? AND to_date>=? AND status IS NULL`;
 
-        pool.query(sql,[today],async function (err,rows,fields) {
+        pool.query(sql,[today,today],async function (err,rows,fields) {
 
             res.render('home/PPM_table', {PPM: rows,layout:'home'});
             console.log( {PPM: rows});
@@ -293,14 +293,14 @@ router.post('/Scrap_table',(req,res)=>{
 router.get('/Dashboard',(req,res)=>{
 
     var sql = `SELECT count(*) As x FROM equipment;
-        SELECT count(*) As y FROM equipment as eq WHERE warrenty_period>=?;
+        SELECT count(*) As y FROM equipment as eq WHERE warrenty_period IS NOT NULL;
         SELECT count(*) As z FROM equipment as eq2 WHERE maintenance_assessment=?;
         SELECT count(*) As a FROM reports WHERE solved=?;
     SELECT count(*) As a FROM reports AS s WHERE fault_date=?;
     SELECT count(*) As a FROM ppm WHERE from_date<=? AND to_date>=? AND status IS NULL;
     SELECT count(*) As a FROM calibration WHERE from_date<=? AND to_date>=? AND status IS NULL;
     SELECT MONTH(fault_date) as e,count(*) as h FROM reports as re WHERE YEAR(fault_date)=?  GROUP BY MONTH(fault_date)`;
-    pool.query(sql ,[today,'Y','no',today,today,today,today,today,year], async function (err,rows,fields) {
+    pool.query(sql ,['Y','no',today,today,today,today,today,year], async function (err,rows,fields) {
 
         res.render('home/Dashboard', {equipment: rows[0][0],reports:rows[3][0],eq:rows[1][0],eq2:rows[2][0],s:rows[4][0],ppm:rows[5][0],calibration:rows[6][0],re:rows[7]});
 
