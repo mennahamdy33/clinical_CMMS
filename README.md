@@ -1,6 +1,6 @@
 # Computrized Maintainance Management System
 
-We developed a website launched by a server and connected to A sql database to host a simple comutarized maintainace management system thta can be used into any medical facilities as hospitals or clinics.
+We developed a website launched by a server and connected to A sql database to host a simple comutarized maintainace management system that can be used into any medical facilities as hospitals or clinics.
 
 For more details check CMMS.pdf uploaded to the repository
 
