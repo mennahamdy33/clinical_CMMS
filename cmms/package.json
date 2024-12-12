@@ -15,7 +15,7 @@
     "canvas": "^2.6.1",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
+    "express-handlebars": "^5.3.1",
     "express-session": "^1.17.1",
     "googleapis": "^39.2.0",
     "method-override": "^3.0.0",
